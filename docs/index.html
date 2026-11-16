@@ -315,6 +315,8 @@ vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
  schedThis:"Buổi theo lịch",studied:"Ngày đã học",makeups:"Học bù",missed:"Chưa học",soFar:"tính đến hôm nay",ofMonth:"cả tháng {0}",
  teacher:"Giáo viên",tLoginHint:"Nhập mật khẩu giáo viên (đặt trong Google Apps Script) để xem tiến độ người học và cập nhật học bù.",tKey:"Mật khẩu giáo viên",tLogin:"Vào chế độ Giáo viên",tBadKey:"Sai mật khẩu giáo viên.",tNoConn:"Không kết nối được Google Sheet. Kiểm tra mạng hoặc link Apps Script.",tNoSync:"Chưa kết nối Google Sheet (syncUrl trong data/content.js đang trống).",
  tIntro:"Bấm Xem để mở tiến độ của người học: mọi tab sẽ hiện dữ liệu của họ, và bạn có thể nhập ngày học bù / tick Đã học bù ở tab Bài học — người học sẽ thấy ngay lần mở trang tiếp theo.",tLearner:"Người học",tSessions:"Buổi đã học",tLessons:"Bài hoàn thành",tQuizAvg:"Bài tập TB",tUpdated:"Cập nhật",tView:"Xem",tRefresh:"Làm mới",tLogout:"Thoát chế độ GV",loadingT:"Đang tải…",tNoLearners:"Chưa có người học nào. Người học sẽ hiện ở đây sau khi mở web và nhập tên.",
+ tLinkTitle:"Tạo link cho người học",tLinkHint:"Mỗi người học dùng link riêng có sẵn tên — bấm vào là vào đúng tiến độ của mình trên mọi thiết bị, không phải gõ tên.",tLinkPh:"Tên người học, ví dụ: Lan",tLinkMake:"Tạo & sao chép link",tCopyLink:"Sao chép link",
+ swTitle:"Người học trên thiết bị này",swCurrent:"Đang học với tên",swNone:"Thiết bị này chưa gắn với người học nào.",swHint:"Dùng khi đổi sang người khác hoặc khi giáo viên thử trên máy mình. Tiến độ trên Google Sheet không bị mất.",swDo:"Đổi người học",swQ:"Thiết bị này sẽ quên tên và tiến độ đang lưu, rồi hỏi tên mới. Dữ liệu trên Google Sheet vẫn giữ nguyên.",swDone:"Đã đổi — hãy nhập tên người học",
  tDel:"Xoá",tDelQ:"Xoá người học này?",cancelBtn:"Huỷ",tDeleted:"Đã xoá người học",tDelFail:"Chưa xoá được — hãy cập nhật script mới trong Apps Script (Triển khai → Phiên bản mới)",tDelHint:"Xoá tiến độ và dữ liệu học bù của người học này khỏi Google Sheet, không khôi phục được. Nếu người học mở lại web trên trình duyệt cũ, tiến độ lưu trên máy họ sẽ được gửi lên lại.",
  tViewing:"Đang xem tiến độ của",tViewHint:"thay đổi học bù sẽ được lưu cho người học",tBack:"Quay lại danh sách",tSaved:"Đã lưu học bù cho người học",tSaveErr:"Chưa lưu được — kiểm tra mạng",
  feeTitle:"Học phí",feeShow:"Hiện",feeHide:"Ẩn",feeMonth:"Học phí cả tháng",feeSessions:"Số buổi theo lịch",feeUnit:"Đơn giá / buổi",feeDue:"Thành tiền ({0} buổi đã học)",feeSess:"buổi",
@@ -340,6 +342,8 @@ en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
  schedThis:"Scheduled",studied:"Days studied",makeups:"Make-ups",missed:"Not done",soFar:"up to today",ofMonth:"{0} this month",
  teacher:"Teacher",tLoginHint:"Enter the teacher password (set in Google Apps Script) to see learners' progress and record make-up sessions.",tKey:"Teacher password",tLogin:"Enter teacher mode",tBadKey:"Wrong teacher password.",tNoConn:"Can't reach the Google Sheet. Check the connection or the Apps Script link.",tNoSync:"Google Sheet isn't connected yet (syncUrl in data/content.js is empty).",
  tIntro:"Press View to open a learner's progress: every tab shows their data, and you can set make-up dates / tick Made up in Lessons — the learner sees it next time they open the page.",tLearner:"Learner",tSessions:"Sessions studied",tLessons:"Lessons done",tQuizAvg:"Avg exercise",tUpdated:"Updated",tView:"View",tRefresh:"Refresh",tLogout:"Leave teacher mode",loadingT:"Loading…",tNoLearners:"No learners yet. They appear here after opening the site and entering a name.",
+ tLinkTitle:"Create a learner link",tLinkHint:"Each learner gets a personal link with their name — it opens their own progress on any device without typing a name.",tLinkPh:"Learner name, e.g. Lan",tLinkMake:"Create & copy link",tCopyLink:"Copy link",
+ swTitle:"Learner on this device",swCurrent:"Studying as",swNone:"This device isn't linked to a learner yet.",swHint:"Use it when someone else will study here or when the teacher tests on their own device. Progress in the Google Sheet is kept.",swDo:"Switch learner",swQ:"This device will forget the saved name and progress, then ask for a new name. Data in the Google Sheet stays.",swDone:"Switched — enter the learner's name",
  tDel:"Delete",tDelQ:"Delete this learner?",cancelBtn:"Cancel",tDeleted:"Learner deleted",tDelFail:"Not deleted — update the script in Apps Script (Deploy → New version)",tDelHint:"Removes this learner's progress and make-up data from the Google Sheet; it can't be undone. If they open the site again in their old browser, the progress saved there is sent back up.",
  tViewing:"Viewing progress of",tViewHint:"make-up changes are saved for this learner",tBack:"Back to list",tSaved:"Make-up saved for the learner",tSaveErr:"Not saved — check the connection",
  feeTitle:"Tuition",feeShow:"Show",feeHide:"Hide",feeMonth:"Monthly fee",feeSessions:"Scheduled sessions",feeUnit:"Per session",feeDue:"Amount ({0} sessions studied)",feeSess:"sessions",
@@ -359,6 +363,17 @@ const SYNC=!!C.syncUrl;
 const FIELDS=["name","lid","theory","quiz","speak","done","vs","updatedAt"];
 const lidOf=n=>String(n).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"hoc-vien";
 if(P.name&&!P.lid)P.lid=lidOf(P.name);
+const OWN=["theory","quiz","speak","done","vs","makeup","srs"];
+function clearLocal(){OWN.forEach(k=>P[k]={});P.updatedAt=0;delete P.skipName}
+function switchLearner(name){            // load another learner on this device without carrying progress over
+  clearLocal();P.name=name;P.lid=lidOf(name);LS.set(KEY,P);
+}
+function forgetLearner(){clearLocal();P.name="";P.lid="";LS.set(KEY,P);
+  if(new URLSearchParams(location.search).has("hv"))history.replaceState(null,"",location.pathname+location.hash)}
+const learnerLink=name=>location.origin+location.pathname+"?hv="+encodeURIComponent(name);
+{const hv=(new URLSearchParams(location.search).get("hv")||"").trim().slice(0,40);
+ if(hv&&location.hash!=="#giaovien"&&lidOf(hv)!==P.lid)switchLearner(hv);
+ else if(hv&&P.name!==hv&&lidOf(hv)===P.lid){P.name=hv;LS.set(KEY,P)}}
 const TEACH={key:LS.get("tkey",""),on:false,learners:null,as:null,own:null,err:""};
 TEACH.on=!!TEACH.key||location.hash==="#giaovien";
 let pushT=null,pushPending=false;
@@ -422,6 +437,11 @@ function sync(type,data){
   if(TEACH.as)return;
   if(!C.syncUrl)return;
   try{fetch(C.syncUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({type,name:P.name||"(chưa đặt tên)",at:new Date().toISOString()},data))}).catch(()=>{})}catch(e){}
+}
+function copyText(txt){
+  const done=()=>toast(t("copied")+": "+txt);
+  const fallback=()=>{const ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(e){toast(txt)}ta.remove()};
+  try{navigator.clipboard?navigator.clipboard.writeText(txt).then(done,fallback):fallback()}catch(e){fallback()}
 }
 function toast(m){const el=$("#toast");el.textContent=m;el.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>el.hidden=true,2600)}
 const fmtTime=iso=>{const d=new Date(iso);return pad(d.getDate())+"/"+pad(d.getMonth()+1)+" "+pad(d.getHours())+":"+pad(d.getMinutes())};
@@ -584,11 +604,14 @@ function vTeacher(){
   let h=`<div class="row" style="justify-content:space-between;margin-bottom:14px"><h1>${esc(t("teacher"))}</h1><div class="row"><button class="small" data-act="tRefresh">${esc(t("tRefresh"))}</button><button class="small ghost" data-act="tLogout">${esc(t("tLogout"))}</button></div></div>
   <p class="muted" style="font-size:.88rem;max-width:70ch;margin-bottom:14px">${esc(t("tIntro"))}</p>`;
   if(TEACH.err)h+=`<p class="chip bad">${esc(TEACH.err)}</p>`;
+  h+=`<form class="note stack" data-form="tlink" style="margin-bottom:16px"><span class="label">${esc(t("tLinkTitle"))}</span><span class="muted" style="font-size:.85rem">${esc(t("tLinkHint"))}</span>
+   <div class="row"><input type="text" id="tlinkName" maxlength="40" placeholder="${esc(t("tLinkPh"))}" aria-label="${esc(t("tLinkPh"))}" style="flex:1 1 220px"><button class="primary" type="submit">${esc(t("tLinkMake"))}</button></div>
+   ${S.newLink?`<div class="row"><input type="text" readonly value="${esc(S.newLink)}" style="flex:1 1 300px;font-family:var(--mono);font-size:.85rem" aria-label="link" onclick="this.select()"><button type="button" data-act="copyNew">${esc(t("tCopyLink"))}</button></div>`:""}</form>`;
   if(!TEACH.learners)return h+`<div class="empty">${esc(t("loadingT"))}</div>`;
   if(!TEACH.learners.length)return h+`<div class="empty">${esc(t("tNoLearners"))}</div>`;
   const tw=allVocab("").length;
   h+=`<div class="tbl"><table><thead><tr><th>${esc(t("tLearner"))}</th><th>${esc(t("tSessions"))}</th><th>${esc(t("tLessons"))}</th><th>${esc(t("stKnown"))}</th><th>${esc(t("stLearning"))}</th><th>${esc(t("tQuizAvg"))}</th><th>${esc(t("makeups"))}</th><th>${esc(t("tUpdated"))}</th><th></th></tr></thead><tbody>
-  ${TEACH.learners.map(l=>{const m=learnerSummary(l);return`<tr><td><b>${esc(l.name||l.learner)}</b></td><td class="mono">${m.sessions}</td><td class="mono">${m.lessons}/${SESS.length}</td><td class="mono">${m.known}<span class="muted">/${tw}</span></td><td class="mono">${m.learning}</td><td>${m.qavg==null?"–":`<span class="chip ${sc(m.qavg)}">${m.qavg}%</span>`}</td><td class="mono">${m.mk}</td><td class="mono muted">${l.updated?esc(fmtTime(l.updated)):"–"}</td><td class="tact">${TEACH.del===l.learner?`<span class="muted">${esc(t("tDelQ"))}</span><button class="small danger" data-act="tDelYes" data-id="${esc(l.learner)}">${esc(t("tDel"))}</button><button class="small" data-act="tDelNo">${esc(t("cancelBtn"))}</button>`:`<button class="small primary" data-act="viewAs" data-id="${esc(l.learner)}">${esc(t("tView"))}</button><button class="small ghost" data-act="tDelAsk" data-id="${esc(l.learner)}">${esc(t("tDel"))}</button>`}</td></tr>`}).join("")}
+  ${TEACH.learners.map(l=>{const m=learnerSummary(l);return`<tr><td><b>${esc(l.name||l.learner)}</b></td><td class="mono">${m.sessions}</td><td class="mono">${m.lessons}/${SESS.length}</td><td class="mono">${m.known}<span class="muted">/${tw}</span></td><td class="mono">${m.learning}</td><td>${m.qavg==null?"–":`<span class="chip ${sc(m.qavg)}">${m.qavg}%</span>`}</td><td class="mono">${m.mk}</td><td class="mono muted">${l.updated?esc(fmtTime(l.updated)):"–"}</td><td class="tact">${TEACH.del===l.learner?`<span class="muted">${esc(t("tDelQ"))}</span><button class="small danger" data-act="tDelYes" data-id="${esc(l.learner)}">${esc(t("tDel"))}</button><button class="small" data-act="tDelNo">${esc(t("cancelBtn"))}</button>`:`<button class="small primary" data-act="viewAs" data-id="${esc(l.learner)}">${esc(t("tView"))}</button><button class="small" data-act="copyLink" data-name="${esc(l.name||l.learner)}">${esc(t("tCopyLink"))}</button><button class="small ghost" data-act="tDelAsk" data-id="${esc(l.learner)}">${esc(t("tDel"))}</button>`}</td></tr>`}).join("")}
   </tbody></table></div>${TEACH.del?`<p class="muted" style="font-size:.85rem;margin-top:10px;max-width:70ch">${esc(t("tDelHint"))}</p>`:""}`;
   return h;
 }
@@ -771,7 +794,10 @@ function vProgress(){
   h+=`<section class="section"><h2>${esc(t("vocabProg"))}</h2><div class="note stack"><div class="legend"><span style="--c:var(--good)">${esc(t("stKnown"))} ${cnt.known}</span><span style="--c:var(--warn)">${esc(t("stLearning"))} ${cnt.learning}</span><span style="--c:var(--line)">${esc(t("stNew"))} ${cnt.new}</span></div>
    ${SOURCES.map(s=>{const c={known:0,learning:0};s.words.forEach(v=>{const w=wordStatus(v);if(c[w]!=null)c[w]++});const n=s.words.length;
      return`<div class="stack" style="gap:4px"><div class="row" style="justify-content:space-between;font-size:.88rem"><span>${esc(s.title)}</span><span class="mono muted">${c.known}/${n}</span></div><div class="seg"><b style="width:${100*c.known/n}%;background:var(--good)"></b><b style="width:${100*c.learning/n}%;background:var(--warn)"></b></div></div>`}).join("")}</div></section>
-  <section class="section"><h2>${esc(t("you"))}</h2><form class="row" data-form="name"><input type="text" id="nameIn" value="${esc(P.name)}" maxlength="40" style="flex:1 1 200px" aria-label="${esc(t("you"))}"><button type="submit">${esc(t("saveName"))}</button></form></section>
+  ${TEACH.as?"":`<section class="section"><h2>${esc(t("swTitle"))}</h2><div class="note stack" style="max-width:640px">
+   <span>${P.name?`${esc(t("swCurrent"))} <b>${esc(P.name)}</b>`:esc(t("swNone"))}</span>
+   ${S.swAsk?`<span class="muted" style="font-size:.88rem">${esc(t("swQ"))}</span><div class="row"><button class="danger" data-act="swYes">${esc(t("swDo"))}</button><button data-act="swNo">${esc(t("cancelBtn"))}</button></div>`
+   :`<span class="muted" style="font-size:.88rem">${esc(t("swHint"))}</span><div><button data-act="swAsk">${esc(t("swDo"))}</button></div>`}</div></section>`}
   <section class="section"><h2>${esc(t("backup"))}</h2><p class="muted" style="font-size:.88rem;max-width:65ch">${esc(t("backupHint"))}</p>
    <div class="row"><button data-act="copyCode">${esc(t("copy"))}</button></div><textarea id="codeIn" placeholder="${esc(t("paste"))}" aria-label="${esc(t("paste"))}"></textarea><div><button data-act="importCode">${esc(t("import"))}</button></div></section>`;
   return h;
@@ -827,6 +853,10 @@ const ACT={
   month(el){const months=[...new Set(SLOTS.map(x=>x.date.slice(0,7)))].sort();const i=months.indexOf(S.month)+(+el.dataset.d);if(months[i]){S.month=months[i];render()}},
   toggleFee(){LS.set("showFee",!LS.get("showFee",false));render()},
   viewAs(el){viewAs(el.dataset.id)},backOwn(){backToOwn()},
+  swAsk(){S.swAsk=true;render()},swNo(){S.swAsk=false;render()},
+  swYes(){S.swAsk=false;forgetLearner();S.view={name:"lessons"};render();scrollTo(0,0);toast(t("swDone"))},
+  copyLink(el){copyText(learnerLink(el.dataset.name))},
+  copyNew(){if(S.newLink)copyText(S.newLink)},
   tDelAsk(el){TEACH.del=el.dataset.id;render()},tDelNo(){TEACH.del=null;render()},
   tDelYes(el){const lid=el.dataset.id;TEACH.del=null;
     try{fetch(C.syncUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"delete",key:TEACH.key,learner:lid})})
@@ -867,7 +897,9 @@ document.addEventListener("change",e=>{
 document.addEventListener("submit",e=>{
   const f=e.target.dataset.form;if(!f)return;e.preventDefault();
   if(f==="fill")answer($("#fillInput").value);
-  else if(f==="who"||f==="name"){if(TEACH.as)return;const n=$(f==="who"?"#whoName":"#nameIn").value.trim();if(!n)return;const nl=lidOf(n);const changed=nl!==P.lid;P.name=n;P.lid=nl;if(changed)P.updatedAt=0;LS.set(KEY,P);toast("✓");render();if(changed)pull().then(()=>save());else save()}
+  else if(f==="who"){if(TEACH.as)return;const n=$("#whoName").value.trim();if(!n)return;
+    if(lidOf(n)!==P.lid)switchLearner(n);else{P.name=n;LS.set(KEY,P)}toast("✓");render();pull()}
+  else if(f==="tlink"){const n=$("#tlinkName").value.trim();if(!n)return;S.newLink=learnerLink(n);render();copyText(S.newLink)}
   else if(f==="tlogin"){const k=$("#tkey").value.trim();if(!k)return;TEACH.key=k;LS.set("tkey",k);TEACH.on=true;loadLearners()}
 });
 if(TEACH.on&&SYNC){if(location.hash==="#giaovien")S.view={name:"teacher"};if(TEACH.key)loadLearners()}
