@@ -234,6 +234,8 @@ textarea{font-family:var(--mono);font-size:.8rem;min-height:90px}
 table{border-collapse:collapse;width:100%;font-size:.88rem}
 th,td{text-align:left;padding:9px 12px;border-top:1px solid var(--line);white-space:nowrap}
 td.wrapc{white-space:normal;min-width:220px}
+body.viewing :is([data-act="theoryDone"],[data-act="startQuiz"],[data-act="startSpeak"],[data-act="startCards"],[data-act="wst"]){opacity:.4;cursor:not-allowed;filter:grayscale(1)}
+body.viewing [data-act="wst"]:not(.on){visibility:hidden}
 .tact{display:flex;gap:6px;align-items:center;justify-content:flex-end}
 .danger{color:var(--bad);border-color:var(--bad)}
 .danger:hover{background:var(--bad-soft);border-color:var(--bad)}
@@ -318,7 +320,7 @@ vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
  tLinkTitle:"Tạo link cho người học",tLinkHint:"Mỗi người học dùng link riêng có sẵn tên — bấm vào là vào đúng tiến độ của mình trên mọi thiết bị, không phải gõ tên.",tLinkPh:"Tên người học, ví dụ: Lan",tLinkMake:"Tạo & sao chép link",tCopyLink:"Sao chép link",
  swTitle:"Người học trên thiết bị này",swCurrent:"Đang học với tên",swNone:"Thiết bị này chưa gắn với người học nào.",swHint:"Dùng khi đổi sang người khác hoặc khi giáo viên thử trên máy mình. Tiến độ trên Google Sheet không bị mất.",swDo:"Đổi người học",swQ:"Thiết bị này sẽ quên tên và tiến độ đang lưu, rồi hỏi tên mới. Dữ liệu trên Google Sheet vẫn giữ nguyên.",swDone:"Đã đổi — hãy nhập tên người học",
  tDel:"Xoá",tDelQ:"Xoá người học này?",cancelBtn:"Huỷ",tDeleted:"Đã xoá người học",tDelFail:"Chưa xoá được — hãy cập nhật script mới trong Apps Script (Triển khai → Phiên bản mới)",tDelHint:"Xoá tiến độ và dữ liệu học bù của người học này khỏi Google Sheet, không khôi phục được. Nếu người học mở lại web trên trình duyệt cũ, tiến độ lưu trên máy họ sẽ được gửi lên lại.",
- tViewing:"Đang xem tiến độ của",tViewHint:"thay đổi học bù sẽ được lưu cho người học",tBack:"Quay lại danh sách",tSaved:"Đã lưu học bù cho người học",tSaveErr:"Chưa lưu được — kiểm tra mạng",
+ tViewing:"Đang xem tiến độ của",tViewHint:"chế độ xem — chỉ chỉnh được học bù (tab Bài học)",tLocked:"Chế độ xem: không làm bài thay người học được. Chỉ chỉnh được học bù ở tab Bài học.",tBack:"Quay lại danh sách",tSaved:"Đã lưu học bù cho người học",tSaveErr:"Chưa lưu được — kiểm tra mạng",
  feeTitle:"Học phí",feeShow:"Hiện",feeHide:"Ẩn",feeMonth:"Học phí cả tháng",feeSessions:"Số buổi theo lịch",feeUnit:"Đơn giá / buổi",feeDue:"Thành tiền ({0} buổi đã học)",feeSess:"buổi",
  monthTable:"Các buổi trong tháng",colSession:"Buổi",learned:"Nội dung đã học",vocabProg:"Từ vựng đã học",colDate:"Ngày học",colLesson:"Bài học",colActual:"Ngày học thực tế",colStatus:"Trạng thái",colTheory:"Lý thuyết",colPractice:"Bài tập",colSpeak:"Luyện nói",noLearned:"Chưa hoàn thành buổi nào.",
  you:"Tên của bạn",youHint:"Để giáo viên biết đây là tiến độ của ai.",saveName:"Lưu",backup:"Chuyển sang thiết bị khác",backupHint:"Tiến độ được lưu trên trình duyệt này. Để học tiếp trên máy khác: bấm Sao chép mã, gửi mã sang máy kia, dán vào ô dưới rồi bấm Nhập.",copy:"Sao chép mã",paste:"Dán mã tiến độ vào đây…",import:"Nhập",imported:"Đã nhập tiến độ",badCode:"Mã không hợp lệ",copied:"Đã sao chép",
@@ -345,7 +347,7 @@ en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
  tLinkTitle:"Create a learner link",tLinkHint:"Each learner gets a personal link with their name — it opens their own progress on any device without typing a name.",tLinkPh:"Learner name, e.g. Lan",tLinkMake:"Create & copy link",tCopyLink:"Copy link",
  swTitle:"Learner on this device",swCurrent:"Studying as",swNone:"This device isn't linked to a learner yet.",swHint:"Use it when someone else will study here or when the teacher tests on their own device. Progress in the Google Sheet is kept.",swDo:"Switch learner",swQ:"This device will forget the saved name and progress, then ask for a new name. Data in the Google Sheet stays.",swDone:"Switched — enter the learner's name",
  tDel:"Delete",tDelQ:"Delete this learner?",cancelBtn:"Cancel",tDeleted:"Learner deleted",tDelFail:"Not deleted — update the script in Apps Script (Deploy → New version)",tDelHint:"Removes this learner's progress and make-up data from the Google Sheet; it can't be undone. If they open the site again in their old browser, the progress saved there is sent back up.",
- tViewing:"Viewing progress of",tViewHint:"make-up changes are saved for this learner",tBack:"Back to list",tSaved:"Make-up saved for the learner",tSaveErr:"Not saved — check the connection",
+ tViewing:"Viewing progress of",tViewHint:"view only — you can only edit make-up sessions (Lessons tab)",tLocked:"View mode: you can't study on the learner's behalf. Only make-up sessions can be edited in Lessons.",tBack:"Back to list",tSaved:"Make-up saved for the learner",tSaveErr:"Not saved — check the connection",
  feeTitle:"Tuition",feeShow:"Show",feeHide:"Hide",feeMonth:"Monthly fee",feeSessions:"Scheduled sessions",feeUnit:"Per session",feeDue:"Amount ({0} sessions studied)",feeSess:"sessions",
  monthTable:"Sessions this month",colSession:"Session",learned:"What you've studied",vocabProg:"Vocabulary learned",colDate:"Date",colLesson:"Lesson",colActual:"Studied",colStatus:"Status",colTheory:"Theory",colPractice:"Exercises",colSpeak:"Speaking",noLearned:"No session completed yet.",
  you:"Your name",youHint:"So your teacher knows whose progress this is.",saveName:"Save",backup:"Move to another device",backupHint:"Progress is saved in this browser. To continue elsewhere: copy the code, send it to the other device, paste it below and press Import.",copy:"Copy code",paste:"Paste a progress code…",import:"Import",imported:"Progress imported",badCode:"Invalid code",copied:"Copied",
@@ -576,7 +578,7 @@ function mindmap(root,sid){
 function renderNav(){
   const v=S.view.name;const on=k=>(k===v||(k==="lessons"&&["session","quizRun","speakRun"].includes(v))||(k==="vocab"&&v==="cards"))?" on":"";
   const tabs=[["lessons",t("lessons")],["vocab",t("vocab")],["progress",t("progress")]];if(TEACH.on&&SYNC)tabs.push(["teacher",t("teacher")]);
-  $("#asbar").hidden=!TEACH.as;if(TEACH.as)$("#asbar").innerHTML=`<span>${esc(t("tViewing"))} <b>${esc(P.name||TEACH.as)}</b> · ${esc(t("tViewHint"))}</span><button class="small" data-act="backOwn">${esc(t("tBack"))}</button>`;
+  $("#asbar").hidden=!TEACH.as;document.body.classList.toggle("viewing",!!TEACH.as);if(TEACH.as)$("#asbar").innerHTML=`<span>${esc(t("tViewing"))} <b>${esc(P.name||TEACH.as)}</b> · ${esc(t("tViewHint"))}</span><button class="small" data-act="backOwn">${esc(t("tBack"))}</button>`;
   $("#nav").innerHTML=tabs.map(([k,l])=>`<button type="button" class="ghost${on(k)}" data-act="go" data-v="${k}">${esc(l)}</button>`).join("");
   $("#langBtn").textContent=lang==="vi"?"EN":"VI";document.documentElement.lang=lang;
 }
@@ -869,7 +871,10 @@ const ACT={
     (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>toast(t("copied"))).catch(()=>{ta.value=code;ta.select()})},
   importCode(){try{const o=JSON.parse(decodeURIComponent(escape(atob($("#codeIn").value.trim()))));if(typeof o!=="object"||!o.srs)throw 0;Object.assign(P,o);save();toast(t("imported"));render()}catch(e){toast(t("badCode"))}}
 };
-document.addEventListener("click",e=>{const el=e.target.closest("[data-act]");if(!el||el.disabled)return;const f=ACT[el.dataset.act];if(f){e.preventDefault();f(el,e)}});
+const LOCKED=new Set(["theoryDone","startQuiz","startSpeak","startCards","cram","wst","flip","grade","pick","mic","selfRate","retry","nextS","nextQ"]);
+document.addEventListener("click",e=>{const el=e.target.closest("[data-act]");if(!el||el.disabled)return;
+  if(TEACH.as&&LOCKED.has(el.dataset.act)){e.preventDefault();toast(t("tLocked"));return}
+  const f=ACT[el.dataset.act];if(f){e.preventDefault();f(el,e)}});
 document.addEventListener("toggle",e=>{const d=e.target;if(d.tagName==="DETAILS"&&d.dataset.path)S.open[d.dataset.path]=d.open},true);
 document.addEventListener("keydown",e=>{
   const tag=(e.target.tagName||"").toLowerCase();const typing=tag==="input"||tag==="textarea"||tag==="select";
