@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sổ Luyện Tiếng Anh</title>
+<meta name="description" content="Ôn ngữ pháp, từ vựng và luyện nói tiếng Anh giao tiếp — Thứ 2 và Thứ 5 hằng tuần.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one calm column (max 860px). Lessons = schedule list; grammar = mindmap grid under a root pill. */
+:root{
+  --bg:#f4f7f7;--surface:#ffffff;--sunk:#eaf0f0;--fg:#142022;--muted:#596a6d;--line:#d3dddf;
+  --accent:#1d6a72;--accent-fg:#ffffff;--accent-soft:#dfeeee;
+  --good:#2b7a4b;--good-soft:#e1f1e7;--warn:#9c6410;--warn-soft:#f7ecd8;--bad:#b23a33;--bad-soft:#f7e2e0;--info:#4a55a8;--info-soft:#e8eaf8;
+  --b0:#1d6a72;--b0s:#e0eff0;--b1:#a35a12;--b1s:#f8ecdc;--b2:#5b4fb0;--b2s:#ecebf9;--b3:#a83d63;--b3s:#f8e5ec;--b4:#3d7a2f;--b4s:#e6f2e2;
+  --font:"Lexend",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:10px;color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0e1415;--surface:#152022;--sunk:#1b2729;--fg:#e3ebeb;--muted:#92a3a5;--line:#2b393b;
+  --accent:#6bc1c8;--accent-fg:#0a1516;--accent-soft:#1b3335;
+  --good:#6ccd94;--good-soft:#152f22;--warn:#e3b05c;--warn-soft:#32271a;--bad:#ef877d;--bad-soft:#3a1e1c;--info:#a3abf3;--info-soft:#22253f;
+  --b0:#6bc1c8;--b0s:#173133;--b1:#e8a964;--b1s:#33261a;--b2:#a99ff0;--b2s:#25223f;--b3:#ee8fb2;--b3s:#3a1f2a;--b4:#8fd17c;--b4s:#1c3018;color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+h1,h2,h3{font-weight:500;text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:1.5rem}h2{font-size:1.05rem}h3{font-size:.98rem}
+p{margin:0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-block:14px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.brand{font-weight:300;font-size:1.05rem;margin-right:auto;cursor:pointer}
+.brand b{font-weight:600;color:var(--accent)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 14px;line-height:1.2}
+button:hover{border-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button:disabled{opacity:.45;cursor:not-allowed;border-color:var(--line)}
+.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:500}
+.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.ghost:hover{color:var(--fg);border-color:var(--line)}
+.ghost.on{color:var(--accent);background:var(--accent-soft)}
+.small{padding:5px 10px;font-size:.85rem}
+.lang{font-family:var(--mono);font-size:.8rem;padding:5px 9px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.section{display:flex;flex-direction:column;gap:12px;margin-top:30px}
+.muted{color:var(--muted)}
+.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:500}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;padding:2px 8px;border-radius:999px;background:var(--sunk);color:var(--muted);font-weight:500;white-space:nowrap}
+.chip.acc{background:var(--accent-soft);color:var(--accent)}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.info{background:var(--info-soft);color:var(--info)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .big{font-size:1.8rem;font-weight:500;font-family:var(--mono);line-height:1.1}
+.stat .big small{font-size:.95rem;color:var(--muted)}
+.stat span{font-size:.85rem}
+.stat.good .big{color:var(--good)}.stat.info .big{color:var(--info)}.stat.bad .big{color:var(--bad)}
+.list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.item{display:flex;gap:12px;align-items:center;padding:14px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.item:first-child{border-top:0}
+.item .grow{flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.item .title{font-weight:500}
+.item.today{box-shadow:inset 3px 0 0 var(--accent)}
+.item.off .title{color:var(--muted);font-weight:400}
+.open{cursor:pointer;border-radius:6px}
+.open:hover .title{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.date{display:flex;flex-direction:column;align-items:center;width:52px;flex:none;border-radius:8px;background:var(--sunk);padding:6px 0;line-height:1.1}
+.date b{font-family:var(--mono);font-size:1.15rem;font-weight:500}
+.date small{font-size:.7rem;color:var(--muted)}
+.today .date{background:var(--accent);color:var(--accent-fg)}.today .date small{color:var(--accent-fg)}
+.mk{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.85rem}
+.mk label{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:var(--muted)}
+.mk input[type=checkbox]{width:16px;height:16px;accent-color:var(--info)}
+.mk input[type=date]{width:auto;padding:4px 8px;font-size:.85rem}
+.mk .mkd{display:inline-flex;flex-direction:column;gap:2px;align-items:flex-start}
+.mk .mkd span{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em}
+.mk label:has(input:disabled){opacity:.5;cursor:not-allowed}
+.month-h{display:flex;align-items:baseline;gap:10px;margin:22px 0 8px}
+.month-h:first-child{margin-top:0}
+.empty{border:1px dashed var(--line);border-radius:var(--r);padding:24px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:10px;align-items:center}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.back{margin-bottom:12px}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:18px 0 20px;overflow-x:auto}
+.tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--muted);padding:10px 12px;white-space:nowrap}
+.tabs button.on{color:var(--fg);border-bottom-color:var(--accent)}
+.tabs .ok{color:var(--good);margin-left:6px}
+.donebar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--sunk);border-radius:var(--r);padding:12px 16px;margin-top:14px;font-size:.9rem}
+.donebar.done{background:var(--good-soft)}
+.steps{display:flex;gap:6px}
+.steps i{width:28px;height:6px;border-radius:3px;background:var(--line)}
+.steps i.on{background:var(--good)}
+.seg{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--sunk)}
+.seg b{display:block;height:100%}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--c);vertical-align:-1px}
+/* mindmap */
+.mm-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.mm{display:flex;flex-direction:column;align-items:center}
+.mm-root{background:var(--fg);color:var(--bg);font-weight:500;padding:12px 22px;border-radius:999px;text-align:center;max-width:100%;position:relative}
+.mm-root::after{content:"";position:absolute;left:50%;top:100%;height:20px;border-left:2px solid var(--line)}
+.mm-branches{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,350px),1fr));gap:16px;margin-top:20px;padding-top:20px;position:relative;align-items:start}
+.mm-branches::before{content:"";position:absolute;top:0;left:18%;right:18%;border-top:2px solid var(--line)}
+.mm-branch{--c:var(--b0);--cs:var(--b0s);position:relative;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:var(--r);padding:14px 14px 12px;min-width:0}
+.mm-branch::before{content:"";position:absolute;bottom:100%;left:50%;height:22px;border-left:2px solid var(--line)}
+.mm-branch.b1{--c:var(--b1);--cs:var(--b1s)}.mm-branch.b2{--c:var(--b2);--cs:var(--b2s)}.mm-branch.b3{--c:var(--b3);--cs:var(--b3s)}.mm-branch.b4{--c:var(--b4);--cs:var(--b4s)}
+.mm-branch>h3{display:flex;align-items:center;gap:8px;color:var(--c);margin-bottom:8px}
+.mm-branch>h3 .n{font-family:var(--mono);font-size:.75rem;background:var(--cs);border-radius:6px;padding:1px 7px}
+.mm-branch.tipb{border-style:dashed;border-top-style:solid}
+@media (max-width:760px){.mm-branches::before,.mm-branch::before{display:none}.mm-root::after{display:none}.mm-branches{margin-top:14px;padding-top:0}}
+.tree{list-style:none;margin:0;padding:0 0 0 2px}
+.tree .tree{padding-left:14px}
+.tree li{position:relative;padding:3px 0 3px 16px}
+.tree li::before{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1px solid var(--line)}
+.tree li:last-child::before{bottom:auto;height:1.05em}
+.tree li::after{content:"";position:absolute;left:0;top:1.05em;width:11px;border-top:1px solid var(--line)}
+.tree summary{cursor:pointer;list-style:none;display:block}
+.tree summary::-webkit-details-marker{display:none}
+.tree summary::before{content:"▸";display:inline-block;width:1em;color:var(--c);transition:transform .15s}
+.tree details[open]>summary::before{transform:rotate(90deg)}
+.tree summary .txt{font-weight:500}
+.tree .tip{color:var(--muted);font-size:.88rem}
+.tree .tip .tg.fx{background:var(--info-soft);color:var(--info)}
+.lesson-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tree .tip .tg{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;background:var(--warn-soft);color:var(--warn);border-radius:4px;padding:0 5px;margin-right:6px;font-weight:600}
+.tree b,.mm-branch h3 b{color:var(--c);font-weight:600}
+.pair{display:inline-flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.pair .to{color:var(--muted)}
+.pair .sfx{color:var(--c);font-weight:600;background:var(--cs);border-radius:3px;padding:0 1px}
+.say{border:0;background:transparent;color:var(--muted);padding:0 4px;font-size:.8rem;cursor:pointer}
+.say:hover{color:var(--accent)}
+.wchip{border:1px solid var(--line);background:var(--sunk);border-radius:6px;padding:1px 7px;font-size:.85rem;margin:2px 2px 0 0;color:var(--fg)}
+.wchip:hover{border-color:var(--c)}
+/* study */
+.study{display:flex;flex-direction:column;gap:16px;max-width:580px;margin:0 auto}
+.bar{height:4px;background:var(--sunk);border-radius:4px;overflow:hidden}
+.bar b{display:block;height:100%;background:var(--accent);transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:30px 22px;min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.card .word{font-size:2rem;font-weight:500;overflow-wrap:anywhere}
+.card .ipa{font-family:var(--mono);color:var(--muted)}
+.card .vi{font-size:1.15rem}
+.card .ex{color:var(--muted);font-style:italic;max-width:44ch}
+.card .q{font-size:1.2rem;line-height:1.5;max-width:44ch}
+.grades{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.grades button{display:flex;flex-direction:column;gap:2px;align-items:center;padding:10px 4px}
+.grades small{font-family:var(--mono);color:var(--muted);font-size:.72rem}
+.opts{display:grid;gap:8px}
+.opts button{text-align:left;padding:12px 16px}
+.opts button.right{background:var(--good-soft);border-color:var(--good);color:var(--fg);opacity:1}
+.opts button.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--fg);opacity:1}
+.fb{border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.fb.ok{background:var(--good-soft)}.fb.no{background:var(--bad-soft)}
+input[type=text],input[type=search],input[type=date],textarea,select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;width:100%;min-width:0}
+textarea{font-family:var(--mono);font-size:.8rem;min-height:90px}
+.words{font-size:1.2rem;line-height:1.9}
+.words span{padding:1px 3px;border-radius:4px}
+.words .hit{background:var(--good-soft);color:var(--good)}
+.words .miss{background:var(--bad-soft);color:var(--bad);text-decoration:underline dotted}
+.score{font-family:var(--mono);font-size:2.4rem;font-weight:500;line-height:1}
+.mic.live{background:var(--bad);border-color:var(--bad);color:#fff}
+.lvl1{background:var(--good-soft);color:var(--good)}.lvl2{background:var(--warn-soft);color:var(--warn)}.lvl3{background:var(--bad-soft);color:var(--bad)}
+/* vocab */
+.vtool{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+@media (max-width:640px){.vtool{grid-template-columns:1fr}}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{border-radius:999px;padding:5px 12px;font-size:.85rem}
+.filters button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.vgroup{margin-top:18px}
+.vgroup h3{display:flex;gap:8px;align-items:baseline;margin-bottom:8px}
+.vrow{border-top:1px solid var(--line)}
+.vrow:first-child{border-top:0}
+.vrow summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.6fr) auto;gap:12px;align-items:center;padding:11px 16px}
+.vrow summary::-webkit-details-marker{display:none}
+.vrow summary:hover{background:var(--sunk)}
+.vrow .w{font-weight:500}
+.vrow .f{color:var(--muted);font-size:.88rem}
+.vrow .ipa{font-family:var(--mono);color:var(--muted);font-size:.8rem;display:block}
+.vrow .mean{min-width:0}
+.vrow .more{padding:0 16px 14px;display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.vrow .more .ex{font-style:italic}
+.dot{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);white-space:nowrap}
+.dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--line))}
+.st-new{--c:var(--line)}.st-learning{--c:var(--warn)}.st-known{--c:var(--good)}
+.vrow[open]{background:var(--sunk)}
+.chip.pos{font-family:var(--mono);background:var(--accent-soft);color:var(--accent);font-size:.72rem;padding:1px 7px}
+.wrap.wide{max-width:1120px}
+.vhead,.vrow summary{display:grid;grid-template-columns:minmax(0,1.05fr) 84px minmax(0,1.9fr) minmax(0,1fr) minmax(0,.9fr) 132px;gap:14px;align-items:start}
+.vhead{padding:16px 16px 6px}
+.vrow summary{padding:12px 16px}
+.c-pos{display:flex;flex-wrap:wrap;gap:3px;padding-top:2px}
+.c-vi{min-width:0;overflow-wrap:anywhere}
+.c-fam,.c-syn{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.88rem;min-width:0}
+.fw i,.sw i{font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.fw{color:var(--b2)}.sw{color:var(--b1)}
+.none{color:var(--line)}
+.mlab{display:none}
+.c-st{display:flex;justify-content:flex-end;padding-top:1px}
+.c-ex{display:block;font-size:.84rem;font-style:italic;color:var(--muted);margin-top:3px}
+.wtog{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;white-space:nowrap}
+.wtog button{border:0;border-radius:0;background:transparent;color:var(--muted);font-size:.74rem;padding:4px 9px}
+.wtog button+button{border-left:1px solid var(--line)}
+.wtog button:hover{color:var(--fg)}
+.wtog button.rv{background:var(--warn-soft);color:var(--warn);font-weight:600}
+.wtog button.kn{background:var(--good-soft);color:var(--good);font-weight:600}
+.grades.g2{grid-template-columns:1fr 1fr}
+.gr-review span{color:var(--warn)}.gr-known span{color:var(--good)}
+.vdl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:0}
+.vdl dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500;padding-top:3px}
+.vdl dd{margin:0;min-width:0}
+.vdl .wchip{--c:var(--accent)}
+.letters{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.letters button{font-family:var(--mono);font-size:.78rem;padding:3px 7px;min-width:28px;border-radius:6px}
+.letters button.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+@media (max-width:700px){
+ .vhead{display:none}
+ .vrow summary{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}
+ .c-w{grid-column:1;grid-row:1}.c-st{grid-column:2;grid-row:1}
+ .c-pos{grid-column:1/-1;grid-row:2}
+ .c-vi{grid-column:1/-1;grid-row:3}
+ .c-fam{grid-column:1/-1;grid-row:4}.c-syn{grid-column:1/-1;grid-row:5}
+ .mlab{display:inline;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500;min-width:92px}
+ .c-fam:has(.none),.c-syn:has(.none){display:none}
+}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:9px 12px;border-top:1px solid var(--line);white-space:nowrap}
+td.wrapc{white-space:normal;min-width:220px}
+.asbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;background:var(--info-soft);color:var(--fg);border-radius:var(--r);padding:10px 14px;margin-bottom:18px;font-size:.9rem}
+.asbar b{color:var(--info)}
+.fee{display:flex;flex-direction:column;gap:12px;margin-top:12px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:16px 18px}
+.fee-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fee-h h2{margin-right:auto}
+.fee-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.fee-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fee-grid div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.fee-grid b{font-family:var(--mono);font-size:1.15rem;font-weight:500;font-variant-numeric:tabular-nums}
+.fee-grid .tot b{font-size:1.5rem;color:var(--accent)}
+.fee-formula{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+th{border-top:0;font-weight:500;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.mnav{display:flex;align-items:center;gap:8px}
+.mnav b{font-weight:500;min-width:9ch;text-align:center}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:8px;font-size:.9rem;z-index:20;max-width:calc(100% - 32px)}
+[hidden]{display:none!important}
+kbd{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border-radius:4px;padding:0 4px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand" data-act="go" data-v="lessons">Sổ Luyện <b>Tiếng Anh</b></div>
+    <nav id="nav"></nav>
+    <button id="langBtn" class="lang" type="button" data-act="lang" aria-label="Language">EN</button>
+  </header>
+  <div id="asbar" class="asbar" hidden></div>
+  <main id="app"></main>
+</div>
+<div id="toast" role="status" hidden></div>
+<script src="data/content.js"></script>
+<script src="data/vocab3000.js"></script>
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const pad=n=>String(n).padStart(2,"0");
+const dayStr=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const today=()=>dayStr(new Date());
+const parseDay=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const dayAdd=(s,n)=>{const d=parseDay(s);d.setDate(d.getDate()+n);return dayStr(d)};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"x";
+
+const C=window.CONTENT||{sessions:[]};
+const START=C.startDate||"2026-11-02";
+const DAYS=C.studyDays||[1,4];
+const SESS=(C.sessions||[]).slice().sort((a,b)=>a.date.localeCompare(b.date));
+SESS.forEach(s=>{(s.vocab||[]).forEach(v=>{v.id=s.id+":"+slug(v.w);v.sid=s.id})});
+const LIB=window.VOCAB_LIBRARY||null;
+if(LIB)LIB.words.forEach(v=>{v.id=LIB.id+":"+v.n;v.sid=LIB.id});
+const SOURCES=SESS.filter(s=>(s.vocab||[]).length).map(s=>({id:s.id,title:s.title,date:s.date,words:s.vocab})).concat(LIB?[{id:LIB.id,title:LIB.title,words:LIB.words}]:[]);
+const QUIZ_MIX=[[1,10],[2,5],[3,5]], SPEAK_MIX=[[1,4],[3,6]];
+
+/* ---------- i18n ---------- */
+const T={
+vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
+ lessonsHint:"Lịch học Thứ 2 và Thứ 5 hằng tuần, từ {0}. Bấm vào tên bài để học.",session:"Buổi {0}",notUploaded:"Chưa có bài",
+ stUpcoming:"Sắp tới",stToday:"Hôm nay",stOntime:"Đúng lịch",stLate:"Học muộn",stMakeup:"Đã học bù",stMissed:"Chưa học",stNoContent:"Chưa có bài",
+ actual:"Học thực tế",makeup:"Học bù",makeupOn:"Ngày học bù",makeupDone:"Đã học bù",mkPick:"Chọn ngày học bù trước",mkAfter:"Ngày học bù phải sau ngày học {0}",mkWait:"Tick khi đã học bù xong (từ ngày học bù trở đi)",stPlanned:"Hẹn học bù",monthOf:"Tháng {0}",monthSum:"{0}/{1} buổi",
+ theory:"Lý thuyết",practice:"Bài tập",speaking:"Luyện nói",back:"Quay lại",
+ partsDone:"Đã xong {0}/3 phần. Làm xong cả Lý thuyết, Bài tập và Luyện nói để hoàn thành buổi học.",partsDoneN:"Buổi này có {2} bài — đã xong {0}/{1} phần. Học xong cả {2} bài để hoàn thành buổi học.",lessonOf:"Bài {0}/{1} của buổi",lessonDoneMore:"Xong bài này! Buổi học còn bài khác cần làm.",fixTag:"Đã sửa",sessDone:"Đã hoàn thành buổi học lúc {0}",
+ expand:"Mở hết",collapse:"Thu gọn",markDone:"Đã ôn xong lý thuyết",theoryDone:"Đã ôn lý thuyết",
+ listen:"Nghe",slow:"Nghe chậm",academic:"Thay cho",
+ quizIntro:"20 câu: 10 cơ bản · 5 trung bình · 5 khó",speakIntro:"10 câu: 4 cơ bản · 6 khó",start:"Bắt đầu",redo:"Làm lại",best:"Cao nhất",last:"Lần gần nhất",notYet:"Chưa làm",attempts:"{0} lần",
+ lv1:"Cơ bản",lv2:"Trung bình",lv3:"Khó",
+ flip:"Lật thẻ",again:"Quên",hard:"Khó nhớ",good:"Nhớ",easy:"Dễ",now:"ngay",days:"{0} ngày",exit:"Thoát",cardsDone:"Xong phần ôn thẻ",reviewed:"Đã xem {0} thẻ · {1} lần chọn Cần ôn",nothingDue:"Không có từ nào cần ôn lúc này.",reviewAll:"Ôn lại toàn bộ",
+ check:"Kiểm tra",next:"Tiếp",correct:"Chính xác",wrongA:"Chưa đúng",answer:"Đáp án",typeAns:"Gõ câu trả lời…",quizDone:"Kết quả bài tập",reviewWrong:"Câu cần xem lại",
+ record:"Bấm để nói",stop:"Dừng",retry:"Nói lại",heard:"Máy nghe được",speakDone:"Kết quả luyện nói",avg:"Điểm trung bình",selfRate:"Trình duyệt này chưa cho dùng micro. Hãy nghe mẫu, đọc to, rồi tự chấm:",rateGood:"Đọc tốt",rateOk:"Tạm được",rateBad:"Chưa được",
+ listening:"Đang nghe… đọc câu ở trên rồi bấm Dừng.",micHint:"Bấm nút micro rồi đọc to câu ở trên.",finish:"Hoàn thành",saved:"Đã lưu kết quả",toSession:"Về buổi học",completedT:"Hoàn thành buổi học!",
+ allSources:"Tất cả nguồn từ vựng",source:"Nguồn",colWord:"Từ · phiên âm",colPos:"Loại từ",colMeaning:"Nghĩa",family:"Gia đình từ",synonyms:"Đồng nghĩa",example:"Ví dụ",showMore:"Xem thêm",showing:"Đang hiện {0}/{1} từ",
+ allSessions:"Tất cả buổi",search:"Tìm từ, nghĩa, gia đình từ, đồng nghĩa…",all:"Tất cả",stNew:"Chưa học",stLearning:"Cần ôn",stKnown:"Đã nhớ",learnCards:"Học flashcard",dueN:"{0} từ cần ôn",noVocab:"Chưa có từ vựng. Giáo viên sẽ thêm theo từng buổi.",noMatch:"Không có từ nào khớp.",nWords:"{0} từ",
+ schedThis:"Buổi theo lịch",studied:"Ngày đã học",makeups:"Học bù",missed:"Chưa học",soFar:"tính đến hôm nay",ofMonth:"cả tháng {0}",
+ teacher:"Giáo viên",tLoginHint:"Nhập mật khẩu giáo viên (đặt trong Google Apps Script) để xem tiến độ người học và cập nhật học bù.",tKey:"Mật khẩu giáo viên",tLogin:"Vào chế độ Giáo viên",tBadKey:"Sai mật khẩu giáo viên.",tNoConn:"Không kết nối được Google Sheet. Kiểm tra mạng hoặc link Apps Script.",tNoSync:"Chưa kết nối Google Sheet (syncUrl trong data/content.js đang trống).",
+ tIntro:"Bấm Xem để mở tiến độ của người học: mọi tab sẽ hiện dữ liệu của họ, và bạn có thể nhập ngày học bù / tick Đã học bù ở tab Bài học — người học sẽ thấy ngay lần mở trang tiếp theo.",tLearner:"Người học",tSessions:"Buổi đã học",tLessons:"Bài hoàn thành",tQuizAvg:"Bài tập TB",tUpdated:"Cập nhật",tView:"Xem",tRefresh:"Làm mới",tLogout:"Thoát chế độ GV",loadingT:"Đang tải…",tNoLearners:"Chưa có người học nào. Người học sẽ hiện ở đây sau khi mở web và nhập tên.",
+ tViewing:"Đang xem tiến độ của",tViewHint:"thay đổi học bù sẽ được lưu cho người học",tBack:"Quay lại danh sách",tSaved:"Đã lưu học bù cho người học",tSaveErr:"Chưa lưu được — kiểm tra mạng",
+ feeTitle:"Học phí",feeShow:"Hiện",feeHide:"Ẩn",feeMonth:"Học phí cả tháng",feeSessions:"Số buổi theo lịch",feeUnit:"Đơn giá / buổi",feeDue:"Thành tiền ({0} buổi đã học)",feeSess:"buổi",
+ monthTable:"Các buổi trong tháng",colSession:"Buổi",learned:"Nội dung đã học",vocabProg:"Từ vựng đã học",colDate:"Ngày học",colLesson:"Bài học",colActual:"Ngày học thực tế",colStatus:"Trạng thái",colTheory:"Lý thuyết",colPractice:"Bài tập",colSpeak:"Luyện nói",noLearned:"Chưa hoàn thành buổi nào.",
+ you:"Tên của bạn",youHint:"Để giáo viên biết đây là tiến độ của ai.",saveName:"Lưu",backup:"Chuyển sang thiết bị khác",backupHint:"Tiến độ được lưu trên trình duyệt này. Để học tiếp trên máy khác: bấm Sao chép mã, gửi mã sang máy kia, dán vào ô dưới rồi bấm Nhập.",copy:"Sao chép mã",paste:"Dán mã tiến độ vào đây…",import:"Nhập",imported:"Đã nhập tiến độ",badCode:"Mã không hợp lệ",copied:"Đã sao chép",
+ wd:["CN","T2","T3","T4","T5","T6","T7"],wdl:["Chủ nhật","Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7"],whoTitle:"Chào bạn! Bạn tên gì?",whoGo:"Bắt đầu học",skip:"Bỏ qua",prevM:"Tháng trước",nextM:"Tháng sau"},
+en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
+ lessonsHint:"Every Monday and Thursday from {0}. Tap a lesson title to study.",session:"Session {0}",notUploaded:"Not uploaded yet",
+ stUpcoming:"Upcoming",stToday:"Today",stOntime:"On time",stLate:"Late",stMakeup:"Made up",stMissed:"Not done",stNoContent:"No lesson",
+ actual:"Studied",makeup:"Make-up",makeupOn:"Make-up date",makeupDone:"Made up",mkPick:"Pick a make-up date first",mkAfter:"The make-up date must be after {0}",mkWait:"Tick once the make-up is done (on or after the date)",stPlanned:"Make-up planned",monthOf:"Month {0}",monthSum:"{0}/{1} sessions",
+ theory:"Theory",practice:"Exercises",speaking:"Speaking",back:"Back",
+ partsDone:"{0}/3 parts done. Finish Theory, Exercises and Speaking to complete the session.",partsDoneN:"This session has {2} lessons — {0}/{1} parts done. Finish all {2} lessons to complete it.",lessonOf:"Lesson {0}/{1} of this session",lessonDoneMore:"Lesson done! This session has another lesson.",fixTag:"Fixed",sessDone:"Session completed at {0}",
+ expand:"Expand all",collapse:"Collapse",markDone:"I've reviewed the theory",theoryDone:"Theory reviewed",
+ listen:"Listen",slow:"Slow",academic:"Instead of",
+ quizIntro:"20 questions: 10 basic · 5 medium · 5 hard",speakIntro:"10 sentences: 4 basic · 6 hard",start:"Start",redo:"Try again",best:"Best",last:"Last",notYet:"Not started",attempts:"{0} tries",
+ lv1:"Basic",lv2:"Medium",lv3:"Hard",
+ flip:"Flip",again:"Again",hard:"Hard",good:"Good",easy:"Easy",now:"now",days:"{0} d",exit:"Exit",cardsDone:"Review finished",reviewed:"Saw {0} cards · {1} marked to review",nothingDue:"Nothing due right now.",reviewAll:"Review all",
+ check:"Check",next:"Next",correct:"Correct",wrongA:"Not quite",answer:"Answer",typeAns:"Type your answer…",quizDone:"Exercise result",reviewWrong:"Review these",
+ record:"Tap to speak",stop:"Stop",retry:"Try again",heard:"Heard",speakDone:"Speaking result",avg:"Average",selfRate:"This browser can't use the microphone. Listen, read aloud, then rate yourself:",rateGood:"Good",rateOk:"Okay",rateBad:"Not yet",
+ listening:"Listening… read the sentence, then tap Stop.",micHint:"Tap the mic and read the sentence aloud.",finish:"Finish",saved:"Result saved",toSession:"Back to session",completedT:"Session complete!",
+ allSources:"All vocabulary sources",source:"Source",colWord:"Word · IPA",colPos:"Part of speech",colMeaning:"Meaning",family:"Word family",synonyms:"Synonyms",example:"Example",showMore:"Show more",showing:"Showing {0}/{1} words",
+ allSessions:"All sessions",search:"Search word, meaning, family, synonym…",all:"All",stNew:"Not studied",stLearning:"To review",stKnown:"Remembered",learnCards:"Study flashcards",dueN:"{0} to review",noVocab:"No vocabulary yet. Your teacher adds it per session.",noMatch:"No matching words.",nWords:"{0} words",
+ schedThis:"Scheduled",studied:"Days studied",makeups:"Make-ups",missed:"Not done",soFar:"up to today",ofMonth:"{0} this month",
+ teacher:"Teacher",tLoginHint:"Enter the teacher password (set in Google Apps Script) to see learners' progress and record make-up sessions.",tKey:"Teacher password",tLogin:"Enter teacher mode",tBadKey:"Wrong teacher password.",tNoConn:"Can't reach the Google Sheet. Check the connection or the Apps Script link.",tNoSync:"Google Sheet isn't connected yet (syncUrl in data/content.js is empty).",
+ tIntro:"Press View to open a learner's progress: every tab shows their data, and you can set make-up dates / tick Made up in Lessons — the learner sees it next time they open the page.",tLearner:"Learner",tSessions:"Sessions studied",tLessons:"Lessons done",tQuizAvg:"Avg exercise",tUpdated:"Updated",tView:"View",tRefresh:"Refresh",tLogout:"Leave teacher mode",loadingT:"Loading…",tNoLearners:"No learners yet. They appear here after opening the site and entering a name.",
+ tViewing:"Viewing progress of",tViewHint:"make-up changes are saved for this learner",tBack:"Back to list",tSaved:"Make-up saved for the learner",tSaveErr:"Not saved — check the connection",
+ feeTitle:"Tuition",feeShow:"Show",feeHide:"Hide",feeMonth:"Monthly fee",feeSessions:"Scheduled sessions",feeUnit:"Per session",feeDue:"Amount ({0} sessions studied)",feeSess:"sessions",
+ monthTable:"Sessions this month",colSession:"Session",learned:"What you've studied",vocabProg:"Vocabulary learned",colDate:"Date",colLesson:"Lesson",colActual:"Studied",colStatus:"Status",colTheory:"Theory",colPractice:"Exercises",colSpeak:"Speaking",noLearned:"No session completed yet.",
+ you:"Your name",youHint:"So your teacher knows whose progress this is.",saveName:"Save",backup:"Move to another device",backupHint:"Progress is saved in this browser. To continue elsewhere: copy the code, send it to the other device, paste it below and press Import.",copy:"Copy code",paste:"Paste a progress code…",import:"Import",imported:"Progress imported",badCode:"Invalid code",copied:"Copied",
+ wd:["Su","Mo","Tu","We","Th","Fr","Sa"],wdl:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],whoTitle:"Hi! What's your name?",whoGo:"Start",skip:"Skip",prevM:"Previous month",nextM:"Next month"}};
+let lang=LS.get("lang","vi");
+const t=(k,...a)=>{let s=(T[lang][k]??T.vi[k]??k);if(typeof s!=="string")return s;a.forEach((v,i)=>{s=s.split("{"+i+"}").join(v)});return s};
+
+/* ---------- progress (this browser) ----------
+   theory/quiz/speak keyed by session id; done = completion time (ISO) keyed by slot date;
+   makeup keyed by slot date: {on, date}. */
+const KEY="soluyen.v2";
+const P=Object.assign({name:"",theory:{},quiz:{},speak:{},done:{},makeup:{},srs:{}},LS.get(KEY,{}));
+/* ---------- shared store (Google Sheet via Apps Script) ---------- */
+const SYNC=!!C.syncUrl;
+const FIELDS=["name","lid","theory","quiz","speak","done","vs","updatedAt"];
+const lidOf=n=>String(n).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"hoc-vien";
+if(P.name&&!P.lid)P.lid=lidOf(P.name);
+const TEACH={key:LS.get("tkey",""),on:false,learners:null,as:null,own:null,err:""};
+TEACH.on=!!TEACH.key||location.hash==="#giaovien";
+let pushT=null,pushPending=false;
+function save(){
+  if(TEACH.as)return;            // teacher viewing a learner: never overwrite own storage
+  P.updatedAt=Date.now();LS.set(KEY,P);
+  if(SYNC&&P.lid){pushPending=true;clearTimeout(pushT);pushT=setTimeout(pushNow,1500)}
+}
+function progressBody(){const d={};FIELDS.forEach(k=>{if(P[k]!==undefined)d[k]=P[k]});return JSON.stringify({action:"progress",learner:P.lid,name:P.name,data:d})}
+function pushNow(){if(!pushPending||TEACH.as)return;pushPending=false;
+  try{fetch(C.syncUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:progressBody()}).catch(()=>{pushPending=true})}catch(e){}}
+addEventListener("pagehide",()=>{if(pushPending&&!TEACH.as&&navigator.sendBeacon){try{navigator.sendBeacon(C.syncUrl,new Blob([progressBody()],{type:"text/plain;charset=utf-8"}));pushPending=false}catch(e){}}});
+async function getJSON(params){const u=C.syncUrl+(C.syncUrl.includes("?")?"&":"?")+new URLSearchParams(params);const r=await fetch(u);return r.json()}
+async function pull(){
+  if(!SYNC||!P.lid||TEACH.as)return;
+  try{
+    const r=await getJSON({action:"get",learner:P.lid});if(!r||!r.ok)return;
+    const pr=r.progress;
+    if(pr&&(pr.updatedAt||0)>(P.updatedAt||0)){["theory","quiz","speak","done","vs","updatedAt"].forEach(k=>{if(pr[k]!==undefined)P[k]=pr[k]})}
+    else if(!pr||(pr.updatedAt||0)<(P.updatedAt||0)){pushPending=true;pushNow()}
+    P.makeup=(r.admin&&r.admin.makeup)||{};
+    LS.set(KEY,P);
+    if(!S.session)render();
+  }catch(e){}
+}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")pull();else pushNow()});
+function pushAdmin(){
+  if(!SYNC||!TEACH.as)return;
+  try{fetch(C.syncUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"admin",key:TEACH.key,learner:TEACH.as,name:P.name,data:{makeup:P.makeup}})}).then(()=>toast(t("tSaved"))).catch(()=>toast(t("tSaveErr")))}catch(e){}
+  const l=(TEACH.learners||[]).find(z=>z.learner===TEACH.as);if(l)l.admin={makeup:JSON.parse(JSON.stringify(P.makeup))};
+}
+async function loadLearners(){
+  TEACH.err="";
+  try{const r=await getJSON({action:"list",key:TEACH.key});
+    if(!r.ok){TEACH.err=r.error==="key"?t("tBadKey"):"?";TEACH.learners=null;if(r.error==="key"){TEACH.key="";LS.set("tkey","")}}
+    else TEACH.learners=r.learners||[];
+  }catch(e){TEACH.err=t("tNoConn")}
+  render();
+}
+function viewAs(lid){
+  const l=(TEACH.learners||[]).find(z=>z.learner===lid);if(!l)return;
+  if(!TEACH.as)TEACH.own=JSON.parse(JSON.stringify(P));
+  const d=Object.assign({name:l.name||lid,lid,theory:{},quiz:{},speak:{},done:{},makeup:{},vs:{},srs:{}},l.progress||{});
+  d.makeup=(l.admin&&l.admin.makeup)||{};
+  Object.keys(P).forEach(k=>delete P[k]);Object.assign(P,d);TEACH.as=lid;
+  S.session=null;S.view={name:"lessons"};render();scrollTo(0,0);
+}
+function backToOwn(){
+  if(!TEACH.as)return;Object.keys(P).forEach(k=>delete P[k]);Object.assign(P,TEACH.own||{});TEACH.as=null;TEACH.own=null;
+  S.session=null;S.view={name:"teacher"};loadLearners();
+}
+function learnerSummary(l){
+  const pr=l.progress||{},mk=(l.admin&&l.admin.makeup)||{};
+  const dates=new Set(Object.keys(pr.done||{}));Object.keys(mk).forEach(k=>{if(mk[k]&&mk[k].on)dates.add(k)});
+  const vs=Object.values(pr.vs||{});
+  const lessons=SESS.filter(s=>(pr.theory||{})[s.id]&&(pr.quiz||{})[s.id]&&(pr.speak||{})[s.id]).length;
+  const qs=Object.values(pr.quiz||{}).map(q=>q.best);const qavg=qs.length?Math.round(qs.reduce((a,b)=>a+b,0)/qs.length):null;
+  return{sessions:dates.size,lessons,known:vs.filter(v=>v==="known").length,learning:vs.filter(v=>v==="learning").length,qavg,mk:Object.values(mk).filter(m=>m&&m.on).length};
+}
+function sync(type,data){
+  if(TEACH.as)return;
+  if(!C.syncUrl)return;
+  try{fetch(C.syncUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({type,name:P.name||"(chưa đặt tên)",at:new Date().toISOString()},data))}).catch(()=>{})}catch(e){}
+}
+function toast(m){const el=$("#toast");el.textContent=m;el.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>el.hidden=true,2600)}
+const fmtTime=iso=>{const d=new Date(iso);return pad(d.getDate())+"/"+pad(d.getMonth()+1)+" "+pad(d.getHours())+":"+pad(d.getMinutes())};
+function fmtDate(s,long){const d=parseDay(s);return(long?t("wdl")[d.getDay()]+", ":"")+pad(d.getDate())+"/"+pad(d.getMonth()+1)+(long?"/"+d.getFullYear():"")}
+
+/* ---------- schedule ---------- */
+function buildSlots(){
+  const byDate={};SESS.forEach(s=>{(byDate[s.date]=byDate[s.date]||[]).push(s)});
+  const td=today();const lastContent=SESS.length?SESS[SESS.length-1].date:START;
+  let end=td>lastContent?td:lastContent;{const e=parseDay(end);end=dayStr(new Date(e.getFullYear(),e.getMonth()+1,0))}let up=0,d=START;const out=[];
+  while(d<=end||up<2){
+    const wd=parseDay(d).getDay();
+    if(DAYS.includes(wd)||byDate[d]){const ls=byDate[d]||[];out.push({date:d,ls,s:ls[0]||null});if(d>td)up++}
+    d=dayAdd(d,1);if(out.length>400)break;
+  }
+  out.forEach((x,i)=>{x.n=i+1;x.key=x.date;x.title=x.ls.map(l=>l.title).join(" + ")});
+  return out;
+}
+let SLOTS=buildSlots();
+function partsOf(sid){return[!!P.theory[sid],!!P.quiz[sid],!!P.speak[sid]]}
+const slotOf=sid=>SLOTS.find(z=>z.ls.some(l=>l.id===sid));
+const slotParts=x=>x.ls.flatMap(l=>partsOf(l.id));
+function slotInfo(x){
+  const td=today();const done=P.done[x.key];const mk=P.makeup[x.key];const mkOn=!!(mk&&mk.on);
+  let st;
+  if(done){const ad=dayStr(new Date(done));st=mkOn?"makeup":ad===x.date?"ontime":"late"}
+  else if(mkOn)st="makeup";
+  else if(mk&&mk.date)st="planned";
+  else if(!x.s)st=x.date>td?"upcoming":"nocontent";
+  else if(x.date>td)st="upcoming";
+  else if(x.date===td)st="today";
+  else st="missed";
+  const counted=!!done||mkOn;
+  const actual=mkOn&&mk.date?mk.date:done?dayStr(new Date(done)):null;
+  return{st,counted,done,mk,mkOn,actual};
+}
+const ST_CHIP={planned:"warn",upcoming:"",today:"acc",ontime:"good",late:"warn",makeup:"info",missed:"bad",nocontent:""};
+const ST_LABEL={planned:"stPlanned",upcoming:"stUpcoming",today:"stToday",ontime:"stOntime",late:"stLate",makeup:"stMakeup",missed:"stMissed",nocontent:"stNoContent"};
+function maybeComplete(sid){
+  const x=slotOf(sid);if(!x||P.done[x.key])return;
+  if(slotParts(x).every(Boolean)){P.done[x.key]=new Date().toISOString();save();sync("complete",{session:x.title,date:x.date,actual:today()});setTimeout(()=>toast(t("completedT")),300)}
+  else if(x.ls.length>1&&partsOf(sid).every(Boolean))setTimeout(()=>toast(t("lessonDoneMore")),300);
+}
+function monthStats(ym){
+  const td=today();const sl=SLOTS.filter(x=>x.date.slice(0,7)===ym);
+  const due=sl.filter(x=>x.date<=td);let studied=0,mk=0,missed=0;
+  sl.forEach(x=>{const i=slotInfo(x);if(i.counted)studied++;if(i.mkOn)mk++;if(!i.counted&&x.date<=td&&x.ls.length&&x.date!==td)missed++});
+  return{total:sl.length,due:due.length,studied,mk,missed,sl};
+}
+
+/* ---------- SRS ---------- */
+/* word status: "learning" = Cần ôn, "known" = Đã nhớ, none = Chưa học */
+P.vs=P.vs||{};
+Object.keys(P.srs||{}).forEach(id=>{if(!P.vs[id]){const s=P.srs[id];P.vs[id]=(s.i>=7||(s.n>=3&&s.i>=3))?"known":"learning"}});
+function wordStatus(v){return P.vs[v.id]||"new"}
+const isDue=v=>P.vs[v.id]==="learning";
+function setStatus(id,st){if(st)P.vs[id]=st;else delete P.vs[id];save()}
+function allVocab(src){return SOURCES.filter(s=>!src||s.id===src).flatMap(s=>s.words)}
+function vocabMatches(v,q){if(!q)return true;return(v.w+" "+v.vi+" "+(v.form||"")+" "+(v.alt||"")+" "+(v.fam||[]).join(" ")+" "+(v.syn||[]).join(" ")).toLowerCase().includes(q)}
+function filteredVocab(){const q=S.vq.trim().toLowerCase();return allVocab(S.vfilter).filter(v=>(S.vstatus==="all"||wordStatus(v)===S.vstatus)&&(!S.vletter||v.w.toLowerCase().startsWith(S.vletter))&&vocabMatches(v,q))}
+
+/* ---------- speech ---------- */
+let voice=null;
+function pickVoice(){try{const vs=speechSynthesis.getVoices();voice=vs.find(v=>/en[-_]US/i.test(v.lang)&&/Samantha|Google|Natural|Aria|Jenny/i.test(v.name))||vs.find(v=>/en[-_]US/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null}catch(e){}}
+try{pickVoice();speechSynthesis.onvoiceschanged=pickVoice}catch(e){}
+function speak(text,rate){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";if(voice)u.voice=voice;u.rate=rate||0.95;speechSynthesis.speak(u)}catch(e){}}
+const CONTR={"i'm":"i am","you're":"you are","we're":"we are","they're":"they are","he's":"he is","she's":"she is","it's":"it is","that's":"that is","there's":"there is","what's":"what is","i've":"i have","you've":"you have","we've":"we have","they've":"they have","i'll":"i will","you'll":"you will","we'll":"we will","i'd":"i would","don't":"do not","doesn't":"does not","didn't":"did not","can't":"cannot","won't":"will not","isn't":"is not","aren't":"are not","wasn't":"was not","haven't":"have not","hasn't":"has not","couldn't":"could not","shouldn't":"should not","let's":"let us"};
+function words(s){return String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[^a-z0-9' ]+/g," ").split(/\s+/).filter(Boolean).flatMap(w=>(CONTR[w]||w).split(" ")).map(w=>w.replace(/^'+|'+$/g,"").replace(/'s$/,"s").replace(/s'$/,"s")).filter(Boolean)}
+function compare(target,heard){
+  const a=words(target),b=words(heard),n=a.length,m=b.length;
+  const L=Array.from({length:n+1},()=>new Array(m+1).fill(0));
+  for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)L[i][j]=a[i]===b[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+  const hit=new Array(n).fill(false);let i=0,j=0;
+  while(i<n&&j<m){if(a[i]===b[j]){hit[i]=true;i++;j++}else if(L[i+1][j]>=L[i][j+1])i++;else j++}
+  const matched=hit.filter(Boolean).length,extra=Math.max(0,m-matched);
+  return{score:n?Math.max(0,Math.round(100*matched/n-4*Math.min(extra,5))):0,hit,tw:a};
+}
+const REC=window.SpeechRecognition||window.webkitSpeechRecognition;
+let rec=null;
+function startRec(){
+  const s=S.session;if(!REC){s.noMic=true;render();return}
+  try{
+    rec=new REC();rec.lang="en-US";rec.interimResults=true;rec.continuous=true;rec.maxAlternatives=1;
+    s.heard="";s.partial="";s.result=null;
+    rec.onresult=e=>{let fin="",part="";for(let i=0;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)fin+=r[0].transcript+" ";else part+=r[0].transcript}s.heard=fin.trim();s.partial=part;paintHeard()};
+    rec.onerror=e=>{if(e.error==="not-allowed"||e.error==="service-not-allowed"||e.error==="audio-capture")s.noMic=true;s.mic=false;rec=null;render()};
+    rec.onend=()=>{const was=s.mic;s.mic=false;rec=null;const txt=(s.heard+" "+(s.partial||"")).trim();if(txt&&s.result==null){s.heard=txt;scoreSpeak()}else if(was)render()};
+    rec.start();s.mic=true;render();
+  }catch(e){s.noMic=true;render()}
+}
+function stopRec(){if(rec){try{rec.stop()}catch(e){}}}
+function paintHeard(){const el=$("#heardLive"),s=S.session;if(el&&s)el.textContent=(s.heard+" "+(s.partial||"")).trim()||"…"}
+function scoreSpeak(){const s=S.session;const p=s.items[s.idx];const c=compare(p.en,s.heard);s.result=c;s.best[s.idx]=Math.max(s.best[s.idx]??0,c.score);render()}
+
+/* ---------- state ---------- */
+const S={view:{name:"lessons"},session:null,vfilter:"",vstatus:"all",vq:"",vletter:"",vlimit:60,open:{},month:today().slice(0,7)};
+
+/* ---------- mindmap ---------- */
+function inl(x){return esc(x).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\s->\s/g," → ")}
+function pairHtml(a,b){
+  const la=a.toLowerCase(),lb=b.toLowerCase();let p=0;while(p<la.length&&p<lb.length&&la[p]===lb[p])p++;
+  if(p<2)p=0;
+  return`<span class="pair"><span>${esc(a)}</span><span class="to">→</span><span>${esc(b.slice(0,p))}<span class="sfx">${esc(b.slice(p))}</span></span><button class="say" data-act="say" data-t="${esc(b)}" aria-label="${esc(t("listen"))} ${esc(b)}">▶</button></span>`;
+}
+function nodeText(txt){
+  const tt=txt.trim().replace(/^-\s+/,"");txt=tt;
+  const tri=/^([A-Za-z]+) - ([A-Za-z]+) - ([A-Za-z]+)$/.exec(tt);
+  if(tri)return`<span class="pair">${[1,2,3].map(k=>`<span class="${k>1?"sfx":""}">${esc(tri[k])}</span>`).join('<span class="to">·</span>')}<button class="say" data-act="say" data-t="${esc(tri[1]+", "+tri[2]+", "+tri[3])}" aria-label="${esc(t("listen"))}">▶</button></span>`;
+  const m=/^([A-Za-z][A-Za-z' ]{0,30}?)\s*(?:->|→)\s*([A-Za-z][A-Za-z' ]{0,30})$/.exec(tt);
+  if(m)return pairHtml(m[1].trim(),m[2].trim());
+  const ex=/^(Ví dụ|Example)s?:\s*(.+)$/i.exec(tt);
+  if(ex)return`<span class="muted">${esc(ex[1])}:</span> `+ex[2].split(",").map(w=>w.trim()).filter(Boolean).map(w=>`<button class="wchip" data-act="say" data-t="${esc(w)}">${esc(w)}</button>`).join("");
+  const sv=/^([A-Z][^()]*?[.!?])\s*(\(.+\))$/.exec(tt);
+  if(sv)return`<span>${inl(sv[1])}</span> <span class="muted">${inl(sv[2])}</span><button class="say" data-act="say" data-t="${esc(sv[1])}" aria-label="${esc(t("listen"))}">▶</button>`;
+  if(/^[A-Z][A-Za-z' ,.!?]+$/.test(tt)&&/\s/.test(tt))return`<span>${inl(tt)}</span><button class="say" data-act="say" data-t="${esc(tt)}" aria-label="${esc(t("listen"))}">▶</button>`;
+  return`<span>${inl(txt)}</span>`;
+}
+function nodeHtml(n,path){
+  if(typeof n==="string")n={t:n};
+  const kids=n.c&&n.c.length;
+  const body=n.k==="tip"?`<span class="tg">${lang==="vi"?"Lưu ý":"Note"}</span>${inl(n.t)}`:n.k==="fix"?`<span class="tg fx">${esc(t("fixTag"))}</span>${inl(n.t)}`:nodeText(n.t);
+  if(!kids)return`<li class="${n.k==="tip"||n.k==="fix"?"tip":""}">${body}</li>`;
+  const open=S.open[path]??(path.split(".").length<=3);
+  return`<li class="${n.k==="tip"?"tip":""}"><details ${open?"open":""} data-path="${path}"><summary><span class="txt">${body}</span></summary><ul class="tree">${n.c.map((c,i)=>nodeHtml(c,path+"."+i)).join("")}</ul></details></li>`;
+}
+function mindmap(root,sid){
+  return`<div class="mm-tools"><button class="small" data-act="mmAll" data-o="1">${esc(t("expand"))}</button><button class="small" data-act="mmAll" data-o="0">${esc(t("collapse"))}</button></div>
+  <div class="mm"><div class="mm-root">${inl(root.t)}</div><div class="mm-branches">${(root.c||[]).map((b,i)=>{b=typeof b==="string"?{t:b}:b;return`<section class="mm-branch b${i%5} ${b.k==="tip"?"tipb":""}"><h3><span class="n">${i+1}</span><span>${inl(b.t)}</span></h3>${b.c?`<ul class="tree">${b.c.map((c,j)=>nodeHtml(c,sid+"."+i+"."+j)).join("")}</ul>`:""}</section>`}).join("")}</div></div>`;
+}
+
+/* ---------- render ---------- */
+function renderNav(){
+  const v=S.view.name;const on=k=>(k===v||(k==="lessons"&&["session","quizRun","speakRun"].includes(v))||(k==="vocab"&&v==="cards"))?" on":"";
+  const tabs=[["lessons",t("lessons")],["vocab",t("vocab")],["progress",t("progress")]];if(TEACH.on&&SYNC)tabs.push(["teacher",t("teacher")]);
+  $("#asbar").hidden=!TEACH.as;if(TEACH.as)$("#asbar").innerHTML=`<span>${esc(t("tViewing"))} <b>${esc(P.name||TEACH.as)}</b> · ${esc(t("tViewHint"))}</span><button class="small" data-act="backOwn">${esc(t("tBack"))}</button>`;
+  $("#nav").innerHTML=tabs.map(([k,l])=>`<button type="button" class="ghost${on(k)}" data-act="go" data-v="${k}">${esc(l)}</button>`).join("");
+  $("#langBtn").textContent=lang==="vi"?"EN":"VI";document.documentElement.lang=lang;
+}
+function render(){
+  renderNav();
+  const v=S.view.name;let h="";
+  if(v==="teacher")h=vTeacher();
+  else if(!P.name&&!P.skipName&&C.syncUrl&&!TEACH.on)h=vWho();
+  else if(v==="lessons")h=vLessons();
+  else if(v==="session")h=vSession();
+  else if(v==="quizRun")h=vQuiz();
+  else if(v==="speakRun")h=vSpeak();
+  else if(v==="vocab")h=vVocab();
+  else if(v==="cards")h=vCards();
+  else if(v==="progress")h=vProgress();
+  $("#app").innerHTML=h;
+  $(".wrap").classList.toggle("wide",v==="vocab"||v==="progress"||v==="teacher");
+  if(v==="vocab")paintVocab();
+  const fi=$("#fillInput");if(fi&&!fi.disabled)fi.focus();
+  paintHeard();
+}
+function vTeacher(){
+  if(!SYNC)return`<div class="empty">${esc(t("tNoSync"))}</div>`;
+  if(!TEACH.key)return`<form class="note stack" data-form="tlogin" style="max-width:440px;margin:40px auto"><h1>${esc(t("teacher"))}</h1><p class="muted">${esc(t("tLoginHint"))}</p>${TEACH.err?`<p class="chip bad">${esc(TEACH.err)}</p>`:""}<input type="password" id="tkey" required autocomplete="current-password" aria-label="${esc(t("tKey"))}" placeholder="${esc(t("tKey"))}"><div><button class="primary" type="submit">${esc(t("tLogin"))}</button></div></form>`;
+  let h=`<div class="row" style="justify-content:space-between;margin-bottom:14px"><h1>${esc(t("teacher"))}</h1><div class="row"><button class="small" data-act="tRefresh">${esc(t("tRefresh"))}</button><button class="small ghost" data-act="tLogout">${esc(t("tLogout"))}</button></div></div>
+  <p class="muted" style="font-size:.88rem;max-width:70ch;margin-bottom:14px">${esc(t("tIntro"))}</p>`;
+  if(TEACH.err)h+=`<p class="chip bad">${esc(TEACH.err)}</p>`;
+  if(!TEACH.learners)return h+`<div class="empty">${esc(t("loadingT"))}</div>`;
+  if(!TEACH.learners.length)return h+`<div class="empty">${esc(t("tNoLearners"))}</div>`;
+  const tw=allVocab("").length;
+  h+=`<div class="tbl"><table><thead><tr><th>${esc(t("tLearner"))}</th><th>${esc(t("tSessions"))}</th><th>${esc(t("tLessons"))}</th><th>${esc(t("stKnown"))}</th><th>${esc(t("stLearning"))}</th><th>${esc(t("tQuizAvg"))}</th><th>${esc(t("makeups"))}</th><th>${esc(t("tUpdated"))}</th><th></th></tr></thead><tbody>
+  ${TEACH.learners.map(l=>{const m=learnerSummary(l);return`<tr><td><b>${esc(l.name||l.learner)}</b></td><td class="mono">${m.sessions}</td><td class="mono">${m.lessons}/${SESS.length}</td><td class="mono">${m.known}<span class="muted">/${tw}</span></td><td class="mono">${m.learning}</td><td>${m.qavg==null?"–":`<span class="chip ${sc(m.qavg)}">${m.qavg}%</span>`}</td><td class="mono">${m.mk}</td><td class="mono muted">${l.updated?esc(fmtTime(l.updated)):"–"}</td><td><button class="small primary" data-act="viewAs" data-id="${esc(l.learner)}">${esc(t("tView"))}</button></td></tr>`}).join("")}
+  </tbody></table></div>`;
+  return h;
+}
+function vWho(){return`<form class="note stack" data-form="who" style="max-width:440px;margin:40px auto"><h1>${esc(t("whoTitle"))}</h1><p class="muted">${esc(t("youHint"))}</p><input type="text" id="whoName" required maxlength="40" autocomplete="name"><div class="row"><button class="primary" type="submit">${esc(t("whoGo"))}</button><button type="button" class="ghost" data-act="skipName">${esc(t("skip"))}</button></div></form>`}
+function monthLabel(ym){const[y,m]=ym.split("-");return t("monthOf",Number(m)+"/"+y)}
+function slotRow(x){
+  const d=parseDay(x.date);const td=today();const i=slotInfo(x);
+  const canMk=x.date<=td&&i.st!=="ontime"&&(!SYNC||!!TEACH.as);
+  const stepH=sid=>`<span class="steps" title="${esc(t("theory"))} · ${esc(t("practice"))} · ${esc(t("speaking"))}">${partsOf(sid).map(p=>`<i class="${p?"on":""}"></i>`).join("")}</span>`;
+  const titleH=x.ls.length?x.ls.map((l,k)=>`<span class="lesson-line"><span class="open" data-act="open" data-id="${esc(l.id)}" role="button" tabindex="0"><span class="title">${x.ls.length>1?`<span class="mono muted">${k+1}.</span> `:""}${esc(l.title)}</span></span>${stepH(l.id)}</span>`).join(""):`<span class="title">${esc(t("notUploaded"))}</span>`;
+  return`<div class="item ${x.date===td?"today":""} ${x.ls.length?"":"off"}">
+   <div class="date"><small>${t("wd")[d.getDay()]}</small><b>${pad(d.getDate())}</b><small>${pad(d.getMonth()+1)}</small></div>
+   <div class="grow"><span class="label">${esc(t("session",x.n))}</span>${titleH}
+    <div class="row"><span class="chip ${ST_CHIP[i.st]}">${esc(t(ST_LABEL[i.st]))}</span>${i.done?`<span class="muted" style="font-size:.82rem">${esc(t("actual"))}: <span class="mono">${esc(fmtTime(i.done))}</span></span>`:i.mk&&i.mk.date?`<span class="muted" style="font-size:.82rem">${esc(t("makeupOn"))}: <span class="mono">${esc(fmtDate(i.mk.date))}</span></span>`:""}
+    </div></div>
+   ${canMk?(()=>{const md=i.mk&&i.mk.date||"";const can=md&&md<=td;return`<div class="mk"><label class="mkd"><span>${esc(t("makeupOn"))}</span><input type="date" data-mkd="${esc(x.key)}" value="${esc(md)}" min="${esc(dayAdd(x.date,1))}" aria-label="${esc(t("makeupOn"))}"></label><label title="${esc(can?"":md?t("mkWait"):t("mkPick"))}"><input type="checkbox" data-mk="${esc(x.key)}" ${i.mkOn?"checked":""} ${can||i.mkOn?"":"disabled"}> ${esc(t("makeupDone"))}</label></div>`})():""}
+  </div>`;
+}
+function vLessons(){
+  const groups={};SLOTS.forEach(x=>{(groups[x.date.slice(0,7)]=groups[x.date.slice(0,7)]||[]).push(x)});
+  let h=`<div class="row" style="justify-content:space-between;align-items:flex-end;margin-bottom:6px"><div><h1>${esc(t("lessons"))}</h1><p class="muted" style="font-size:.88rem;margin-top:4px">${esc(t("lessonsHint",fmtDate(START,true)))}</p></div></div>`;
+  Object.keys(groups).sort().reverse().forEach(ym=>{
+    const ms=monthStats(ym);
+    h+=`<div class="month-h"><h2>${esc(monthLabel(ym))}</h2><span class="chip good">${esc(t("monthSum",ms.studied,ms.total))}</span>${ms.mk?`<span class="chip info">${esc(t("makeup"))}: ${ms.mk}</span>`:""}</div><div class="list">${groups[ym].slice().reverse().map(slotRow).join("")}</div>`;
+  });
+  return h;
+}
+function vSession(){
+  const s=SESS.find(z=>z.id===S.view.id);if(!s)return vLessons();
+  const x=slotOf(s.id);const tab=S.view.tab||"theory";const parts=partsOf(s.id);const i=slotInfo(x);const sp=slotParts(x);const li=x.ls.findIndex(l=>l.id===s.id);
+  const tabs=[["theory",t("theory"),parts[0]],["practice",t("practice"),parts[1]],["speaking",t("speaking"),parts[2]]];
+  let h=`<button class="ghost small back" data-act="go" data-v="lessons">← ${esc(t("back"))}</button>
+  <div class="row"><span class="chip acc mono">${esc(t("session",x.n))} · ${esc(fmtDate(s.date,true))}</span>${x.ls.length>1?`<span class="chip info">${esc(t("lessonOf",li+1,x.ls.length))}</span>`:""}${s.level?`<span class="chip">${esc(s.level)}</span>`:""}<span class="chip ${ST_CHIP[i.st]}">${esc(t(ST_LABEL[i.st]))}</span></div>
+  <h1 style="margin-top:8px">${esc(s.title)}</h1>
+  <div class="donebar ${i.done?"done":""}"><span class="steps">${sp.map(p=>`<i class="${p?"on":""}"></i>`).join("")}</span><span>${i.done?esc(t("sessDone",fmtTime(i.done))):x.ls.length>1?esc(t("partsDoneN",sp.filter(Boolean).length,sp.length,x.ls.length)):esc(t("partsDone",parts.filter(Boolean).length))}</span>${x.ls.length>1?`<span class="row" style="margin-left:auto">${x.ls.map((l,k)=>l.id===s.id?`<span class="chip acc">${k+1}. ${esc(l.title)}</span>`:`<button class="small" data-act="open" data-id="${esc(l.id)}">${k+1}. ${esc(l.title)} →</button>`).join("")}</span>`:""}</div>
+  <div class="tabs" role="tablist">${tabs.map(([k,l,d])=>`<button role="tab" class="${tab===k?"on":""}" data-act="tab" data-t="${k}">${esc(l)}${d?'<span class="ok">✓</span>':""}</button>`).join("")}</div>`;
+  if(tab==="theory"){
+    h+=s.grammar?mindmap(s.grammar,s.id):`<div class="empty">—</div>`;
+    h+=`<div class="row" style="margin-top:20px">${P.theory[s.id]?`<span class="chip good">✓ ${esc(t("theoryDone"))}</span>`:`<button class="primary" data-act="theoryDone" data-id="${esc(s.id)}">✓ ${esc(t("markDone"))}</button>`}</div>`;
+  }else if(tab==="practice"){
+    const r=P.quiz[s.id];
+    h+=`<div class="note stack" style="max-width:560px"><span class="label">${esc(t("practice"))}</span><span>${esc(t("quizIntro"))}</span>
+     <div class="row">${r?`<span class="chip ${sc(r.best)}">${esc(t("best"))}: ${r.best}%</span><span class="chip">${esc(t("last"))}: ${r.last}%</span><span class="chip">${esc(t("attempts",r.n))}</span>`:`<span class="chip">${esc(t("notYet"))}</span>`}</div>
+     <div><button class="primary" data-act="startQuiz" data-id="${esc(s.id)}" ${(s.quiz||[]).length?"":"disabled"}>${esc(r?t("redo"):t("start"))}</button></div></div>`;
+  }else{
+    const r=P.speak[s.id];
+    h+=`<div class="note stack" style="max-width:560px"><span class="label">${esc(t("speaking"))}</span><span>${esc(t("speakIntro"))}</span>
+     <div class="row">${r?`<span class="chip ${sc(r.best)}">${esc(t("best"))}: ${r.best}</span><span class="chip">${esc(t("last"))}: ${r.last}</span>`:`<span class="chip">${esc(t("notYet"))}</span>`}</div>
+     ${REC?"":`<span class="muted" style="font-size:.85rem">${esc(t("selfRate"))}</span>`}
+     <div><button class="primary" data-act="startSpeak" data-id="${esc(s.id)}" ${(s.speak||[]).length?"":"disabled"}>${esc(r?t("redo"):t("start"))}</button></div></div>`;
+  }
+  return h;
+}
+const sc=v=>v==null?"":v>=85?"good":v>=60?"warn":"bad";
+function vVocab(){
+  let h=`<div class="row" style="justify-content:space-between;margin-bottom:14px"><h1>${esc(t("vocab"))}</h1><button class="primary" data-act="startCards" id="cardsBtn">${esc(t("learnCards"))}</button></div>`;
+  if(!SOURCES.length)return h+`<div class="empty">${esc(t("noVocab"))}</div>`;
+  const opts=`<option value="">${esc(t("allSources"))}</option>`+SOURCES.map(s=>`<option value="${esc(s.id)}" ${S.vfilter===s.id?"selected":""}>${s.date?esc(fmtDate(s.date))+" · ":""}${esc(s.title)} (${s.words.length})</option>`).join("");
+  const letters=[...new Set(allVocab(S.vfilter).map(v=>v.w[0].toLowerCase()).filter(c=>/[a-z]/.test(c)))].sort();
+  h+=`<div class="note stack" id="vsum"></div>
+  <div class="vtool" style="margin-top:16px"><input type="search" id="vsearch" placeholder="${esc(t("search"))}" value="${esc(S.vq)}" aria-label="${esc(t("search"))}"><select id="vfilter" aria-label="${esc(t("source"))}" style="width:auto;max-width:100%">${opts}</select></div>
+  <div class="filters" style="margin-top:10px" id="vstat"></div>
+  ${letters.length>3?`<div class="letters" role="group" aria-label="A–Z"><button class="${S.vletter?"":"on"}" data-act="vletter" data-l="">A–Z</button>${letters.map(c=>`<button class="${S.vletter===c?"on":""}" data-act="vletter" data-l="${c}">${c.toUpperCase()}</button>`).join("")}</div>`:""}
+  <div class="vhead"><span class="label">${esc(t("colWord"))}</span><span class="label">${esc(t("colPos"))}</span><span class="label">${esc(t("colMeaning"))}</span><span class="label">${esc(t("family"))}</span><span class="label">${esc(t("synonyms"))}</span><span class="label" style="text-align:right">${esc(t("colStatus"))}</span></div>
+  <div class="list" id="vlist"></div>
+  <div class="row" style="justify-content:center;margin-top:12px"><span class="muted" id="vcount" style="font-size:.85rem"></span><button id="vmore" data-act="vmore" hidden>${esc(t("showMore"))}</button></div>`;
+  return h;
+}
+function paintVocab(){
+  const list=$("#vlist");if(!list)return;
+  const pool=allVocab(S.vfilter);const cnt={new:0,learning:0,known:0};pool.forEach(v=>cnt[wordStatus(v)]++);const tot=pool.length||1;const due=pool.filter(isDue).length;
+  $("#vsum").innerHTML=`<div class="row" style="justify-content:space-between"><span><span class="mono" style="font-size:1.4rem;font-weight:500">${cnt.known}</span><span class="muted"> / ${pool.length} ${esc(t("stKnown").toLowerCase())}</span></span>${due?`<span class="chip warn">${esc(t("dueN",due))}</span>`:""}</div>
+   <div class="seg" aria-hidden="true"><b style="width:${100*cnt.known/tot}%;background:var(--good)"></b><b style="width:${100*cnt.learning/tot}%;background:var(--warn)"></b></div>
+   <div class="legend"><span style="--c:var(--good)">${esc(t("stKnown"))} ${cnt.known}</span><span style="--c:var(--warn)">${esc(t("stLearning"))} ${cnt.learning}</span><span style="--c:var(--line)">${esc(t("stNew"))} ${cnt.new}</span></div>`;
+  $("#vstat").innerHTML=[["all",t("all")],["new",t("stNew")],["learning",t("stLearning")],["known",t("stKnown")]].map(([k,l])=>`<button class="${S.vstatus===k?"on":""}" data-act="vstatus" data-s="${k}">${esc(l)}${k!=="all"?` · ${cnt[k]}`:""}</button>`).join("");
+  const rows=filteredVocab();
+  list.innerHTML=rows.length?rows.slice(0,S.vlimit).map(vRow).join(""):`<div class="empty" style="border:0">${esc(t("noMatch"))}</div>`;
+  $("#vcount").textContent=rows.length?t("showing",Math.min(S.vlimit,rows.length),rows.length):"";
+  $("#vmore").hidden=rows.length<=S.vlimit;
+  const cb=$("#cardsBtn");if(cb)cb.disabled=!rows.length;
+}
+function famChips(arr){return arr.map(x=>{const m=/^(.+?)\s*\((.+)\)$/.exec(x);const w=m?m[1]:x;return`<button class="wchip" data-act="say" data-t="${esc(w)}">${esc(w)}${m?` <span class="muted">${esc(m[2])}</span>`:""}</button>`}).join("")}
+function vRow(v){
+  const st=wordStatus(v);const lab={new:t("stNew"),learning:t("stLearning"),known:t("stKnown")}[st];
+  const fam=v.fam||[],syn=v.syn||[];
+  const list=(arr,cls)=>arr.length?arr.map(x=>{const m=/^(.+?)\s*\((.+)\)$/.exec(x);return`<span class="${cls}">${esc(m?m[1]:x)}${m?` <i>${esc(m[2])}</i>`:""}</span>`}).join(""):`<span class="none">–</span>`;
+  return`<details class="vrow"><summary>
+   <span class="c-w"><span class="w">${esc(v.w)}</span>${v.form&&v.form!==v.w?` <span class="f">→ ${esc(v.form)}</span>`:""}${v.ipa?`<span class="ipa">${esc(v.ipa)}</span>`:""}</span>
+   <span class="c-pos" title="${esc(v.pos?posName(v.pos):"")}">${v.pos?v.pos.split(/\s*,\s*/).map(p=>`<span class="chip pos">${esc(p)}</span>`).join(""):`<span class="none">–</span>`}</span>
+   <span class="c-vi">${esc(v.vi)}${v.ex?`<span class="c-ex">${esc(v.ex)}</span>`:""}</span>
+   <span class="c-fam"><span class="mlab">${esc(t("family"))}</span>${list(fam,"fw")}</span>
+   <span class="c-syn"><span class="mlab">${esc(t("synonyms"))}</span>${list(syn,"sw")}</span>
+   <span class="c-st"><span class="wtog" role="group" aria-label="${esc(lab)}"><button class="${st==="learning"?"on rv":""}" data-act="wst" data-id="${esc(v.id)}" data-st="learning" aria-pressed="${st==="learning"}">${esc(t("stLearning"))}</button><button class="${st==="known"?"on kn":""}" data-act="wst" data-id="${esc(v.id)}" data-st="known" aria-pressed="${st==="known"}">${esc(t("stKnown"))}</button></span></span></summary>
+   <div class="more">
+    ${v.pos?`<span class="muted">${esc(t("colPos"))}: ${esc(posName(v.pos))}</span>`:""}
+    ${v.ex?`<span class="ex">${esc(t("example"))}: ${esc(v.ex)} <button class="say" data-act="say" data-t="${esc(v.ex)}" aria-label="${esc(t("listen"))}">▶ ${esc(t("listen"))}</button></span>`:""}
+    ${v.alt?`<span class="muted">${esc(t("academic"))}: ${esc(v.alt)}</span>`:""}
+    <div class="row"><button class="small" data-act="say" data-t="${esc(v.form||v.w)}">▶ ${esc(t("listen"))} “${esc(v.form||v.w)}”</button>${fam.concat(syn).length?famChips(fam.concat(syn)):""}</div></div></details>`;
+}
+const POSN={vi:{n:"danh từ",v:"động từ",adj:"tính từ",adv:"trạng từ",prep:"giới từ",pron:"đại từ",det:"từ hạn định",conj:"liên từ",exclamation:"thán từ",number:"số từ","modal v":"động từ khuyết thiếu","auxiliary v":"trợ động từ",abbr:"viết tắt",prefix:"tiền tố",phrase:"cụm từ","phrasal v":"cụm động từ"},
+ en:{n:"noun",v:"verb",adj:"adjective",adv:"adverb",prep:"preposition",pron:"pronoun",det:"determiner",conj:"conjunction",exclamation:"exclamation",number:"number","modal v":"modal verb","auxiliary v":"auxiliary verb",abbr:"abbreviation",prefix:"prefix",phrase:"phrase","phrasal v":"phrasal verb"}};
+function posName(p){return p.split(/\s*[,/]\s*/).map(x=>{x=x.trim();const n=POSN[lang][x];return n?`${x} (${n})`:x}).join(", ")}
+function studyHead(title,i,n){return`<div class="row"><button class="ghost small" data-act="exit">← ${esc(t("exit"))}</button><span class="muted" style="margin-left:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%">${esc(title)}</span><span class="mono muted">${Math.min(i+1,n)}/${n}</span></div><div class="bar"><b style="width:${n?Math.round(100*i/n):100}%"></b></div>`}
+function vCards(){
+  const s=S.session;if(!s)return"";
+  if(s.empty)return`<div class="study">${studyHead(s.title,0,0)}<div class="card"><p>${esc(t("nothingDue"))}</p><button class="primary" data-act="cram">${esc(t("reviewAll"))}</button></div></div>`;
+  if(!s.queue.length){if(s.active){s.active=false;save();toast(t("saved"))}
+    return`<div class="study"><div class="card"><span class="label">${esc(t("cardsDone"))}</span><span class="score">${s.reviewed}</span><p class="muted">${esc(t("reviewed",s.reviewed,s.lapses))}</p><button class="primary" data-act="exit">${esc(t("back"))}</button></div></div>`}
+  const v=s.byId[s.queue[0]];
+  let h=`<div class="study">${studyHead(s.title,s.reviewed,s.reviewed+s.queue.length)}<div class="card">
+    <span class="word">${esc(v.w)}</span>${v.form&&v.form!==v.w?`<span class="muted">→ ${esc(v.form)}</span>`:""}${v.ipa?`<span class="ipa">${esc(v.ipa)}</span>`:""}
+    <button class="small" data-act="say" data-t="${esc(v.form||v.w)}">▶ ${esc(t("listen"))}</button>`;
+  if(s.flipped)h+=`<hr style="width:60%;border:0;border-top:1px solid var(--line)">${v.pos?`<span class="chip pos">${esc(posName(v.pos))}</span>`:""}<span class="vi">${esc(v.vi)}</span>${(v.fam||[]).length?`<span class="muted" style="font-size:.85rem">${esc(t("family"))}: ${esc(v.fam.join(", "))}</span>`:""}${(v.syn||[]).length?`<span class="muted" style="font-size:.85rem">${esc(t("synonyms"))}: ${esc(v.syn.join(", "))}</span>`:""}${v.ex?`<span class="ex">${esc(v.ex)}</span><button class="ghost small" data-act="say" data-t="${esc(v.ex)}">▶ ${esc(t("listen"))}</button>`:""}${v.alt?`<span class="muted" style="font-size:.85rem">${esc(t("academic"))}: ${esc(v.alt)}</span>`:""}`;
+  h+=`</div>`;
+  h+=s.flipped?`<div class="grades g2"><button class="gr-review" data-act="grade" data-g="0"><span>${esc(t("stLearning"))}</span><small>1</small></button><button class="gr-known" data-act="grade" data-g="1"><span>${esc(t("stKnown"))}</span><small>2</small></button></div>`:`<button class="primary" data-act="flip">${esc(t("flip"))} <kbd>Space</kbd></button>`;
+  return h+`</div>`;
+}
+function vQuiz(){
+  const s=S.session;if(!s)return"";const n=s.items.length;
+  if(s.idx>=n){
+    const pct=n?Math.round(100*s.score/n):0;
+    if(s.active){s.active=false;const r=P.quiz[s.sid]||{best:0,last:0,n:0};r.best=Math.max(r.best,pct);r.last=pct;r.n++;r.at=new Date().toISOString();P.quiz[s.sid]=r;save();sync("quiz",{session:s.title,score:s.score,total:n,pct,byLevel:s.lv});toast(t("saved"));maybeComplete(s.sid)}
+    return`<div class="study"><div class="card"><span class="label">${esc(t("quizDone"))}</span><span class="score">${s.score}/${n}</span><span class="chip ${sc(pct)}">${pct}%</span>
+     <div class="row" style="justify-content:center">${[1,2,3].filter(l=>s.lv[l]).map(l=>`<span class="chip lvl${l}">${esc(t("lv"+l))}: ${s.lv[l].ok}/${s.lv[l].n}</span>`).join("")}</div>
+     <button class="primary" data-act="exit">${esc(t("toSession"))}</button></div>
+    ${s.wrong.length?`<section class="section"><h2>${esc(t("reviewWrong"))}</h2><div class="list">${s.wrong.map(w=>`<div class="item"><div class="grow"><span>${esc(w.q)}</span><span>${esc(t("answer"))}: <b>${esc(w.a)}</b>${w.given?` · <s class="muted">${esc(w.given)}</s>`:""}</span>${w.ex?`<span class="muted">${esc(w.ex)}</span>`:""}</div></div>`).join("")}</div></section>`:""}</div>`}
+  const q=s.items[s.idx],A=s.ans;
+  let h=`<div class="study">${studyHead(s.title,s.idx,n)}<div class="card"><span class="chip lvl${q.lv||1}">${esc(t("lv"+(q.lv||1)))}</span><p class="q">${esc(q.q).replace(/_{2,}/g,'<b style="color:var(--accent)">____</b>')}</p></div>`;
+  if(q.shown)h+=`<div class="opts">${q.shown.map((o,i)=>{let c="";if(A){if(checkAns(q,o))c="right";else if(o===A.given)c="wrong"}return`<button class="${c}" data-act="pick" data-i="${i}" ${A?"disabled":""}><span class="mono muted">${i+1}</span>&nbsp; ${esc(o)}</button>`}).join("")}</div>`;
+  else h+=`<form class="row" data-form="fill"><input type="text" id="fillInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(t("typeAns"))}" ${A?`value="${esc(A.given)}" disabled`:""} style="flex:1 1 200px" aria-label="${esc(t("typeAns"))}"><button class="primary" type="submit" ${A?"hidden":""}>${esc(t("check"))}</button></form>`;
+  if(A)h+=`<div class="fb ${A.ok?"ok":"no"}"><b>${esc(A.ok?t("correct"):t("wrongA"))}</b>${A.ok?"":`<span>${esc(t("answer"))}: <b>${esc(q.a.split("/")[0])}</b></span>`}${q.ex?`<span>${esc(q.ex)}</span>`:""}</div><button class="primary" data-act="nextQ">${esc(t("next"))} <kbd>Enter</kbd></button>`;
+  return h+`</div>`;
+}
+function vSpeak(){
+  const s=S.session;if(!s)return"";const n=s.items.length;
+  if(s.idx>=n){const b=s.best.filter(x=>x!=null);const avg=b.length?Math.round(b.reduce((x,y)=>x+y,0)/b.length):0;
+    if(s.active){s.active=false;const r=P.speak[s.sid]||{best:0,last:0,n:0};r.best=Math.max(r.best,avg);r.last=avg;r.n++;r.at=new Date().toISOString();P.speak[s.sid]=r;save();sync("speak",{session:s.title,score:avg,self:!!s.usedSelf});toast(t("saved"));maybeComplete(s.sid)}
+    return`<div class="study"><div class="card"><span class="label">${esc(t("speakDone"))}</span><span class="score">${avg}</span><small class="muted">${esc(t("avg"))}</small><button class="primary" data-act="exit">${esc(t("toSession"))}</button></div>
+    <div class="list">${s.items.map((p,i)=>`<div class="item"><span class="chip lvl${p.lv||1}">${esc(t("lv"+(p.lv||1)))}</span><div class="grow"><span>${esc(p.en)}</span></div><span class="chip ${sc(s.best[i])}">${s.best[i]??"–"}</span></div>`).join("")}</div></div>`}
+  const p=s.items[s.idx];
+  let h=`<div class="study">${studyHead(s.title,s.idx,n)}<div class="card"><span class="chip lvl${p.lv||1}">${esc(t("lv"+(p.lv||1)))}</span><p class="q" style="font-size:1.35rem">${esc(p.en)}</p>${p.vi?`<span class="muted">${esc(p.vi)}</span>`:""}
+   <div class="row" style="justify-content:center"><button class="small" data-act="say" data-t="${esc(p.en)}">▶ ${esc(t("listen"))}</button><button class="small" data-act="say" data-t="${esc(p.en)}" data-r="0.7">▶ ${esc(t("slow"))}</button></div></div>`;
+  if(s.noMic)h+=`<div class="note stack"><span>${esc(t("selfRate"))}</span><div class="row"><button data-act="selfRate" data-s="100">${esc(t("rateGood"))}</button><button data-act="selfRate" data-s="60">${esc(t("rateOk"))}</button><button data-act="selfRate" data-s="30">${esc(t("rateBad"))}</button></div></div>`;
+  else if(s.result==null)h+=`<button class="primary mic ${s.mic?"live":""}" data-act="mic">${s.mic?"■ "+esc(t("stop")):"● "+esc(t("record"))}</button><div class="note"><span class="label">${esc(s.mic?t("listening"):t("micHint"))}</span><p id="heardLive" class="muted" style="margin-top:6px">…</p></div>`;
+  else{const r=s.result;
+    h+=`<div class="note stack"><div class="row"><span class="score">${r.score}</span><span class="chip ${sc(r.score)}">/100</span></div><div class="words">${r.tw.map((w,i)=>`<span class="${r.hit[i]?"hit":"miss"}">${esc(w)}</span>`).join(" ")}</div><span class="muted">${esc(t("heard"))}: “${esc(s.heard)}”</span></div>
+     <div class="row"><button data-act="retry">${esc(t("retry"))}</button><button class="primary" data-act="nextS">${esc(s.idx+1>=n?t("finish"):t("next"))}</button></div>`}
+  return h+`</div>`;
+}
+const money=n=>Math.round(n).toLocaleString("vi-VN")+"đ";
+function feeBox(ms,ym){
+  const fee=C.monthlyFee||1200000;const show=LS.get("showFee",false);const mm=ym.split("-").reverse().map(Number).join("/");
+  const unit=ms.total?fee/ms.total:0;const amt=unit*ms.studied;const hid="•••••";
+  return`<section class="fee" aria-label="${esc(t("feeTitle"))}"><div class="fee-h"><h2>${esc(t("feeTitle"))} · ${esc(mm)}</h2><button class="small" data-act="toggleFee" aria-pressed="${show}">${show?esc(t("feeHide")):esc(t("feeShow"))}</button></div>
+   <div class="fee-grid"><div><small class="muted">${esc(t("feeMonth"))}</small><b>${show?money(fee):hid}</b></div><div><small class="muted">${esc(t("feeSessions"))}</small><b>${ms.total}</b></div><div><small class="muted">${esc(t("feeUnit"))}</small><b>${show?money(unit):hid}</b></div><div class="tot"><small class="muted">${esc(t("feeDue",ms.studied))}</small><b>${show?money(amt):hid}</b></div></div>
+   ${show?`<span class="fee-formula">${esc(money(fee))} ÷ ${ms.total} ${esc(t("feeSess"))} × ${ms.studied} ${esc(t("feeSess"))} = ${esc(money(amt))}</span>`:""}</section>`;
+}
+function vProgress(){
+  const ym=S.month;const ms=monthStats(ym);const td=today();
+  const months=[...new Set(SLOTS.map(x=>x.date.slice(0,7)))].sort();
+  const mi=months.indexOf(ym);
+  let h=`<div class="row" style="justify-content:space-between;margin-bottom:14px"><h1>${esc(t("progress"))}</h1>
+   <div class="mnav"><button class="small" data-act="month" data-d="-1" ${mi<=0?"disabled":""} aria-label="${esc(t("prevM"))}">‹</button><b>${esc(monthLabel(ym))}</b><button class="small" data-act="month" data-d="1" ${mi<0||mi>=months.length-1?"disabled":""} aria-label="${esc(t("nextM"))}">›</button></div></div>
+  <div class="stats">
+   <div class="stat"><span class="big">${ms.due}<small> / ${ms.total}</small></span><span>${esc(t("schedThis"))}</span><small class="muted">${esc(t("soFar"))}</small></div>
+   <div class="stat good"><span class="big">${ms.studied}</span><span>${esc(t("studied"))}</span><small class="muted">${esc(t("ofMonth",ym.split("-").reverse().map(Number).join("/")))}</small></div>
+   <div class="stat info"><span class="big">${ms.mk}</span><span>${esc(t("makeups"))}</span></div>
+   <div class="stat bad"><span class="big">${ms.missed}</span><span>${esc(t("missed"))}</span></div>
+  </div>
+  <div class="seg" style="margin-top:12px" aria-hidden="true"><b style="width:${ms.total?100*(ms.studied-ms.mk)/ms.total:0}%;background:var(--good)"></b><b style="width:${ms.total?100*ms.mk/ms.total:0}%;background:var(--info)"></b><b style="width:${ms.total?100*ms.missed/ms.total:0}%;background:var(--bad)"></b></div>
+  ${feeBox(ms,ym)}
+  <section class="section"><h2>${esc(t("monthTable"))}</h2><div class="tbl"><table><thead><tr><th>${esc(t("colSession"))}</th><th>${esc(t("colDate"))}</th><th>${esc(t("colLesson"))}</th><th>${esc(t("colActual"))}</th><th>${esc(t("colStatus"))}</th></tr></thead><tbody>
+  ${ms.sl.map(x=>{const i=slotInfo(x);return`<tr><td class="mono">${esc(t("session",x.n))}</td><td class="mono">${esc(t("wd")[parseDay(x.date).getDay()])} ${esc(fmtDate(x.date))}</td><td class="wrapc">${x.ls.length?x.ls.map(l=>esc(l.title)).join("<br>"):`<span class="muted">${esc(t("notUploaded"))}</span>`}</td><td class="mono">${i.actual?esc(fmtDate(i.actual)):"–"}</td><td><span class="chip ${ST_CHIP[i.st]}">${esc(t(ST_LABEL[i.st]))}</span></td></tr>`}).join("")}
+  </tbody></table></div></section>`;
+  const learned=SLOTS.flatMap(x=>x.ls.filter(l=>P.theory[l.id]||P.quiz[l.id]||P.speak[l.id]).map(l=>({x,s:l})));
+  h+=`<section class="section"><h2>${esc(t("learned"))}</h2>${learned.length?`<div class="tbl"><table><thead><tr><th>${esc(t("colLesson"))}</th><th>${esc(t("colTheory"))}</th><th>${esc(t("colPractice"))}</th><th>${esc(t("colSpeak"))}</th><th>${esc(t("colStatus"))}</th></tr></thead><tbody>
+  ${learned.slice().reverse().map(({x,s})=>{const q=P.quiz[s.id],sp=P.speak[s.id],i=slotInfo(x);return`<tr><td><span class="mono muted">${esc(fmtDate(x.date))}</span> <a href="#" data-act="open" data-id="${esc(s.id)}" style="color:inherit">${esc(s.title)}</a></td><td>${P.theory[s.id]?"✓":"–"}</td><td>${q?`<span class="chip ${sc(q.best)}">${q.best}%</span>`:"–"}</td><td>${sp?`<span class="chip ${sc(sp.best)}">${sp.best}</span>`:"–"}</td><td><span class="chip ${ST_CHIP[i.st]}">${esc(t(ST_LABEL[i.st]))}</span></td></tr>`}).join("")}
+  </tbody></table></div>`:`<p class="muted">${esc(t("noLearned"))}</p>`}</section>`;
+  const vs=allVocab("");const cnt={new:0,learning:0,known:0};vs.forEach(v=>cnt[wordStatus(v)]++);
+  h+=`<section class="section"><h2>${esc(t("vocabProg"))}</h2><div class="note stack"><div class="legend"><span style="--c:var(--good)">${esc(t("stKnown"))} ${cnt.known}</span><span style="--c:var(--warn)">${esc(t("stLearning"))} ${cnt.learning}</span><span style="--c:var(--line)">${esc(t("stNew"))} ${cnt.new}</span></div>
+   ${SOURCES.map(s=>{const c={known:0,learning:0};s.words.forEach(v=>{const w=wordStatus(v);if(c[w]!=null)c[w]++});const n=s.words.length;
+     return`<div class="stack" style="gap:4px"><div class="row" style="justify-content:space-between;font-size:.88rem"><span>${esc(s.title)}</span><span class="mono muted">${c.known}/${n}</span></div><div class="seg"><b style="width:${100*c.known/n}%;background:var(--good)"></b><b style="width:${100*c.learning/n}%;background:var(--warn)"></b></div></div>`}).join("")}</div></section>
+  <section class="section"><h2>${esc(t("you"))}</h2><form class="row" data-form="name"><input type="text" id="nameIn" value="${esc(P.name)}" maxlength="40" style="flex:1 1 200px" aria-label="${esc(t("you"))}"><button type="submit">${esc(t("saveName"))}</button></form></section>
+  <section class="section"><h2>${esc(t("backup"))}</h2><p class="muted" style="font-size:.88rem;max-width:65ch">${esc(t("backupHint"))}</p>
+   <div class="row"><button data-act="copyCode">${esc(t("copy"))}</button></div><textarea id="codeIn" placeholder="${esc(t("paste"))}" aria-label="${esc(t("paste"))}"></textarea><div><button data-act="importCode">${esc(t("import"))}</button></div></section>`;
+  return h;
+}
+
+/* ---------- study sessions ---------- */
+function pick(pool,mix){
+  const out=[];const used=new Set();
+  mix.forEach(([lv,n])=>{shuffle(pool.filter(x=>(x.lv||1)===lv)).slice(0,n).forEach(x=>{out.push(x);used.add(x)})});
+  const want=mix.reduce((a,[,n])=>a+n,0);
+  if(out.length<want)shuffle(pool.filter(x=>!used.has(x))).slice(0,want-out.length).forEach(x=>out.push(x));
+  return out.sort((a,b)=>(a.lv||1)-(b.lv||1));
+}
+function startQuiz(id){const s=SESS.find(z=>z.id===id);const items=pick(s.quiz||[],QUIZ_MIX).map(q=>Object.assign({},q,{shown:q.opts&&q.opts.length?shuffle([q.a.split("/")[0].trim()].concat(q.opts)):null}));
+  const lv={};items.forEach(q=>{const l=q.lv||1;lv[l]=lv[l]||{n:0,ok:0};lv[l].n++});
+  S.session={kind:"quiz",sid:id,title:s.title,items,idx:0,ans:null,score:0,wrong:[],lv,active:true};S.view={name:"quizRun"};render();scrollTo(0,0)}
+function startSpeak(id){const s=SESS.find(z=>z.id===id);S.session={kind:"speak",sid:id,title:s.title,items:pick(s.speak||[],SPEAK_MIX),idx:0,heard:"",partial:"",result:null,best:[],mic:false,noMic:!REC,active:true};S.view={name:"speakRun"};render();scrollTo(0,0)}
+function startCards(vs,all){
+  const byId={};vs.forEach(v=>byId[v.id]=v);
+  const due=shuffle(vs.filter(v=>all?P.vs[v.id]:isDue(v)).map(v=>v.id)).slice(0,40);const fresh=vs.filter(v=>!P.vs[v.id]).map(v=>v.id).slice(0,20);
+  const q=all&&!due.length?shuffle(vs.map(v=>v.id)).slice(0,40):due.concat(fresh);const src=SOURCES.find(z=>z.id===S.vfilter);
+  S.session={kind:"cards",pool:vs,title:src?src.title:t("vocab"),byId,queue:q,reviewed:0,lapses:0,flipped:false,empty:!q.length,active:true};S.view={name:"cards"};render();scrollTo(0,0)}
+function checkAns(q,given){const n=x=>String(x).toLowerCase().replace(/[’‘`]/g,"'").trim().replace(/[.!?,;]+$/,"").replace(/\s+/g," ").trim();return q.a.split("/").some(a=>n(a)===n(given))}
+function answer(given){const s=S.session;const q=s.items[s.idx];if(s.ans)return;const ok=checkAns(q,given);s.ans={ok,given};if(ok){s.score++;s.lv[q.lv||1].ok++}else s.wrong.push({q:q.q,a:q.a.split("/")[0],given,ex:q.ex||""});render()}
+function exitSession(){const s=S.session;if(s&&s.kind==="speak")stopRec();if(s&&s.kind==="cards")save();
+  const back=s&&s.kind==="cards"?{name:"vocab"}:{name:"session",id:s?s.sid:null,tab:s?(s.kind==="quiz"?"practice":"speaking"):"theory"};S.session=null;S.view=back;render();scrollTo(0,0)}
+
+/* ---------- events ---------- */
+const ACT={
+  lang(){lang=lang==="vi"?"en":"vi";LS.set("lang",lang);render()},
+  go(el){if(el.dataset.v==="teacher"&&TEACH.as){backToOwn();return}if(el.dataset.v==="teacher"&&TEACH.key){TEACH.learners=null;loadLearners()}if(S.session&&S.session.kind==="speak")stopRec();S.session=null;S.view={name:el.dataset.v};render();scrollTo(0,0)},
+  open(el){S.view={name:"session",id:el.dataset.id,tab:"theory"};render();scrollTo(0,0)},
+  tab(el){S.view.tab=el.dataset.t;render()},
+  say(el){speak(el.dataset.t,+el.dataset.r||0.95)},
+  theoryDone(el){const id=el.dataset.id;P.theory[id]=new Date().toISOString();save();sync("theory",{session:SESS.find(z=>z.id===id).title});maybeComplete(id);render()},
+  mmAll(el){const o=el.dataset.o==="1";document.querySelectorAll(".mm details").forEach(d=>{d.open=o;S.open[d.dataset.path]=o})},
+  startQuiz(el){startQuiz(el.dataset.id)},startSpeak(el){startSpeak(el.dataset.id)},
+  startCards(){startCards(filteredVocab(),false)},cram(){startCards(S.session.pool,true)},
+  vletter(el){S.vletter=el.dataset.l;S.vlimit=60;document.querySelectorAll(".letters button").forEach(b=>b.classList.toggle("on",b.dataset.l===S.vletter));paintVocab()},
+  vmore(){S.vlimit+=60;paintVocab()},
+  exit(){exitSession()},
+  flip(){S.session.flipped=true;render()},
+  grade(el){const s=S.session;const g=+el.dataset.g;const id=s.queue.shift();setStatus(id,g?"known":"learning");s.reviewed++;
+    if(!g){s.lapses++;s.again=s.again||{};if(!s.again[id]){s.again[id]=1;s.queue.splice(Math.min(s.queue.length,4),0,id)}}s.flipped=false;render()},
+  wst(el){const id=el.dataset.id;const st=el.dataset.st;setStatus(id,P.vs[id]===st?null:st);paintVocab()},
+  pick(el){const s=S.session;answer(s.items[s.idx].shown[+el.dataset.i])},
+  nextQ(){const s=S.session;s.idx++;s.ans=null;render();scrollTo(0,0)},
+  mic(){const s=S.session;if(s.mic){stopRec();return}startRec()},
+  retry(){const s=S.session;s.result=null;s.heard="";s.partial="";render()},
+  nextS(){const s=S.session;s.idx++;s.result=null;s.heard="";s.partial="";render();scrollTo(0,0)},
+  selfRate(el){const s=S.session;s.usedSelf=true;s.best[s.idx]=+el.dataset.s;s.idx++;render()},
+  vstatus(el){S.vstatus=el.dataset.s;S.vlimit=60;paintVocab()},
+  month(el){const months=[...new Set(SLOTS.map(x=>x.date.slice(0,7)))].sort();const i=months.indexOf(S.month)+(+el.dataset.d);if(months[i]){S.month=months[i];render()}},
+  toggleFee(){LS.set("showFee",!LS.get("showFee",false));render()},
+  viewAs(el){viewAs(el.dataset.id)},backOwn(){backToOwn()},
+  tRefresh(){TEACH.learners=null;render();loadLearners()},
+  tLogout(){TEACH.key="";LS.set("tkey","");TEACH.on=false;TEACH.learners=null;if(location.hash==="#giaovien")history.replaceState(null,"",location.pathname);S.view={name:"lessons"};render()},
+  skipName(){P.skipName=true;save();render()},
+  copyCode(){const code=btoa(unescape(encodeURIComponent(JSON.stringify(P))));const ta=$("#codeIn");
+    (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>toast(t("copied"))).catch(()=>{ta.value=code;ta.select()})},
+  importCode(){try{const o=JSON.parse(decodeURIComponent(escape(atob($("#codeIn").value.trim()))));if(typeof o!=="object"||!o.srs)throw 0;Object.assign(P,o);save();toast(t("imported"));render()}catch(e){toast(t("badCode"))}}
+};
+document.addEventListener("click",e=>{const el=e.target.closest("[data-act]");if(!el||el.disabled)return;const f=ACT[el.dataset.act];if(f){e.preventDefault();f(el,e)}});
+document.addEventListener("toggle",e=>{const d=e.target;if(d.tagName==="DETAILS"&&d.dataset.path)S.open[d.dataset.path]=d.open},true);
+document.addEventListener("keydown",e=>{
+  const tag=(e.target.tagName||"").toLowerCase();const typing=tag==="input"||tag==="textarea"||tag==="select";
+  if(e.key==="Enter"&&e.target.matches&&e.target.matches(".open")){ACT.open(e.target);return}
+  const s=S.session;if(!s||!s.active)return;
+  if(s.kind==="cards"&&!typing&&s.queue.length){
+    if((e.key===" "||e.key==="Enter")&&!s.flipped){e.preventDefault();ACT.flip()}
+    else if(s.flipped&&/^[12]$/.test(e.key))ACT.grade({dataset:{g:String(+e.key-1)}});
+  }else if(s.kind==="quiz"&&s.idx<s.items.length){
+    const q=s.items[s.idx];
+    if(s.ans&&e.key==="Enter"){e.preventDefault();ACT.nextQ()}
+    else if(!s.ans&&q.shown&&!typing&&/^[1-9]$/.test(e.key)&&q.shown[+e.key-1]!=null)answer(q.shown[+e.key-1]);
+  }
+});
+document.addEventListener("input",e=>{if(e.target.id==="vsearch"){S.vq=e.target.value;S.vlimit=60;clearTimeout(paintVocab.h);paintVocab.h=setTimeout(paintVocab,120)}});
+document.addEventListener("change",e=>{
+  const el=e.target;
+  if(el.id==="vfilter"){S.vfilter=el.value;S.vletter="";S.vlimit=60;render();return}
+  if(el.dataset.mk){const k=el.dataset.mk;const cur=P.makeup[k]||{};if(!cur.date){el.checked=false;return}P.makeup[k]={on:el.checked,date:cur.date};save();pushAdmin();
+    const x=SLOTS.find(z=>z.key===k);if(el.checked)sync("makeup",{session:x&&x.ls.length?x.title:k,date:x?x.date:k,makeupDate:P.makeup[k].date});render();return}
+  if(el.dataset.mkd){const k=el.dataset.mkd;if(!el.value){delete P.makeup[k];save();pushAdmin();render();return}
+    const sx=SLOTS.find(z=>z.key===k);if(sx&&el.value<=sx.date){toast(t("mkAfter",fmtDate(sx.date)));el.value=(P.makeup[k]&&P.makeup[k].date)||"";return}
+    const cur=P.makeup[k]||{};P.makeup[k]={on:!!cur.on&&el.value<=today(),date:el.value};save();pushAdmin();render()}
+});
+document.addEventListener("submit",e=>{
+  const f=e.target.dataset.form;if(!f)return;e.preventDefault();
+  if(f==="fill")answer($("#fillInput").value);
+  else if(f==="who"||f==="name"){if(TEACH.as)return;const n=$(f==="who"?"#whoName":"#nameIn").value.trim();if(!n)return;const nl=lidOf(n);const changed=nl!==P.lid;P.name=n;P.lid=nl;if(changed)P.updatedAt=0;LS.set(KEY,P);toast("✓");render();if(changed)pull().then(()=>save());else save()}
+  else if(f==="tlogin"){const k=$("#tkey").value.trim();if(!k)return;TEACH.key=k;LS.set("tkey",k);TEACH.on=true;loadLearners()}
+});
+if(TEACH.on&&SYNC){if(location.hash==="#giaovien")S.view={name:"teacher"};if(TEACH.key)loadLearners()}
+render();
+if(!TEACH.on||!TEACH.key)pull();
+})();
+</script>
+</body>
+</html>
