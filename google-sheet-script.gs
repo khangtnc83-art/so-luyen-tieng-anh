@@ -52,6 +52,10 @@ function doPost(e) {
       if (d.key !== TEACHER_KEY) return text_("key");
       write_("A:" + d.learner, d.learner, d.name || "", d.data || {});
       log_({ name: "Giáo viên", type: "admin", session: d.learner, detail: JSON.stringify(d.data || {}) });
+    } else if (d.action === "delete" && d.learner) {
+      if (d.key !== TEACHER_KEY) return text_("key");
+      var n = deleteLearner_(d.learner);
+      log_({ name: "Giáo viên", type: "delete", session: d.learner, detail: n + " dòng" });
     } else if (d.type) {
       log_(d);
     }
@@ -91,6 +95,19 @@ function write_(key, learner, name, obj) {
   sh.getRange(row, 1, 1, 4 + parts.length).setValues([[key, learner, name, new Date()].concat(parts)]);
 }
 
+function deleteLearner_(learner) {
+  var sh = data_();
+  var n = sh.getLastRow();
+  if (n < 2) return 0;
+  var keys = sh.getRange(2, 1, n - 1, 1).getValues();
+  var removed = 0;
+  for (var i = keys.length - 1; i >= 0; i--) {
+    var k = String(keys[i][0]);
+    if (k === "P:" + learner || k === "A:" + learner) { sh.deleteRow(i + 2); removed++; }
+  }
+  return removed;
+}
+
 function read_(key) {
   var sh = data_();
   var row = findRow_(sh, key);
@@ -119,7 +136,7 @@ function list_() {
 
 function log_(d) {
   var sh = sheet_(LOG_SHEET, ["Thời gian", "Học viên", "Hoạt động", "Buổi / bài", "Kết quả", "Chi tiết"]);
-  var kind = { complete: "HOÀN THÀNH BUỔI", theory: "Ôn lý thuyết", quiz: "Bài tập", speak: "Luyện nói", admin: "GV cập nhật học bù" }[d.type] || d.type;
+  var kind = { complete: "HOÀN THÀNH BUỔI", theory: "Ôn lý thuyết", quiz: "Bài tập", speak: "Luyện nói", admin: "GV cập nhật học bù", delete: "GV xoá người học" }[d.type] || d.type;
   var score = d.type === "quiz" ? (d.score + "/" + d.total + " (" + d.pct + "%)")
             : d.type === "speak" ? (d.score + "/100" + (d.self ? " (tự chấm)" : ""))
             : d.type === "complete" ? ("lịch " + d.date + " · học " + d.actual) : "";

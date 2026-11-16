@@ -234,6 +234,9 @@ textarea{font-family:var(--mono);font-size:.8rem;min-height:90px}
 table{border-collapse:collapse;width:100%;font-size:.88rem}
 th,td{text-align:left;padding:9px 12px;border-top:1px solid var(--line);white-space:nowrap}
 td.wrapc{white-space:normal;min-width:220px}
+.tact{display:flex;gap:6px;align-items:center;justify-content:flex-end}
+.danger{color:var(--bad);border-color:var(--bad)}
+.danger:hover{background:var(--bad-soft);border-color:var(--bad)}
 .asbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;background:var(--info-soft);color:var(--fg);border-radius:var(--r);padding:10px 14px;margin-bottom:18px;font-size:.9rem}
 .asbar b{color:var(--info)}
 .fee{display:flex;flex-direction:column;gap:12px;margin-top:12px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:16px 18px}
@@ -312,6 +315,7 @@ vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
  schedThis:"Buổi theo lịch",studied:"Ngày đã học",makeups:"Học bù",missed:"Chưa học",soFar:"tính đến hôm nay",ofMonth:"cả tháng {0}",
  teacher:"Giáo viên",tLoginHint:"Nhập mật khẩu giáo viên (đặt trong Google Apps Script) để xem tiến độ người học và cập nhật học bù.",tKey:"Mật khẩu giáo viên",tLogin:"Vào chế độ Giáo viên",tBadKey:"Sai mật khẩu giáo viên.",tNoConn:"Không kết nối được Google Sheet. Kiểm tra mạng hoặc link Apps Script.",tNoSync:"Chưa kết nối Google Sheet (syncUrl trong data/content.js đang trống).",
  tIntro:"Bấm Xem để mở tiến độ của người học: mọi tab sẽ hiện dữ liệu của họ, và bạn có thể nhập ngày học bù / tick Đã học bù ở tab Bài học — người học sẽ thấy ngay lần mở trang tiếp theo.",tLearner:"Người học",tSessions:"Buổi đã học",tLessons:"Bài hoàn thành",tQuizAvg:"Bài tập TB",tUpdated:"Cập nhật",tView:"Xem",tRefresh:"Làm mới",tLogout:"Thoát chế độ GV",loadingT:"Đang tải…",tNoLearners:"Chưa có người học nào. Người học sẽ hiện ở đây sau khi mở web và nhập tên.",
+ tDel:"Xoá",tDelQ:"Xoá người học này?",cancelBtn:"Huỷ",tDeleted:"Đã xoá người học",tDelFail:"Chưa xoá được — hãy cập nhật script mới trong Apps Script (Triển khai → Phiên bản mới)",tDelHint:"Xoá tiến độ và dữ liệu học bù của người học này khỏi Google Sheet, không khôi phục được. Nếu người học mở lại web trên trình duyệt cũ, tiến độ lưu trên máy họ sẽ được gửi lên lại.",
  tViewing:"Đang xem tiến độ của",tViewHint:"thay đổi học bù sẽ được lưu cho người học",tBack:"Quay lại danh sách",tSaved:"Đã lưu học bù cho người học",tSaveErr:"Chưa lưu được — kiểm tra mạng",
  feeTitle:"Học phí",feeShow:"Hiện",feeHide:"Ẩn",feeMonth:"Học phí cả tháng",feeSessions:"Số buổi theo lịch",feeUnit:"Đơn giá / buổi",feeDue:"Thành tiền ({0} buổi đã học)",feeSess:"buổi",
  monthTable:"Các buổi trong tháng",colSession:"Buổi",learned:"Nội dung đã học",vocabProg:"Từ vựng đã học",colDate:"Ngày học",colLesson:"Bài học",colActual:"Ngày học thực tế",colStatus:"Trạng thái",colTheory:"Lý thuyết",colPractice:"Bài tập",colSpeak:"Luyện nói",noLearned:"Chưa hoàn thành buổi nào.",
@@ -336,6 +340,7 @@ en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
  schedThis:"Scheduled",studied:"Days studied",makeups:"Make-ups",missed:"Not done",soFar:"up to today",ofMonth:"{0} this month",
  teacher:"Teacher",tLoginHint:"Enter the teacher password (set in Google Apps Script) to see learners' progress and record make-up sessions.",tKey:"Teacher password",tLogin:"Enter teacher mode",tBadKey:"Wrong teacher password.",tNoConn:"Can't reach the Google Sheet. Check the connection or the Apps Script link.",tNoSync:"Google Sheet isn't connected yet (syncUrl in data/content.js is empty).",
  tIntro:"Press View to open a learner's progress: every tab shows their data, and you can set make-up dates / tick Made up in Lessons — the learner sees it next time they open the page.",tLearner:"Learner",tSessions:"Sessions studied",tLessons:"Lessons done",tQuizAvg:"Avg exercise",tUpdated:"Updated",tView:"View",tRefresh:"Refresh",tLogout:"Leave teacher mode",loadingT:"Loading…",tNoLearners:"No learners yet. They appear here after opening the site and entering a name.",
+ tDel:"Delete",tDelQ:"Delete this learner?",cancelBtn:"Cancel",tDeleted:"Learner deleted",tDelFail:"Not deleted — update the script in Apps Script (Deploy → New version)",tDelHint:"Removes this learner's progress and make-up data from the Google Sheet; it can't be undone. If they open the site again in their old browser, the progress saved there is sent back up.",
  tViewing:"Viewing progress of",tViewHint:"make-up changes are saved for this learner",tBack:"Back to list",tSaved:"Make-up saved for the learner",tSaveErr:"Not saved — check the connection",
  feeTitle:"Tuition",feeShow:"Show",feeHide:"Hide",feeMonth:"Monthly fee",feeSessions:"Scheduled sessions",feeUnit:"Per session",feeDue:"Amount ({0} sessions studied)",feeSess:"sessions",
  monthTable:"Sessions this month",colSession:"Session",learned:"What you've studied",vocabProg:"Vocabulary learned",colDate:"Date",colLesson:"Lesson",colActual:"Studied",colStatus:"Status",colTheory:"Theory",colPractice:"Exercises",colSpeak:"Speaking",noLearned:"No session completed yet.",
@@ -583,8 +588,8 @@ function vTeacher(){
   if(!TEACH.learners.length)return h+`<div class="empty">${esc(t("tNoLearners"))}</div>`;
   const tw=allVocab("").length;
   h+=`<div class="tbl"><table><thead><tr><th>${esc(t("tLearner"))}</th><th>${esc(t("tSessions"))}</th><th>${esc(t("tLessons"))}</th><th>${esc(t("stKnown"))}</th><th>${esc(t("stLearning"))}</th><th>${esc(t("tQuizAvg"))}</th><th>${esc(t("makeups"))}</th><th>${esc(t("tUpdated"))}</th><th></th></tr></thead><tbody>
-  ${TEACH.learners.map(l=>{const m=learnerSummary(l);return`<tr><td><b>${esc(l.name||l.learner)}</b></td><td class="mono">${m.sessions}</td><td class="mono">${m.lessons}/${SESS.length}</td><td class="mono">${m.known}<span class="muted">/${tw}</span></td><td class="mono">${m.learning}</td><td>${m.qavg==null?"–":`<span class="chip ${sc(m.qavg)}">${m.qavg}%</span>`}</td><td class="mono">${m.mk}</td><td class="mono muted">${l.updated?esc(fmtTime(l.updated)):"–"}</td><td><button class="small primary" data-act="viewAs" data-id="${esc(l.learner)}">${esc(t("tView"))}</button></td></tr>`}).join("")}
-  </tbody></table></div>`;
+  ${TEACH.learners.map(l=>{const m=learnerSummary(l);return`<tr><td><b>${esc(l.name||l.learner)}</b></td><td class="mono">${m.sessions}</td><td class="mono">${m.lessons}/${SESS.length}</td><td class="mono">${m.known}<span class="muted">/${tw}</span></td><td class="mono">${m.learning}</td><td>${m.qavg==null?"–":`<span class="chip ${sc(m.qavg)}">${m.qavg}%</span>`}</td><td class="mono">${m.mk}</td><td class="mono muted">${l.updated?esc(fmtTime(l.updated)):"–"}</td><td class="tact">${TEACH.del===l.learner?`<span class="muted">${esc(t("tDelQ"))}</span><button class="small danger" data-act="tDelYes" data-id="${esc(l.learner)}">${esc(t("tDel"))}</button><button class="small" data-act="tDelNo">${esc(t("cancelBtn"))}</button>`:`<button class="small primary" data-act="viewAs" data-id="${esc(l.learner)}">${esc(t("tView"))}</button><button class="small ghost" data-act="tDelAsk" data-id="${esc(l.learner)}">${esc(t("tDel"))}</button>`}</td></tr>`}).join("")}
+  </tbody></table></div>${TEACH.del?`<p class="muted" style="font-size:.85rem;margin-top:10px;max-width:70ch">${esc(t("tDelHint"))}</p>`:""}`;
   return h;
 }
 function vWho(){return`<form class="note stack" data-form="who" style="max-width:440px;margin:40px auto"><h1>${esc(t("whoTitle"))}</h1><p class="muted">${esc(t("youHint"))}</p><input type="text" id="whoName" required maxlength="40" autocomplete="name"><div class="row"><button class="primary" type="submit">${esc(t("whoGo"))}</button><button type="button" class="ghost" data-act="skipName">${esc(t("skip"))}</button></div></form>`}
@@ -822,6 +827,11 @@ const ACT={
   month(el){const months=[...new Set(SLOTS.map(x=>x.date.slice(0,7)))].sort();const i=months.indexOf(S.month)+(+el.dataset.d);if(months[i]){S.month=months[i];render()}},
   toggleFee(){LS.set("showFee",!LS.get("showFee",false));render()},
   viewAs(el){viewAs(el.dataset.id)},backOwn(){backToOwn()},
+  tDelAsk(el){TEACH.del=el.dataset.id;render()},tDelNo(){TEACH.del=null;render()},
+  tDelYes(el){const lid=el.dataset.id;TEACH.del=null;
+    try{fetch(C.syncUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"delete",key:TEACH.key,learner:lid})})
+      .then(()=>new Promise(r=>setTimeout(r,1200))).then(loadLearners).then(()=>{toast((TEACH.learners||[]).some(l=>l.learner===lid)?t("tDelFail"):t("tDeleted"))}).catch(()=>toast(t("tSaveErr")))}catch(e){}
+    TEACH.learners=(TEACH.learners||[]).filter(l=>l.learner!==lid);render()},
   tRefresh(){TEACH.learners=null;render();loadLearners()},
   tLogout(){TEACH.key="";LS.set("tkey","");TEACH.on=false;TEACH.learners=null;if(location.hash==="#giaovien")history.replaceState(null,"",location.pathname);S.view={name:"lessons"};render()},
   skipName(){P.skipName=true;save();render()},
