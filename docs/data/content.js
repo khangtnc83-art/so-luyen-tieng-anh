@@ -20,7 +20,6 @@
 window.CONTENT = {
   syncUrl: "https://script.google.com/macros/s/AKfycbzvJ7yIXujRfJ8Jka7MNQxWvCV1IMu5NCbp0wuEa-LK7mBrViDj9xg0mJSYuU4runM/exec",   // ← dán link Apps Script (kết thúc bằng /exec) vào đây
   startDate: "2026-11-02",
-  monthlyFee: 1200000,   // học phí cả tháng (VNĐ) — chia đều cho số buổi theo lịch trong tháng
   studyDays: [1, 4],   // 1 = Thứ 2, 4 = Thứ 5
   sessions: [
     {

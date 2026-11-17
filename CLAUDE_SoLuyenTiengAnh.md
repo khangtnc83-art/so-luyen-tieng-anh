@@ -29,7 +29,7 @@ tools/mock_sheet.py      máy chủ giả lập Apps Script để chạy thử
 - File phụ cùng số (ví dụ `NP03.02`) = **bài thứ 2 trong cùng buổi**: thêm một mục `sessions` riêng có cùng `date` (id kiểu `np03-02`). Buổi chỉ "Hoàn thành" khi xong mọi phần của mọi bài trong buổi.
 - Một buổi **hoàn thành** khi xong cả 3 phần: Lý thuyết + Bài tập + Luyện nói. Ngày học thực tế = lúc xong phần cuối.
 - **Học bù**: chỉ giáo viên nhập (chế độ xem người học → tab Bài học): chọn ngày bù (phải **sau** ngày học) → tick "Đã học bù". Buổi đã bù được tính vào số ngày học.
-- **Học phí**: `monthlyFee` (1.200.000đ) ÷ số buổi theo lịch trong tháng × số buổi đã học. Ô học phí mặc định ẩn.
+- **Học phí**: đã bỏ khỏi web theo yêu cầu (17/11/2026) — không hiển thị học phí.
 
 ## Soạn một bài mới từ file `.mm` (FreeMind/XMind)
 Mỗi mục trong `CONTENT.sessions`:

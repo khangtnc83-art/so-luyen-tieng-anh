@@ -241,15 +241,6 @@ body.viewing [data-act="wst"]:not(.on){visibility:hidden}
 .danger:hover{background:var(--bad-soft);border-color:var(--bad)}
 .asbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;background:var(--info-soft);color:var(--fg);border-radius:var(--r);padding:10px 14px;margin-bottom:18px;font-size:.9rem}
 .asbar b{color:var(--info)}
-.fee{display:flex;flex-direction:column;gap:12px;margin-top:12px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:16px 18px}
-.fee-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.fee-h h2{margin-right:auto}
-.fee-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-@media (max-width:640px){.fee-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.fee-grid div{display:flex;flex-direction:column;gap:2px;min-width:0}
-.fee-grid b{font-family:var(--mono);font-size:1.15rem;font-weight:500;font-variant-numeric:tabular-nums}
-.fee-grid .tot b{font-size:1.5rem;color:var(--accent)}
-.fee-formula{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
 th{border-top:0;font-weight:500;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
 .mnav{display:flex;align-items:center;gap:8px}
 .mnav b{font-weight:500;min-width:9ch;text-align:center}
@@ -321,7 +312,6 @@ vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
  swTitle:"Người học trên thiết bị này",swCurrent:"Đang học với tên",swNone:"Thiết bị này chưa gắn với người học nào.",swHint:"Dùng khi đổi sang người khác hoặc khi giáo viên thử trên máy mình. Tiến độ trên Google Sheet không bị mất.",swDo:"Đổi người học",swQ:"Thiết bị này sẽ quên tên và tiến độ đang lưu, rồi hỏi tên mới. Dữ liệu trên Google Sheet vẫn giữ nguyên.",swDone:"Đã đổi — hãy nhập tên người học",
  tDel:"Xoá",tDelQ:"Xoá người học này?",cancelBtn:"Huỷ",tDeleted:"Đã xoá người học",tDelFail:"Chưa xoá được — hãy cập nhật script mới trong Apps Script (Triển khai → Phiên bản mới)",tDelHint:"Xoá tiến độ và dữ liệu học bù của người học này khỏi Google Sheet, không khôi phục được. Nếu người học mở lại web trên trình duyệt cũ, tiến độ lưu trên máy họ sẽ được gửi lên lại.",
  tViewing:"Đang xem tiến độ của",tViewHint:"chế độ xem — chỉ chỉnh được học bù (tab Bài học)",tLocked:"Chế độ xem: không làm bài thay người học được. Chỉ chỉnh được học bù ở tab Bài học.",tBack:"Quay lại danh sách",tSaved:"Đã lưu học bù cho người học",tSaveErr:"Chưa lưu được — kiểm tra mạng",
- feeTitle:"Học phí",feeShow:"Hiện",feeHide:"Ẩn",feeMonth:"Học phí cả tháng",feeSessions:"Số buổi theo lịch",feeUnit:"Đơn giá / buổi",feeDue:"Thành tiền ({0} buổi đã học)",feeSess:"buổi",
  monthTable:"Các buổi trong tháng",colSession:"Buổi",learned:"Nội dung đã học",vocabProg:"Từ vựng đã học",colDate:"Ngày học",colLesson:"Bài học",colActual:"Ngày học thực tế",colStatus:"Trạng thái",colTheory:"Lý thuyết",colPractice:"Bài tập",colSpeak:"Luyện nói",noLearned:"Chưa hoàn thành buổi nào.",
  you:"Tên của bạn",youHint:"Để giáo viên biết đây là tiến độ của ai.",saveName:"Lưu",backup:"Chuyển sang thiết bị khác",backupHint:"Tiến độ được lưu trên trình duyệt này. Để học tiếp trên máy khác: bấm Sao chép mã, gửi mã sang máy kia, dán vào ô dưới rồi bấm Nhập.",copy:"Sao chép mã",paste:"Dán mã tiến độ vào đây…",import:"Nhập",imported:"Đã nhập tiến độ",badCode:"Mã không hợp lệ",copied:"Đã sao chép",
  wd:["CN","T2","T3","T4","T5","T6","T7"],wdl:["Chủ nhật","Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7"],whoTitle:"Chào bạn! Bạn tên gì?",whoGo:"Bắt đầu học",skip:"Bỏ qua",prevM:"Tháng trước",nextM:"Tháng sau"},
@@ -348,7 +338,6 @@ en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
  swTitle:"Learner on this device",swCurrent:"Studying as",swNone:"This device isn't linked to a learner yet.",swHint:"Use it when someone else will study here or when the teacher tests on their own device. Progress in the Google Sheet is kept.",swDo:"Switch learner",swQ:"This device will forget the saved name and progress, then ask for a new name. Data in the Google Sheet stays.",swDone:"Switched — enter the learner's name",
  tDel:"Delete",tDelQ:"Delete this learner?",cancelBtn:"Cancel",tDeleted:"Learner deleted",tDelFail:"Not deleted — update the script in Apps Script (Deploy → New version)",tDelHint:"Removes this learner's progress and make-up data from the Google Sheet; it can't be undone. If they open the site again in their old browser, the progress saved there is sent back up.",
  tViewing:"Viewing progress of",tViewHint:"view only — you can only edit make-up sessions (Lessons tab)",tLocked:"View mode: you can't study on the learner's behalf. Only make-up sessions can be edited in Lessons.",tBack:"Back to list",tSaved:"Make-up saved for the learner",tSaveErr:"Not saved — check the connection",
- feeTitle:"Tuition",feeShow:"Show",feeHide:"Hide",feeMonth:"Monthly fee",feeSessions:"Scheduled sessions",feeUnit:"Per session",feeDue:"Amount ({0} sessions studied)",feeSess:"sessions",
  monthTable:"Sessions this month",colSession:"Session",learned:"What you've studied",vocabProg:"Vocabulary learned",colDate:"Date",colLesson:"Lesson",colActual:"Studied",colStatus:"Status",colTheory:"Theory",colPractice:"Exercises",colSpeak:"Speaking",noLearned:"No session completed yet.",
  you:"Your name",youHint:"So your teacher knows whose progress this is.",saveName:"Save",backup:"Move to another device",backupHint:"Progress is saved in this browser. To continue elsewhere: copy the code, send it to the other device, paste it below and press Import.",copy:"Copy code",paste:"Paste a progress code…",import:"Import",imported:"Progress imported",badCode:"Invalid code",copied:"Copied",
  wd:["Su","Mo","Tu","We","Th","Fr","Sa"],wdl:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],whoTitle:"Hi! What's your name?",whoGo:"Start",skip:"Skip",prevM:"Previous month",nextM:"Next month"}};
@@ -763,14 +752,6 @@ function vSpeak(){
      <div class="row"><button data-act="retry">${esc(t("retry"))}</button><button class="primary" data-act="nextS">${esc(s.idx+1>=n?t("finish"):t("next"))}</button></div>`}
   return h+`</div>`;
 }
-const money=n=>Math.round(n).toLocaleString("vi-VN")+"đ";
-function feeBox(ms,ym){
-  const fee=C.monthlyFee||1200000;const show=LS.get("showFee",false);const mm=ym.split("-").reverse().map(Number).join("/");
-  const unit=ms.total?fee/ms.total:0;const amt=unit*ms.studied;const hid="•••••";
-  return`<section class="fee" aria-label="${esc(t("feeTitle"))}"><div class="fee-h"><h2>${esc(t("feeTitle"))} · ${esc(mm)}</h2><button class="small" data-act="toggleFee" aria-pressed="${show}">${show?esc(t("feeHide")):esc(t("feeShow"))}</button></div>
-   <div class="fee-grid"><div><small class="muted">${esc(t("feeMonth"))}</small><b>${show?money(fee):hid}</b></div><div><small class="muted">${esc(t("feeSessions"))}</small><b>${ms.total}</b></div><div><small class="muted">${esc(t("feeUnit"))}</small><b>${show?money(unit):hid}</b></div><div class="tot"><small class="muted">${esc(t("feeDue",ms.studied))}</small><b>${show?money(amt):hid}</b></div></div>
-   ${show?`<span class="fee-formula">${esc(money(fee))} ÷ ${ms.total} ${esc(t("feeSess"))} × ${ms.studied} ${esc(t("feeSess"))} = ${esc(money(amt))}</span>`:""}</section>`;
-}
 function vProgress(){
   const ym=S.month;const ms=monthStats(ym);const td=today();
   const months=[...new Set(SLOTS.map(x=>x.date.slice(0,7)))].sort();
@@ -784,7 +765,6 @@ function vProgress(){
    <div class="stat bad"><span class="big">${ms.missed}</span><span>${esc(t("missed"))}</span></div>
   </div>
   <div class="seg" style="margin-top:12px" aria-hidden="true"><b style="width:${ms.total?100*(ms.studied-ms.mk)/ms.total:0}%;background:var(--good)"></b><b style="width:${ms.total?100*ms.mk/ms.total:0}%;background:var(--info)"></b><b style="width:${ms.total?100*ms.missed/ms.total:0}%;background:var(--bad)"></b></div>
-  ${feeBox(ms,ym)}
   <section class="section"><h2>${esc(t("monthTable"))}</h2><div class="tbl"><table><thead><tr><th>${esc(t("colSession"))}</th><th>${esc(t("colDate"))}</th><th>${esc(t("colLesson"))}</th><th>${esc(t("colActual"))}</th><th>${esc(t("colStatus"))}</th></tr></thead><tbody>
   ${ms.sl.map(x=>{const i=slotInfo(x);return`<tr><td class="mono">${esc(t("session",x.n))}</td><td class="mono">${esc(t("wd")[parseDay(x.date).getDay()])} ${esc(fmtDate(x.date))}</td><td class="wrapc">${x.ls.length?x.ls.map(l=>esc(l.title)).join("<br>"):`<span class="muted">${esc(t("notUploaded"))}</span>`}</td><td class="mono">${i.actual?esc(fmtDate(i.actual)):"–"}</td><td><span class="chip ${ST_CHIP[i.st]}">${esc(t(ST_LABEL[i.st]))}</span></td></tr>`}).join("")}
   </tbody></table></div></section>`;
@@ -853,7 +833,6 @@ const ACT={
   selfRate(el){const s=S.session;s.usedSelf=true;s.best[s.idx]=+el.dataset.s;s.idx++;render()},
   vstatus(el){S.vstatus=el.dataset.s;S.vlimit=60;paintVocab()},
   month(el){const months=[...new Set(SLOTS.map(x=>x.date.slice(0,7)))].sort();const i=months.indexOf(S.month)+(+el.dataset.d);if(months[i]){S.month=months[i];render()}},
-  toggleFee(){LS.set("showFee",!LS.get("showFee",false));render()},
   viewAs(el){viewAs(el.dataset.id)},backOwn(){backToOwn()},
   swAsk(){S.swAsk=true;render()},swNo(){S.swAsk=false;render()},
   swYes(){S.swAsk=false;forgetLearner();S.view={name:"lessons"};render();scrollTo(0,0);toast(t("swDone"))},
