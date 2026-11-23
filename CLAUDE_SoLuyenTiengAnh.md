@@ -54,6 +54,14 @@ Mỗi mục trong `CONTENT.sessions`:
 - **Luyện nói**: **10 câu = 4 cơ bản (lv 1) + 6 khó (lv 3)**, câu giao tiếp tự nhiên, có `vi` (nghĩa tiếng Việt).
 - Ngôn ngữ ví dụ: đời thường, bối cảnh Việt Nam quen thuộc (Đà Nẵng, Hội An, bánh xèo…).
 
+## Giọng văn cho nội dung Claude tự viết (giáo viên chọn 23/11/2026)
+Áp dụng cho nội dung Claude tự viết: câu bài tập, luyện nói, ví dụ bổ sung, câu ví dụ từ vựng theo buổi — **không** đụng vào lý thuyết/ví dụ của giáo viên, và **không** viết lại bộ 3000 từ (câu Tatoeba giữ nguyên, giáo viên không yêu cầu).
+- Giữ kiểu ví dụ hiện tại (giáo viên rất thích): câu tự nhiên, dùng được ngay khi nói chuyện, bối cảnh Việt Nam đời thường.
+- Thêm chất **"người lớn"** = chuyện đời thật của người đi làm/đi học: deadline, sếp, lương, tiền nhà, hẹn hò, độc thân, tăng cân, mất ngủ, họ hàng hỏi chuyện chồng con…
+- **Kết hợp linh hoạt** (giáo viên chốt: không bắt buộc, không đặt tỉ lệ): Claude tự cân giữa câu tự nhiên đời thường, chất "người lớn" và **dark joke / hài khô, mỉa, tự giễu** khi hợp với câu và điểm ngữ pháp. Ví dụ dark joke: "I have a dog. The dog has a better social life than I do." · "My boss gave me a raise — in workload." · "What a beautiful Monday! — said no one ever."
+- Câu vẫn phải **làm rõ điểm ngữ pháp** đang học; cái hài không được che mất cấu trúc. Câu cơ bản ưu tiên rõ ràng, câu khó / luyện nói được "mặn" hơn.
+- Giới hạn: không nội dung tình dục lộ liễu; không chế giễu nhóm người (giới, vùng miền, tôn giáo, ngoại hình, khuyết tật); không đùa về tự tử, bạo lực thật, bệnh hiểm nghèo, thảm hoạ; không chính trị. Tiếng lóng nhẹ được, không chửi thề.
+
 ## Giáo viên sửa bài qua link (Claude Docs)
 - Khi giáo viên muốn tự sửa bài: tạo một Claude Doc gồm Hướng dẫn sửa · Phần 1 Lý thuyết (### = nhánh lớn, gạch đầu dòng thụt 4 dấu cách = nhánh con, **[ĐÃ SỬA]** / **[LƯU Ý]** ở đầu dòng = `k: "fix"` / `k: "tip"`) · Phần 2 Bài tập (bảng: # | Mức | Câu hỏi | Đáp án | Lựa chọn sai (cách nhau bằng ;) | Giải thích) · Phần 3 Luyện nói (bảng: # | Mức | Câu tiếng Anh | Nghĩa).
 - Giáo viên nhắn "đã sửa xong" → đọc lại tài liệu, chuyển ngược thành mục `sessions` (Cơ bản/Trung bình/Khó = lv 1/2/3), giữ đúng những gì giáo viên sửa; câu giáo viên thêm mà sai ngữ pháp → hỏi trước khi đổi, rồi sửa luôn trong tài liệu cho khớp.
