@@ -66,6 +66,7 @@ Mỗi mục trong `CONTENT.sessions`:
 - **Từ hay (★)**: đánh dấu riêng, không liên quan trạng thái (lưu `star`); có bộ lọc "★ Từ hay" và học flashcard riêng các từ này.
 - **Ghi chú**: theo từng từ (`notes`, viết ở thẻ flashcard sau khi lật hoặc khi mở dòng trong bảng) + **Sổ ghi chú** chung trong tab Từ vựng (`notebook`). Đồng bộ lên Sheet; giáo viên chỉ xem.
 - **Flashcard**: nút "‹ Thẻ trước" (phím ←) quay lại thẻ vừa chấm và huỷ đánh giá đó; nút "Hiện/Ẩn nghĩa ví dụ" (nhớ lựa chọn trên máy).
+- **Tra Cambridge**: khi đang học flashcard, tô đen chữ tiếng Anh (≤ 60 ký tự) → hiện nút "Tra Cambridge: …" mở tab mới `https://dictionary.cambridge.org/search/direct/?datasetsearch=english&q=<chữ>`. Máy tính: nút ở trên chữ; điện thoại: ở dưới (tránh menu Sao chép). Không dùng logo Cambridge.
 
 ## Đồng bộ dữ liệu (Google Sheet)
 - `CONTENT.syncUrl` = link `/exec` của Apps Script giáo viên. Không có đăng nhập; người học nhận diện bằng tên (`lid` = tên không dấu, gạch nối). Link riêng: `?hv=Tên`.

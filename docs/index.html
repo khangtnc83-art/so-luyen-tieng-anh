@@ -151,6 +151,9 @@ button:disabled{opacity:.45;cursor:not-allowed;border-color:var(--line)}
 .card .ex{color:var(--muted);font-style:italic;max-width:44ch}
 .card .q{font-size:1.2rem;line-height:1.5;max-width:44ch}
 .card{position:relative}
+.dictpop{position:fixed;z-index:60;display:inline-flex;align-items:center;gap:6px;max-width:min(320px,calc(100vw - 16px));padding:7px 12px;border-radius:999px;background:var(--accent);color:var(--accent-fg);font-size:.85rem;font-weight:500;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dictpop[hidden]{display:none}
+.dictpop span{overflow:hidden;text-overflow:ellipsis}
 .card .exvi{color:var(--fg);font-size:.92rem;max-width:44ch}
 .cstar{position:absolute;top:10px;right:10px}
 .star{border:0;background:transparent;color:var(--muted);font-size:1.15rem;line-height:1;padding:3px 5px;border-radius:6px}
@@ -276,9 +279,10 @@ kbd{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border
   <main id="app"></main>
 </div>
 <div id="toast" role="status" hidden></div>
-<script>window.BUILD="20261123-130006";</script>
-<script src="data/content.js?v=20261123-130006"></script>
-<script src="data/vocab3000.js?v=20261123-130006"></script>
+<a id="dictpop" class="dictpop" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span></span></a>
+<script>window.BUILD="20261123-131701";</script>
+<script src="data/content.js?v=20261123-131701"></script>
+<script src="data/vocab3000.js?v=20261123-131701"></script>
 <script>
 (function(){
 "use strict";
@@ -315,7 +319,7 @@ vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
  listen:"Nghe",slow:"Nghe chậm",academic:"Thay cho",
  quizIntro:"20 câu: 10 cơ bản · 5 trung bình · 5 khó",speakIntro:"10 câu: 4 cơ bản · 6 khó",start:"Bắt đầu",redo:"Làm lại",best:"Cao nhất",last:"Lần gần nhất",notYet:"Chưa làm",attempts:"{0} lần",
  lv1:"Cơ bản",lv2:"Trung bình",lv3:"Khó",
- prevCard:"Thẻ trước",star:"Đánh dấu sao (từ hay)",starred:"Từ hay",exViShow:"Hiện nghĩa ví dụ",exViHide:"Ẩn nghĩa ví dụ",exVi:"Nghĩa",note:"Ghi chú",notePh:"Ghi chú của bạn cho từ này…",notebook:"Sổ ghi chú",notebookPh:"Ghi tự do: cách dùng, câu tự đặt, từ gặp ngoài đời…",notebookHint:"Tự lưu khi gõ. Giáo viên xem được.",readOnly:"Chỉ xem",
+ prevCard:"Thẻ trước",dictLook:"Tra Cambridge",star:"Đánh dấu sao (từ hay)",starred:"Từ hay",exViShow:"Hiện nghĩa ví dụ",exViHide:"Ẩn nghĩa ví dụ",exVi:"Nghĩa",note:"Ghi chú",notePh:"Ghi chú của bạn cho từ này…",notebook:"Sổ ghi chú",notebookPh:"Ghi tự do: cách dùng, câu tự đặt, từ gặp ngoài đời…",notebookHint:"Tự lưu khi gõ. Giáo viên xem được.",readOnly:"Chỉ xem",
  flip:"Lật thẻ",again:"Quên",hard:"Khó nhớ",good:"Nhớ",easy:"Dễ",now:"ngay",days:"{0} ngày",exit:"Thoát",cardsDone:"Xong phần ôn thẻ",reviewed:"Đã xem {0} thẻ · {1} lần chọn Cần ôn",nothingDue:"Không có từ nào cần ôn lúc này.",reviewAll:"Ôn lại toàn bộ",
  check:"Kiểm tra",next:"Tiếp",correct:"Chính xác",wrongA:"Chưa đúng",answer:"Đáp án",typeAns:"Gõ câu trả lời…",quizDone:"Kết quả bài tập",reviewWrong:"Câu cần xem lại",
  record:"Bấm để nói",stop:"Dừng",retry:"Nói lại",heard:"Máy nghe được",speakDone:"Kết quả luyện nói",avg:"Điểm trung bình",selfRate:"Trình duyệt này chưa cho dùng micro. Hãy nghe mẫu, đọc to, rồi tự chấm:",rateGood:"Đọc tốt",rateOk:"Tạm được",rateBad:"Chưa được",
@@ -342,7 +346,7 @@ en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
  listen:"Listen",slow:"Slow",academic:"Instead of",
  quizIntro:"20 questions: 10 basic · 5 medium · 5 hard",speakIntro:"10 sentences: 4 basic · 6 hard",start:"Start",redo:"Try again",best:"Best",last:"Last",notYet:"Not started",attempts:"{0} tries",
  lv1:"Basic",lv2:"Medium",lv3:"Hard",
- prevCard:"Previous",star:"Star (favourite word)",starred:"Starred",exViShow:"Show translation",exViHide:"Hide translation",exVi:"Meaning",note:"Note",notePh:"Your note for this word…",notebook:"Notebook",notebookPh:"Write freely: usage, your own sentences, words you met…",notebookHint:"Saved as you type. Your teacher can see it.",readOnly:"Read only",
+ prevCard:"Previous",dictLook:"Look up in Cambridge",star:"Star (favourite word)",starred:"Starred",exViShow:"Show translation",exViHide:"Hide translation",exVi:"Meaning",note:"Note",notePh:"Your note for this word…",notebook:"Notebook",notebookPh:"Write freely: usage, your own sentences, words you met…",notebookHint:"Saved as you type. Your teacher can see it.",readOnly:"Read only",
  flip:"Flip",again:"Again",hard:"Hard",good:"Good",easy:"Easy",now:"now",days:"{0} d",exit:"Exit",cardsDone:"Review finished",reviewed:"Saw {0} cards · {1} marked to review",nothingDue:"Nothing due right now.",reviewAll:"Review all",
  check:"Check",next:"Next",correct:"Correct",wrongA:"Not quite",answer:"Answer",typeAns:"Type your answer…",quizDone:"Exercise result",reviewWrong:"Review these",
  record:"Tap to speak",stop:"Stop",retry:"Try again",heard:"Heard",speakDone:"Speaking result",avg:"Average",selfRate:"This browser can't use the microphone. Listen, read aloud, then rate yourself:",rateGood:"Good",rateOk:"Okay",rateBad:"Not yet",
@@ -600,6 +604,7 @@ function renderNav(){
   $("#langBtn").textContent=lang==="vi"?"EN":"VI";document.documentElement.lang=lang;
 }
 function render(){
+  dictHide();
   renderNav();
   const v=S.view.name;let h="";
   if(v==="teacher")h=vTeacher();
@@ -938,6 +943,34 @@ document.addEventListener("submit",e=>{
 });
 if(TEACH.on&&SYNC){if(location.hash==="#giaovien")S.view={name:"teacher"};if(TEACH.key)loadLearners()}
 render();
+/* ---------- Cambridge Dictionary: select English words on a flashcard -> pop-up link ---------- */
+const DICT_URL="https://dictionary.cambridge.org/search/direct/?datasetsearch=english&q=";
+function dictHide(){const p=$("#dictpop");if(p&&!p.dataset.hold)p.hidden=true}
+function dictCheck(){
+  const pop=$("#dictpop");if(!pop||pop.dataset.hold)return;
+  const sel=window.getSelection&&getSelection();
+  if(S.view.name!=="cards"||!sel||!sel.rangeCount||sel.isCollapsed){pop.hidden=true;return}
+  const node=sel.anchorNode&&(sel.anchorNode.nodeType===1?sel.anchorNode:sel.anchorNode.parentElement);
+  if(!node||!node.closest(".study")||node.closest("textarea,input")){pop.hidden=true;return}
+  const q=sel.toString().replace(/[’‘]/g,"'").replace(/\s+/g," ").trim().replace(/^[^A-Za-z]+|[^A-Za-z]+$/g,"");
+  if(!q||q.length>60||!/^[A-Za-z][A-Za-z' -]*$/.test(q)){pop.hidden=true;return}
+  pop.href=DICT_URL+encodeURIComponent(q.toLowerCase());
+  pop.querySelector("span").textContent=t("dictLook")+": "+q;pop.setAttribute("aria-label",t("dictLook")+": "+q);
+  pop.hidden=false;
+  const r=sel.getRangeAt(0).getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight;
+  const touch=matchMedia("(pointer:coarse)").matches;   // phones show their own copy menu above the selection
+  let top=touch?r.bottom+14:r.top-h-10;
+  if(top<8)top=r.bottom+10;if(top+h>innerHeight-8)top=Math.max(8,r.top-h-10);
+  const left=Math.max(8,Math.min(innerWidth-w-8,r.left+r.width/2-w/2));
+  pop.style.top=top+"px";pop.style.left=left+"px";
+}
+document.addEventListener("selectionchange",()=>{clearTimeout(dictCheck.t);dictCheck.t=setTimeout(dictCheck,200)});
+addEventListener("scroll",dictHide,{passive:true});addEventListener("resize",dictHide);
+{const pop=$("#dictpop");
+ pop.addEventListener("pointerdown",()=>{pop.dataset.hold="1"});
+ pop.addEventListener("mousedown",e=>e.preventDefault());   // keep the selection while clicking
+ pop.addEventListener("click",()=>{setTimeout(()=>{delete pop.dataset.hold;pop.hidden=true},300)});
+ pop.addEventListener("pointercancel",()=>{delete pop.dataset.hold});}
 /* ---------- new version check: GitHub Pages lets browsers keep old files ~10 min ---------- */
 async function checkVersion(){
   try{
