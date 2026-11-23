@@ -283,9 +283,9 @@ kbd{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border
 </div>
 <div id="toast" role="status" hidden></div>
 <a id="dictpop" class="dictpop" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span></span></a>
-<script>window.BUILD="20261123-141302";</script>
-<script src="data/content.js?v=20261123-141302"></script>
-<script src="data/vocab3000.js?v=20261123-141302"></script>
+<script>window.BUILD="20261123-142719";</script>
+<script src="data/content.js?v=20261123-142719"></script>
+<script src="data/vocab3000.js?v=20261123-142719"></script>
 <script>
 (function(){
 "use strict";
@@ -869,11 +869,17 @@ function startQuiz(id){const s=SESS.find(z=>z.id===id);const items=pick(s.quiz||
   const lv={};items.forEach(q=>{const l=q.lv||1;lv[l]=lv[l]||{n:0,ok:0};lv[l].n++});
   S.session={kind:"quiz",sid:id,title:s.title,items,idx:0,ans:null,score:0,wrong:[],lv,active:true};S.view={name:"quizRun"};render();scrollTo(0,0)}
 function startSpeak(id){const s=SESS.find(z=>z.id===id);S.session={kind:"speak",sid:id,title:s.title,items:pick(s.speak||[],SPEAK_MIX),idx:0,heard:"",partial:"",result:null,best:[],mic:false,noMic:!REC,active:true};S.view={name:"speakRun"};render();scrollTo(0,0)}
+// one card per headword in a session (the 3000 list has a few words twice, e.g. centimetre 466/467, may / May)
+const headKey=v=>String(v.w).toLowerCase().split(/[,(]/)[0].trim();
+function oneEach(ids,byId){const seen=new Set();return ids.filter(id=>{const k=headKey(byId[id]);if(seen.has(k))return false;seen.add(k);return true})}
 function startCards(vs,all,every){
   const byId={};vs.forEach(v=>byId[v.id]=v);
-  if(every){S.session={kind:"cards",pool:vs,title:t("starred"),byId,queue:shuffle(vs.map(v=>v.id)).slice(0,40),reviewed:0,lapses:0,flipped:false,empty:!vs.length,active:true,hist:[]};S.view={name:"cards"};render();scrollTo(0,0);return}
-  const due=shuffle(vs.filter(v=>all?P.vs[v.id]:isDue(v)).map(v=>v.id)).slice(0,40);const fresh=vs.filter(v=>!P.vs[v.id]).map(v=>v.id).slice(0,20);
-  const q=all&&!due.length?shuffle(vs.map(v=>v.id)).slice(0,40):due.concat(fresh);const src=SOURCES.find(z=>z.id===S.vfilter);
+  if(every){S.session={kind:"cards",pool:vs,title:t("starred"),byId,queue:oneEach(shuffle(vs.map(v=>v.id)),byId).slice(0,40),reviewed:0,lapses:0,flipped:false,empty:!vs.length,active:true,hist:[]};S.view={name:"cards"};render();scrollTo(0,0);return}
+  // random order: words to review (max 40) + new words picked at random (max 20), then mixed together
+  const due=oneEach(shuffle(vs.filter(v=>all?P.vs[v.id]:isDue(v)).map(v=>v.id)),byId).slice(0,40);
+  const dueKeys=new Set(due.map(id=>headKey(byId[id])));
+  const fresh=oneEach(shuffle(vs.filter(v=>!P.vs[v.id]&&!dueKeys.has(headKey(v))).map(v=>v.id)),byId).slice(0,20);
+  const q=all&&!due.length?oneEach(shuffle(vs.map(v=>v.id)),byId).slice(0,40):shuffle(due.concat(fresh));const src=SOURCES.find(z=>z.id===S.vfilter);
   S.session={kind:"cards",pool:vs,title:src?src.title:t("vocab"),byId,queue:q,reviewed:0,lapses:0,flipped:false,empty:!q.length,active:true,hist:[]};S.view={name:"cards"};render();scrollTo(0,0)}
 // Multiple choice: the whole "a" is the one right option (it may join two blanks with " / ").
 // Fill-in (no opts): "a/b" lists several accepted answers.
@@ -901,7 +907,8 @@ const ACT={
   exit(){exitSession()},
   flip(){S.session.flipped=true;render()},
   grade(el){const s=S.session;const g=+el.dataset.g;const id=s.queue.shift();const h={id,prev:P.vs[id],lapse:!g,ins:false};setStatus(id,g?"known":"learning");s.reviewed++;
-    if(!g){s.lapses++;s.again=s.again||{};if(!s.again[id]){s.again[id]=1;s.queue.splice(Math.min(s.queue.length,4),0,id);h.ins=true}}(s.hist=s.hist||[]).push(h);s.flipped=false;render()},
+    if(!g)s.lapses++;   // "Cần ôn" no longer brings the card back in the same session (teacher's choice)
+    (s.hist=s.hist||[]).push(h);s.flipped=false;render()},
   prevCard(){const s=S.session;const h=s&&s.hist&&s.hist.pop();if(!h)return;
     if(h.ins){const i=s.queue.indexOf(h.id);if(i>=0)s.queue.splice(i,1);delete s.again[h.id]}
     if(h.lapse)s.lapses--;s.reviewed--;setStatus(h.id,h.prev||null);s.queue.unshift(h.id);s.flipped=true;s.active=true;render()},

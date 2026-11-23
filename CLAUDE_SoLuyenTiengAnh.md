@@ -78,6 +78,7 @@ Mỗi mục trong `CONTENT.sessions`:
 - Trạng thái từ: **Chưa học / Cần ôn / Đã nhớ** (lưu trong `vs`).
 - **Từ hay (★)**: đánh dấu riêng, không liên quan trạng thái (lưu `star`); có bộ lọc "★ Từ hay" và học flashcard riêng các từ này.
 - **Ghi chú**: theo từng từ (`notes`, viết ở thẻ flashcard sau khi lật hoặc khi mở dòng trong bảng) + **Sổ ghi chú** chung trong tab Từ vựng (`notebook`). Đồng bộ lên Sheet; giáo viên chỉ xem.
+- **Chọn thẻ flashcard**: ngẫu nhiên — tối đa 40 từ "Cần ôn" + 20 từ mới bốc ngẫu nhiên, trộn lẫn; mỗi từ (theo mặt chữ, bỏ phần sau dấu phẩy / ngoặc) chỉ 1 thẻ mỗi lần học vì bộ 3000 có ~18 từ bị ghi 2 lần (centimetre 466/467, kilometre, each other, may/May…). Bấm "Cần ôn" **không** làm thẻ quay lại trong cùng buổi (giáo viên bỏ, 23/11/2026) — từ đó sẽ vào nhóm ôn ở lần học sau.
 - **Flashcard**: nút "‹ Thẻ trước" (phím ←) quay lại thẻ vừa chấm và huỷ đánh giá đó; nút "Hiện/Ẩn nghĩa ví dụ" (nhớ lựa chọn trên máy).
 - **Tra Cambridge**: khi đang học flashcard, tô đen chữ tiếng Anh (≤ 60 ký tự) → hiện nút "Tra Cambridge: …" mở tab mới `https://dictionary.cambridge.org/search/direct/?datasetsearch=english&q=<chữ>`. Máy tính: nút ở trên chữ; điện thoại: ở dưới (tránh menu Sao chép). Không dùng logo Cambridge.
 
