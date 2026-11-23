@@ -186,27 +186,6 @@ window.CONTENT = {
           ]}
         ]
       },
-      vocab: [
-        { w: "bus", form: "buses", ipa: "/ˈbʌsɪz/", pos: "n", vi: "xe buýt", ex: "I usually take two buses to get to school.", exVi: "Mình thường đi hai chuyến xe buýt để đến trường." },
-        { w: "class", form: "classes", ipa: "/ˈklɑːsɪz/", pos: "n", vi: "lớp học, tiết học", ex: "I've got back-to-back classes on Monday.", exVi: "Thứ Hai mình có mấy tiết học liền nhau.", alt: "lecture, session" },
-        { w: "dish", form: "dishes", ipa: "/ˈdɪʃɪz/", pos: "n", vi: "cái đĩa; món ăn", ex: "It's your turn to do the dishes!", exVi: "Đến lượt bạn rửa bát rồi đấy!" },
-        { w: "watch", form: "watches", ipa: "/ˈwɒtʃɪz/", pos: "v / n", vi: "xem; đồng hồ đeo tay", ex: "She watches K-dramas every night.", exVi: "Tối nào cô ấy cũng xem phim Hàn.", alt: "observe, view" },
-        { w: "box", form: "boxes", ipa: "/ˈbɒksɪz/", pos: "n", vi: "cái hộp, thùng", ex: "Can you help me carry these boxes?", exVi: "Bạn giúp mình khiêng mấy cái thùng này được không?" },
-        { w: "quiz", form: "quizzes", ipa: "/ˈkwɪzɪz/", pos: "n", vi: "bài kiểm tra ngắn", ex: "We have pop quizzes almost every week.", exVi: "Gần như tuần nào tụi mình cũng có bài kiểm tra đột xuất.", alt: "assessment, test" },
-        { w: "stomach", form: "stomachs", ipa: "/ˈstʌməks/", pos: "n", vi: "cái bụng, dạ dày", ex: "My stomach hurts — I ate too much.", exVi: "Mình đau bụng quá — ăn nhiều quá.", alt: "abdomen" },
-        { w: "party", form: "parties", ipa: "/ˈpɑːtiz/", pos: "n", vi: "bữa tiệc", ex: "Are you going to Minh's birthday party?", exVi: "Bạn có đi tiệc sinh nhật của Minh không?", alt: "celebration, gathering" },
-        { w: "baby", form: "babies", ipa: "/ˈbeɪbiz/", pos: "n", vi: "em bé", ex: "My cousin just had a baby!", exVi: "Chị họ mình vừa sinh em bé!", alt: "infant" },
-        { w: "country", form: "countries", ipa: "/ˈkʌntriz/", pos: "n", vi: "đất nước, quốc gia", ex: "How many countries have you been to?", exVi: "Bạn đã đi được bao nhiêu nước rồi?", alt: "nation" },
-        { w: "toy", form: "toys", ipa: "/tɔɪz/", pos: "n", vi: "đồ chơi", ex: "My little brother's toys are everywhere.", exVi: "Đồ chơi của em trai mình bày khắp nơi." },
-        { w: "wife", form: "wives", ipa: "/waɪvz/", pos: "n", vi: "vợ", ex: "He always listens to his wife.", exVi: "Anh ấy lúc nào cũng nghe lời vợ.", alt: "spouse" },
-        { w: "knife", form: "knives", ipa: "/naɪvz/", pos: "n", vi: "con dao", ex: "Careful, those knives are really sharp.", exVi: "Cẩn thận, mấy con dao đó sắc lắm." },
-        { w: "leaf", form: "leaves", ipa: "/liːvz/", pos: "n", vi: "chiếc lá", ex: "The leaves are turning yellow already.", exVi: "Lá đã bắt đầu ngả vàng rồi." },
-        { w: "roof", form: "roofs", ipa: "/ruːfs/", pos: "n", vi: "mái nhà", ex: "We had drinks on the roof last night.", exVi: "Tối qua tụi mình ngồi uống nước trên sân thượng.", alt: "rooftop" },
-        { w: "belief", form: "beliefs", ipa: "/bɪˈliːfs/", pos: "n", vi: "niềm tin, quan niệm", ex: "We respect each other's beliefs.", exVi: "Chúng tôi tôn trọng quan niệm của nhau.", alt: "conviction" },
-        { w: "study", form: "studies", ipa: "/ˈstʌdiz/", pos: "v", vi: "học", ex: "She studies better at night.", exVi: "Cô ấy học vào buổi tối thì vào hơn.", alt: "pursue, examine" },
-        { w: "laugh", form: "laughs", ipa: "/lɑːfs/", pos: "v", vi: "cười (thành tiếng)", ex: "He laughs at all my bad jokes.", exVi: "Mình kể chuyện cười dở đến mấy anh ấy cũng cười." },
-        { w: "judge", form: "judges", ipa: "/ˈdʒʌdʒɪz/", pos: "n / v", vi: "giám khảo; đánh giá", ex: "Don't judge people too fast.", exVi: "Đừng vội đánh giá người khác.", alt: "assess, evaluate" }
-      ],
       quiz: [
         { lv: 1, q: "I have three ___ in my bag.", a: "boxes", opts: ["boxs", "boxies", "box"], ex: "box tận cùng -x → thêm -es." },
         { lv: 1, q: "There are many beautiful ___ in Southeast Asia.", a: "countries", opts: ["countrys", "countryes", "country"], ex: "Phụ âm (r) + y → bỏ y, thêm -ies." },

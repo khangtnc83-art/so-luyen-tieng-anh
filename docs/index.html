@@ -396,6 +396,10 @@ function pushNow(){if(!pushPending||TEACH.as)return;pushPending=false;
   try{fetch(C.syncUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:progressBody()}).catch(()=>{pushPending=true})}catch(e){}}
 addEventListener("pagehide",()=>{if(pushPending&&!TEACH.as&&navigator.sendBeacon){try{navigator.sendBeacon(C.syncUrl,new Blob([progressBody()],{type:"text/plain;charset=utf-8"}));pushPending=false}catch(e){}}});
 async function getJSON(params){const u=C.syncUrl+(C.syncUrl.includes("?")?"&":"?")+new URLSearchParams(params);const r=await fetch(u);return r.json()}
+function pruneVocab(){            // drop status / star / note of words no longer in any vocabulary source
+  const ids=new Set(SOURCES.flatMap(s=>s.words.map(v=>v.id)));let n=0;
+  ["vs","star","notes"].forEach(k=>{const o=P[k];if(!o||typeof o!=="object")return;Object.keys(o).forEach(id=>{if(!ids.has(id)){delete o[id];n++}})});
+  return n}
 async function pull(){
   if(!SYNC||!P.lid||TEACH.as)return;
   try{
@@ -404,7 +408,7 @@ async function pull(){
     if(pr&&(pr.updatedAt||0)>(P.updatedAt||0)){["theory","quiz","speak","done","vs","star","notes","notebook","updatedAt"].forEach(k=>{if(pr[k]!==undefined)P[k]=pr[k]})}
     else if(!pr||(pr.updatedAt||0)<(P.updatedAt||0)){pushPending=true;pushNow()}
     P.makeup=(r.admin&&r.admin.makeup)||{};
-    LS.set(KEY,P);
+    if(pruneVocab())save();else LS.set(KEY,P);
     if(!S.session)render();
   }catch(e){}
 }
@@ -437,7 +441,8 @@ function backToOwn(){
 function learnerSummary(l){
   const pr=l.progress||{},mk=(l.admin&&l.admin.makeup)||{};
   const dates=new Set(Object.keys(pr.done||{}));Object.keys(mk).forEach(k=>{if(mk[k]&&mk[k].on)dates.add(k)});
-  const vs=Object.values(pr.vs||{});
+  const ids=new Set(SOURCES.flatMap(s=>s.words.map(v=>v.id)));
+  const vs=Object.entries(pr.vs||{}).filter(([id])=>ids.has(id)).map(([,v])=>v);
   const lessons=SESS.filter(s=>(pr.theory||{})[s.id]&&(pr.quiz||{})[s.id]&&(pr.speak||{})[s.id]).length;
   const qs=Object.values(pr.quiz||{}).map(q=>q.best);const qavg=qs.length?Math.round(qs.reduce((a,b)=>a+b,0)/qs.length):null;
   return{sessions:dates.size,lessons,known:vs.filter(v=>v==="known").length,learning:vs.filter(v=>v==="learning").length,qavg,mk:Object.values(mk).filter(m=>m&&m.on).length};
@@ -932,6 +937,7 @@ document.addEventListener("submit",e=>{
 });
 if(TEACH.on&&SYNC){if(location.hash==="#giaovien")S.view={name:"teacher"};if(TEACH.key)loadLearners()}
 render();
+if(!SYNC&&!TEACH.as&&pruneVocab())save();
 if(!TEACH.on||!TEACH.key)pull();
 })();
 </script>
