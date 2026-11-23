@@ -608,7 +608,7 @@ window.CONTENT = {
     },
     {
       "id": "np06",
-      "date": "2026-11-19",
+      "date": "2026-11-23",   // NP06 = Buổi 7 theo giáo viên (Buổi 6 ngày 19/11 không có bài)
       "title": "NP06 - Mạo từ (a / an / the / không mạo từ)",
       "level": "B1",
       "grammar": {
