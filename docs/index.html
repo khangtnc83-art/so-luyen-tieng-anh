@@ -150,6 +150,21 @@ button:disabled{opacity:.45;cursor:not-allowed;border-color:var(--line)}
 .card .vi{font-size:1.15rem}
 .card .ex{color:var(--muted);font-style:italic;max-width:44ch}
 .card .q{font-size:1.2rem;line-height:1.5;max-width:44ch}
+.card{position:relative}
+.card .exvi{color:var(--fg);font-size:.92rem;max-width:44ch}
+.cstar{position:absolute;top:10px;right:10px}
+.star{border:0;background:transparent;color:var(--muted);font-size:1.15rem;line-height:1;padding:3px 5px;border-radius:6px}
+.star:hover{color:var(--warn)}
+.star.on{color:#d9a400}
+.cnav{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.vnote,.nbook{width:100%;font:inherit;font-size:.9rem;line-height:1.45;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--sunk);color:var(--fg);resize:vertical}
+.vnote{min-height:58px}
+.nbook{min-height:150px}
+.card .vnote{max-width:44ch;text-align:left}
+.c-note{display:block;font-size:.82rem;color:var(--accent);margin-top:3px;white-space:pre-line}
+.nb{margin-top:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.nb summary{padding:10px 14px;cursor:pointer;font-weight:500}
+.nb .nbin{padding:0 14px 14px;display:flex;flex-direction:column;gap:6px}
 .grades{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .grades button{display:flex;flex-direction:column;gap:2px;align-items:center;padding:10px 4px}
 .grades small{font-family:var(--mono);color:var(--muted);font-size:.72rem}
@@ -193,7 +208,7 @@ textarea{font-family:var(--mono);font-size:.8rem;min-height:90px}
 .vrow[open]{background:var(--sunk)}
 .chip.pos{font-family:var(--mono);background:var(--accent-soft);color:var(--accent);font-size:.72rem;padding:1px 7px}
 .wrap.wide{max-width:1120px}
-.vhead,.vrow summary{display:grid;grid-template-columns:minmax(0,1.05fr) 84px minmax(0,1.9fr) minmax(0,1fr) minmax(0,.9fr) 132px;gap:14px;align-items:start}
+.vhead,.vrow summary{display:grid;grid-template-columns:minmax(0,1.05fr) 84px minmax(0,1.9fr) minmax(0,1fr) minmax(0,.9fr) 164px;gap:14px;align-items:start}
 .vhead{padding:16px 16px 6px}
 .vrow summary{padding:12px 16px}
 .c-pos{display:flex;flex-wrap:wrap;gap:3px;padding-top:2px}
@@ -203,7 +218,7 @@ textarea{font-family:var(--mono);font-size:.8rem;min-height:90px}
 .fw{color:var(--b2)}.sw{color:var(--b1)}
 .none{color:var(--line)}
 .mlab{display:none}
-.c-st{display:flex;justify-content:flex-end;padding-top:1px}
+.c-st{display:flex;justify-content:flex-end;align-items:center;gap:4px;padding-top:1px}
 .c-ex{display:block;font-size:.84rem;font-style:italic;color:var(--muted);margin-top:3px}
 .wtog{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;white-space:nowrap}
 .wtog button{border:0;border-radius:0;background:transparent;color:var(--muted);font-size:.74rem;padding:4px 9px}
@@ -299,6 +314,7 @@ vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
  listen:"Nghe",slow:"Nghe chậm",academic:"Thay cho",
  quizIntro:"20 câu: 10 cơ bản · 5 trung bình · 5 khó",speakIntro:"10 câu: 4 cơ bản · 6 khó",start:"Bắt đầu",redo:"Làm lại",best:"Cao nhất",last:"Lần gần nhất",notYet:"Chưa làm",attempts:"{0} lần",
  lv1:"Cơ bản",lv2:"Trung bình",lv3:"Khó",
+ prevCard:"Thẻ trước",star:"Đánh dấu sao (từ hay)",starred:"Từ hay",exViShow:"Hiện nghĩa ví dụ",exViHide:"Ẩn nghĩa ví dụ",exVi:"Nghĩa",note:"Ghi chú",notePh:"Ghi chú của bạn cho từ này…",notebook:"Sổ ghi chú",notebookPh:"Ghi tự do: cách dùng, câu tự đặt, từ gặp ngoài đời…",notebookHint:"Tự lưu khi gõ. Giáo viên xem được.",readOnly:"Chỉ xem",
  flip:"Lật thẻ",again:"Quên",hard:"Khó nhớ",good:"Nhớ",easy:"Dễ",now:"ngay",days:"{0} ngày",exit:"Thoát",cardsDone:"Xong phần ôn thẻ",reviewed:"Đã xem {0} thẻ · {1} lần chọn Cần ôn",nothingDue:"Không có từ nào cần ôn lúc này.",reviewAll:"Ôn lại toàn bộ",
  check:"Kiểm tra",next:"Tiếp",correct:"Chính xác",wrongA:"Chưa đúng",answer:"Đáp án",typeAns:"Gõ câu trả lời…",quizDone:"Kết quả bài tập",reviewWrong:"Câu cần xem lại",
  record:"Bấm để nói",stop:"Dừng",retry:"Nói lại",heard:"Máy nghe được",speakDone:"Kết quả luyện nói",avg:"Điểm trung bình",selfRate:"Trình duyệt này chưa cho dùng micro. Hãy nghe mẫu, đọc to, rồi tự chấm:",rateGood:"Đọc tốt",rateOk:"Tạm được",rateBad:"Chưa được",
@@ -325,6 +341,7 @@ en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
  listen:"Listen",slow:"Slow",academic:"Instead of",
  quizIntro:"20 questions: 10 basic · 5 medium · 5 hard",speakIntro:"10 sentences: 4 basic · 6 hard",start:"Start",redo:"Try again",best:"Best",last:"Last",notYet:"Not started",attempts:"{0} tries",
  lv1:"Basic",lv2:"Medium",lv3:"Hard",
+ prevCard:"Previous",star:"Star (favourite word)",starred:"Starred",exViShow:"Show translation",exViHide:"Hide translation",exVi:"Meaning",note:"Note",notePh:"Your note for this word…",notebook:"Notebook",notebookPh:"Write freely: usage, your own sentences, words you met…",notebookHint:"Saved as you type. Your teacher can see it.",readOnly:"Read only",
  flip:"Flip",again:"Again",hard:"Hard",good:"Good",easy:"Easy",now:"now",days:"{0} d",exit:"Exit",cardsDone:"Review finished",reviewed:"Saw {0} cards · {1} marked to review",nothingDue:"Nothing due right now.",reviewAll:"Review all",
  check:"Check",next:"Next",correct:"Correct",wrongA:"Not quite",answer:"Answer",typeAns:"Type your answer…",quizDone:"Exercise result",reviewWrong:"Review these",
  record:"Tap to speak",stop:"Stop",retry:"Try again",heard:"Heard",speakDone:"Speaking result",avg:"Average",selfRate:"This browser can't use the microphone. Listen, read aloud, then rate yourself:",rateGood:"Good",rateOk:"Okay",rateBad:"Not yet",
@@ -348,14 +365,15 @@ const t=(k,...a)=>{let s=(T[lang][k]??T.vi[k]??k);if(typeof s!=="string")return 
    theory/quiz/speak keyed by session id; done = completion time (ISO) keyed by slot date;
    makeup keyed by slot date: {on, date}. */
 const KEY="soluyen.v2";
-const P=Object.assign({name:"",theory:{},quiz:{},speak:{},done:{},makeup:{},srs:{}},LS.get(KEY,{}));
+const P=Object.assign({name:"",theory:{},quiz:{},speak:{},done:{},makeup:{},srs:{},star:{},notes:{},notebook:""},LS.get(KEY,{}));
+["star","notes"].forEach(k=>{if(!P[k]||typeof P[k]!=="object")P[k]={}});if(typeof P.notebook!=="string")P.notebook="";
 /* ---------- shared store (Google Sheet via Apps Script) ---------- */
 const SYNC=!!C.syncUrl;
-const FIELDS=["name","lid","theory","quiz","speak","done","vs","updatedAt"];
+const FIELDS=["name","lid","theory","quiz","speak","done","vs","star","notes","notebook","updatedAt"];
 const lidOf=n=>String(n).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"hoc-vien";
 if(P.name&&!P.lid)P.lid=lidOf(P.name);
-const OWN=["theory","quiz","speak","done","vs","makeup","srs"];
-function clearLocal(){OWN.forEach(k=>P[k]={});P.updatedAt=0;delete P.skipName}
+const OWN=["theory","quiz","speak","done","vs","makeup","srs","star","notes"];
+function clearLocal(){OWN.forEach(k=>P[k]={});P.notebook="";P.updatedAt=0;delete P.skipName}
 function switchLearner(name){            // load another learner on this device without carrying progress over
   clearLocal();P.name=name;P.lid=lidOf(name);LS.set(KEY,P);
 }
@@ -383,7 +401,7 @@ async function pull(){
   try{
     const r=await getJSON({action:"get",learner:P.lid});if(!r||!r.ok)return;
     const pr=r.progress;
-    if(pr&&(pr.updatedAt||0)>(P.updatedAt||0)){["theory","quiz","speak","done","vs","updatedAt"].forEach(k=>{if(pr[k]!==undefined)P[k]=pr[k]})}
+    if(pr&&(pr.updatedAt||0)>(P.updatedAt||0)){["theory","quiz","speak","done","vs","star","notes","notebook","updatedAt"].forEach(k=>{if(pr[k]!==undefined)P[k]=pr[k]})}
     else if(!pr||(pr.updatedAt||0)<(P.updatedAt||0)){pushPending=true;pushNow()}
     P.makeup=(r.admin&&r.admin.makeup)||{};
     LS.set(KEY,P);
@@ -407,7 +425,7 @@ async function loadLearners(){
 function viewAs(lid){
   const l=(TEACH.learners||[]).find(z=>z.learner===lid);if(!l)return;
   if(!TEACH.as)TEACH.own=JSON.parse(JSON.stringify(P));
-  const d=Object.assign({name:l.name||lid,lid,theory:{},quiz:{},speak:{},done:{},makeup:{},vs:{},srs:{}},l.progress||{});
+  const d=Object.assign({name:l.name||lid,lid,theory:{},quiz:{},speak:{},done:{},makeup:{},vs:{},srs:{},star:{},notes:{},notebook:""},l.progress||{});
   d.makeup=(l.admin&&l.admin.makeup)||{};
   Object.keys(P).forEach(k=>delete P[k]);Object.assign(P,d);TEACH.as=lid;
   S.session=null;S.view={name:"lessons"};render();scrollTo(0,0);
@@ -488,11 +506,15 @@ function monthStats(ym){
 P.vs=P.vs||{};
 Object.keys(P.srs||{}).forEach(id=>{if(!P.vs[id]){const s=P.srs[id];P.vs[id]=(s.i>=7||(s.n>=3&&s.i>=3))?"known":"learning"}});
 function wordStatus(v){return P.vs[v.id]||"new"}
+const isStar=v=>!!(P.star&&P.star[v.id]);
+const RO=()=>TEACH.as?"readonly":"";
+function starBtn(id,cls){const on=!!(P.star&&P.star[id]);return`<button class="star ${on?"on":""} ${cls||""}" data-act="star" data-id="${esc(id)}" aria-pressed="${on}" aria-label="${esc(t("star"))}" title="${esc(t("star"))}">${on?"★":"☆"}</button>`}
+function noteBox(id,cls){return`<textarea class="vnote ${cls||""}" data-note="${esc(id)}" rows="2" placeholder="${esc(t("notePh"))}" aria-label="${esc(t("note"))}" ${RO()}>${esc((P.notes||{})[id]||"")}</textarea>`}
 const isDue=v=>P.vs[v.id]==="learning";
 function setStatus(id,st){if(st)P.vs[id]=st;else delete P.vs[id];save()}
 function allVocab(src){return SOURCES.filter(s=>!src||s.id===src).flatMap(s=>s.words)}
 function vocabMatches(v,q){if(!q)return true;return(v.w+" "+v.vi+" "+(v.form||"")+" "+(v.alt||"")+" "+(v.fam||[]).join(" ")+" "+(v.syn||[]).join(" ")).toLowerCase().includes(q)}
-function filteredVocab(){const q=S.vq.trim().toLowerCase();return allVocab(S.vfilter).filter(v=>(S.vstatus==="all"||wordStatus(v)===S.vstatus)&&(!S.vletter||v.w.toLowerCase().startsWith(S.vletter))&&vocabMatches(v,q))}
+function filteredVocab(){const q=S.vq.trim().toLowerCase();return allVocab(S.vfilter).filter(v=>(S.vstatus==="all"||(S.vstatus==="star"?isStar(v):wordStatus(v)===S.vstatus))&&(!S.vletter||v.w.toLowerCase().startsWith(S.vletter))&&vocabMatches(v,q))}
 
 /* ---------- speech ---------- */
 let voice=null;
@@ -663,6 +685,7 @@ function vVocab(){
   const opts=`<option value="">${esc(t("allSources"))}</option>`+SOURCES.map(s=>`<option value="${esc(s.id)}" ${S.vfilter===s.id?"selected":""}>${s.date?esc(fmtDate(s.date))+" · ":""}${esc(s.title)} (${s.words.length})</option>`).join("");
   const letters=[...new Set(allVocab(S.vfilter).map(v=>v.w[0].toLowerCase()).filter(c=>/[a-z]/.test(c)))].sort();
   h+=`<div class="note stack" id="vsum"></div>
+  <details class="nb" ${S.nbOpen?"open":""} id="nbDet"><summary>📒 ${esc(t("notebook"))}${P.notebook?` <span class="muted" style="font-weight:400;font-size:.85rem">· ${P.notebook.length} ký tự</span>`:""}</summary><div class="nbin"><textarea class="nbook" id="notebook" placeholder="${esc(t("notebookPh"))}" aria-label="${esc(t("notebook"))}" ${RO()}>${esc(P.notebook||"")}</textarea><small class="muted">${esc(TEACH.as?t("readOnly"):t("notebookHint"))}</small></div></details>
   <div class="vtool" style="margin-top:16px"><input type="search" id="vsearch" placeholder="${esc(t("search"))}" value="${esc(S.vq)}" aria-label="${esc(t("search"))}"><select id="vfilter" aria-label="${esc(t("source"))}" style="width:auto;max-width:100%">${opts}</select></div>
   <div class="filters" style="margin-top:10px" id="vstat"></div>
   ${letters.length>3?`<div class="letters" role="group" aria-label="A–Z"><button class="${S.vletter?"":"on"}" data-act="vletter" data-l="">A–Z</button>${letters.map(c=>`<button class="${S.vletter===c?"on":""}" data-act="vletter" data-l="${c}">${c.toUpperCase()}</button>`).join("")}</div>`:""}
@@ -677,7 +700,8 @@ function paintVocab(){
   $("#vsum").innerHTML=`<div class="row" style="justify-content:space-between"><span><span class="mono" style="font-size:1.4rem;font-weight:500">${cnt.known}</span><span class="muted"> / ${pool.length} ${esc(t("stKnown").toLowerCase())}</span></span>${due?`<span class="chip warn">${esc(t("dueN",due))}</span>`:""}</div>
    <div class="seg" aria-hidden="true"><b style="width:${100*cnt.known/tot}%;background:var(--good)"></b><b style="width:${100*cnt.learning/tot}%;background:var(--warn)"></b></div>
    <div class="legend"><span style="--c:var(--good)">${esc(t("stKnown"))} ${cnt.known}</span><span style="--c:var(--warn)">${esc(t("stLearning"))} ${cnt.learning}</span><span style="--c:var(--line)">${esc(t("stNew"))} ${cnt.new}</span></div>`;
-  $("#vstat").innerHTML=[["all",t("all")],["new",t("stNew")],["learning",t("stLearning")],["known",t("stKnown")]].map(([k,l])=>`<button class="${S.vstatus===k?"on":""}" data-act="vstatus" data-s="${k}">${esc(l)}${k!=="all"?` · ${cnt[k]}`:""}</button>`).join("");
+  cnt.star=pool.filter(isStar).length;
+  $("#vstat").innerHTML=[["all",t("all")],["new",t("stNew")],["learning",t("stLearning")],["known",t("stKnown")],["star","★ "+t("starred")]].map(([k,l])=>`<button class="${S.vstatus===k?"on":""}" data-act="vstatus" data-s="${k}">${esc(l)}${k!=="all"?` · ${cnt[k]}`:""}</button>`).join("");
   const rows=filteredVocab();
   list.innerHTML=rows.length?rows.slice(0,S.vlimit).map(vRow).join(""):`<div class="empty" style="border:0">${esc(t("noMatch"))}</div>`;
   $("#vcount").textContent=rows.length?t("showing",Math.min(S.vlimit,rows.length),rows.length):"";
@@ -692,33 +716,39 @@ function vRow(v){
   return`<details class="vrow"><summary>
    <span class="c-w"><span class="w">${esc(v.w)}</span>${v.form&&v.form!==v.w?` <span class="f">→ ${esc(v.form)}</span>`:""}${v.ipa?`<span class="ipa">${esc(v.ipa)}</span>`:""}</span>
    <span class="c-pos" title="${esc(v.pos?posName(v.pos):"")}">${v.pos?v.pos.split(/\s*,\s*/).map(p=>`<span class="chip pos">${esc(p)}</span>`).join(""):`<span class="none">–</span>`}</span>
-   <span class="c-vi">${esc(v.vi)}${v.ex?`<span class="c-ex">${esc(v.ex)}</span>`:""}</span>
+   <span class="c-vi">${esc(v.vi)}${v.ex?`<span class="c-ex">${esc(v.ex)}</span>`:""}${(P.notes||{})[v.id]?`<span class="c-note">✎ ${esc(P.notes[v.id])}</span>`:""}</span>
    <span class="c-fam"><span class="mlab">${esc(t("family"))}</span>${list(fam,"fw")}</span>
    <span class="c-syn"><span class="mlab">${esc(t("synonyms"))}</span>${list(syn,"sw")}</span>
-   <span class="c-st"><span class="wtog" role="group" aria-label="${esc(lab)}"><button class="${st==="learning"?"on rv":""}" data-act="wst" data-id="${esc(v.id)}" data-st="learning" aria-pressed="${st==="learning"}">${esc(t("stLearning"))}</button><button class="${st==="known"?"on kn":""}" data-act="wst" data-id="${esc(v.id)}" data-st="known" aria-pressed="${st==="known"}">${esc(t("stKnown"))}</button></span></span></summary>
+   <span class="c-st">${starBtn(v.id)}<span class="wtog" role="group" aria-label="${esc(lab)}"><button class="${st==="learning"?"on rv":""}" data-act="wst" data-id="${esc(v.id)}" data-st="learning" aria-pressed="${st==="learning"}">${esc(t("stLearning"))}</button><button class="${st==="known"?"on kn":""}" data-act="wst" data-id="${esc(v.id)}" data-st="known" aria-pressed="${st==="known"}">${esc(t("stKnown"))}</button></span></span></summary>
    <div class="more">
     ${v.pos?`<span class="muted">${esc(t("colPos"))}: ${esc(posName(v.pos))}</span>`:""}
     ${v.ex?`<span class="ex">${esc(t("example"))}: ${esc(v.ex)} <button class="say" data-act="say" data-t="${esc(v.ex)}" aria-label="${esc(t("listen"))}">▶ ${esc(t("listen"))}</button></span>`:""}
+    ${v.exVi?`<span class="muted">${esc(t("exVi"))}: ${esc(v.exVi)}</span>`:""}
     ${v.alt?`<span class="muted">${esc(t("academic"))}: ${esc(v.alt)}</span>`:""}
-    <div class="row"><button class="small" data-act="say" data-t="${esc(v.form||v.w)}">▶ ${esc(t("listen"))} “${esc(v.form||v.w)}”</button>${fam.concat(syn).length?famChips(fam.concat(syn)):""}</div></div></details>`;
+    <div class="row"><button class="small" data-act="say" data-t="${esc(v.form||v.w)}">▶ ${esc(t("listen"))} “${esc(v.form||v.w)}”</button>${fam.concat(syn).length?famChips(fam.concat(syn)):""}</div>
+    <label class="stack" style="gap:4px"><span class="label">${esc(t("note"))}</span>${noteBox(v.id)}</label></div></details>`;
 }
 const POSN={vi:{n:"danh từ",v:"động từ",adj:"tính từ",adv:"trạng từ",prep:"giới từ",pron:"đại từ",det:"từ hạn định",conj:"liên từ",exclamation:"thán từ",number:"số từ","modal v":"động từ khuyết thiếu","auxiliary v":"trợ động từ",abbr:"viết tắt",prefix:"tiền tố",phrase:"cụm từ","phrasal v":"cụm động từ"},
  en:{n:"noun",v:"verb",adj:"adjective",adv:"adverb",prep:"preposition",pron:"pronoun",det:"determiner",conj:"conjunction",exclamation:"exclamation",number:"number","modal v":"modal verb","auxiliary v":"auxiliary verb",abbr:"abbreviation",prefix:"prefix",phrase:"phrase","phrasal v":"phrasal verb"}};
 function posName(p){return p.split(/\s*[,/]\s*/).map(x=>{x=x.trim();const n=POSN[lang][x];return n?`${x} (${n})`:x}).join(", ")}
 function studyHead(title,i,n){return`<div class="row"><button class="ghost small" data-act="exit">← ${esc(t("exit"))}</button><span class="muted" style="margin-left:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%">${esc(title)}</span><span class="mono muted">${Math.min(i+1,n)}/${n}</span></div><div class="bar"><b style="width:${n?Math.round(100*i/n):100}%"></b></div>`}
+const showExVi=()=>LS.get("showExVi",false);
+function prevBtn(s){return(s.hist||[]).length?`<div class="cnav"><button class="ghost small" data-act="prevCard">‹ ${esc(t("prevCard"))} <kbd>←</kbd></button></div>`:""}
 function vCards(){
   const s=S.session;if(!s)return"";
   if(s.empty)return`<div class="study">${studyHead(s.title,0,0)}<div class="card"><p>${esc(t("nothingDue"))}</p><button class="primary" data-act="cram">${esc(t("reviewAll"))}</button></div></div>`;
   if(!s.queue.length){if(s.active){s.active=false;save();toast(t("saved"))}
-    return`<div class="study"><div class="card"><span class="label">${esc(t("cardsDone"))}</span><span class="score">${s.reviewed}</span><p class="muted">${esc(t("reviewed",s.reviewed,s.lapses))}</p><button class="primary" data-act="exit">${esc(t("back"))}</button></div></div>`}
+    return`<div class="study"><div class="card"><span class="label">${esc(t("cardsDone"))}</span><span class="score">${s.reviewed}</span><p class="muted">${esc(t("reviewed",s.reviewed,s.lapses))}</p><button class="primary" data-act="exit">${esc(t("back"))}</button></div>${prevBtn(s)}</div>`}
   const v=s.byId[s.queue[0]];
   let h=`<div class="study">${studyHead(s.title,s.reviewed,s.reviewed+s.queue.length)}<div class="card">
+    <span class="cstar">${starBtn(v.id)}</span>
     <span class="word">${esc(v.w)}</span>${v.form&&v.form!==v.w?`<span class="muted">→ ${esc(v.form)}</span>`:""}${v.ipa?`<span class="ipa">${esc(v.ipa)}</span>`:""}
     <button class="small" data-act="say" data-t="${esc(v.form||v.w)}">▶ ${esc(t("listen"))}</button>`;
-  if(s.flipped)h+=`<hr style="width:60%;border:0;border-top:1px solid var(--line)">${v.pos?`<span class="chip pos">${esc(posName(v.pos))}</span>`:""}<span class="vi">${esc(v.vi)}</span>${(v.fam||[]).length?`<span class="muted" style="font-size:.85rem">${esc(t("family"))}: ${esc(v.fam.join(", "))}</span>`:""}${(v.syn||[]).length?`<span class="muted" style="font-size:.85rem">${esc(t("synonyms"))}: ${esc(v.syn.join(", "))}</span>`:""}${v.ex?`<span class="ex">${esc(v.ex)}</span><button class="ghost small" data-act="say" data-t="${esc(v.ex)}">▶ ${esc(t("listen"))}</button>`:""}${v.alt?`<span class="muted" style="font-size:.85rem">${esc(t("academic"))}: ${esc(v.alt)}</span>`:""}`;
+  if(s.flipped)h+=`<hr style="width:60%;border:0;border-top:1px solid var(--line)">${v.pos?`<span class="chip pos">${esc(posName(v.pos))}</span>`:""}<span class="vi">${esc(v.vi)}</span>${(v.fam||[]).length?`<span class="muted" style="font-size:.85rem">${esc(t("family"))}: ${esc(v.fam.join(", "))}</span>`:""}${(v.syn||[]).length?`<span class="muted" style="font-size:.85rem">${esc(t("synonyms"))}: ${esc(v.syn.join(", "))}</span>`:""}${v.ex?`<span class="ex">${esc(v.ex)}</span><span class="row" style="justify-content:center;gap:6px"><button class="ghost small" data-act="say" data-t="${esc(v.ex)}">▶ ${esc(t("listen"))}</button>${v.exVi?`<button class="ghost small" data-act="exvi" aria-pressed="${showExVi()}">${esc(showExVi()?t("exViHide"):t("exViShow"))}</button>`:""}</span>${v.exVi&&showExVi()?`<span class="exvi">${esc(v.exVi)}</span>`:""}`:""}${v.alt?`<span class="muted" style="font-size:.85rem">${esc(t("academic"))}: ${esc(v.alt)}</span>`:""}`;
+  if(s.flipped)h+=noteBox(v.id);
   h+=`</div>`;
   h+=s.flipped?`<div class="grades g2"><button class="gr-review" data-act="grade" data-g="0"><span>${esc(t("stLearning"))}</span><small>1</small></button><button class="gr-known" data-act="grade" data-g="1"><span>${esc(t("stKnown"))}</span><small>2</small></button></div>`:`<button class="primary" data-act="flip">${esc(t("flip"))} <kbd>Space</kbd></button>`;
-  return h+`</div>`;
+  return h+prevBtn(s)+`</div>`;
 }
 function vQuiz(){
   const s=S.session;if(!s)return"";const n=s.items.length;
@@ -797,11 +827,12 @@ function startQuiz(id){const s=SESS.find(z=>z.id===id);const items=pick(s.quiz||
   const lv={};items.forEach(q=>{const l=q.lv||1;lv[l]=lv[l]||{n:0,ok:0};lv[l].n++});
   S.session={kind:"quiz",sid:id,title:s.title,items,idx:0,ans:null,score:0,wrong:[],lv,active:true};S.view={name:"quizRun"};render();scrollTo(0,0)}
 function startSpeak(id){const s=SESS.find(z=>z.id===id);S.session={kind:"speak",sid:id,title:s.title,items:pick(s.speak||[],SPEAK_MIX),idx:0,heard:"",partial:"",result:null,best:[],mic:false,noMic:!REC,active:true};S.view={name:"speakRun"};render();scrollTo(0,0)}
-function startCards(vs,all){
+function startCards(vs,all,every){
   const byId={};vs.forEach(v=>byId[v.id]=v);
+  if(every){S.session={kind:"cards",pool:vs,title:t("starred"),byId,queue:shuffle(vs.map(v=>v.id)).slice(0,40),reviewed:0,lapses:0,flipped:false,empty:!vs.length,active:true,hist:[]};S.view={name:"cards"};render();scrollTo(0,0);return}
   const due=shuffle(vs.filter(v=>all?P.vs[v.id]:isDue(v)).map(v=>v.id)).slice(0,40);const fresh=vs.filter(v=>!P.vs[v.id]).map(v=>v.id).slice(0,20);
   const q=all&&!due.length?shuffle(vs.map(v=>v.id)).slice(0,40):due.concat(fresh);const src=SOURCES.find(z=>z.id===S.vfilter);
-  S.session={kind:"cards",pool:vs,title:src?src.title:t("vocab"),byId,queue:q,reviewed:0,lapses:0,flipped:false,empty:!q.length,active:true};S.view={name:"cards"};render();scrollTo(0,0)}
+  S.session={kind:"cards",pool:vs,title:src?src.title:t("vocab"),byId,queue:q,reviewed:0,lapses:0,flipped:false,empty:!q.length,active:true,hist:[]};S.view={name:"cards"};render();scrollTo(0,0)}
 function checkAns(q,given){const n=x=>String(x).toLowerCase().replace(/[’‘`]/g,"'").trim().replace(/[.!?,;]+$/,"").replace(/\s+/g," ").trim();return q.a.split("/").some(a=>n(a)===n(given))}
 function answer(given){const s=S.session;const q=s.items[s.idx];if(s.ans)return;const ok=checkAns(q,given);s.ans={ok,given};if(ok){s.score++;s.lv[q.lv||1].ok++}else s.wrong.push({q:q.q,a:q.a.split("/")[0],given,ex:q.ex||""});render()}
 function exitSession(){const s=S.session;if(s&&s.kind==="speak")stopRec();if(s&&s.kind==="cards")save();
@@ -817,13 +848,21 @@ const ACT={
   theoryDone(el){const id=el.dataset.id;P.theory[id]=new Date().toISOString();save();sync("theory",{session:SESS.find(z=>z.id===id).title});maybeComplete(id);render()},
   mmAll(el){const o=el.dataset.o==="1";document.querySelectorAll(".mm details").forEach(d=>{d.open=o;S.open[d.dataset.path]=o})},
   startQuiz(el){startQuiz(el.dataset.id)},startSpeak(el){startSpeak(el.dataset.id)},
-  startCards(){startCards(filteredVocab(),false)},cram(){startCards(S.session.pool,true)},
+  startCards(){startCards(filteredVocab(),false,S.vstatus==="star")},cram(){startCards(S.session.pool,true)},
   vletter(el){S.vletter=el.dataset.l;S.vlimit=60;document.querySelectorAll(".letters button").forEach(b=>b.classList.toggle("on",b.dataset.l===S.vletter));paintVocab()},
   vmore(){S.vlimit+=60;paintVocab()},
   exit(){exitSession()},
   flip(){S.session.flipped=true;render()},
-  grade(el){const s=S.session;const g=+el.dataset.g;const id=s.queue.shift();setStatus(id,g?"known":"learning");s.reviewed++;
-    if(!g){s.lapses++;s.again=s.again||{};if(!s.again[id]){s.again[id]=1;s.queue.splice(Math.min(s.queue.length,4),0,id)}}s.flipped=false;render()},
+  grade(el){const s=S.session;const g=+el.dataset.g;const id=s.queue.shift();const h={id,prev:P.vs[id],lapse:!g,ins:false};setStatus(id,g?"known":"learning");s.reviewed++;
+    if(!g){s.lapses++;s.again=s.again||{};if(!s.again[id]){s.again[id]=1;s.queue.splice(Math.min(s.queue.length,4),0,id);h.ins=true}}(s.hist=s.hist||[]).push(h);s.flipped=false;render()},
+  prevCard(){const s=S.session;const h=s&&s.hist&&s.hist.pop();if(!h)return;
+    if(h.ins){const i=s.queue.indexOf(h.id);if(i>=0)s.queue.splice(i,1);delete s.again[h.id]}
+    if(h.lapse)s.lapses--;s.reviewed--;setStatus(h.id,h.prev||null);s.queue.unshift(h.id);s.flipped=true;s.active=true;render()},
+  star(el){const id=el.dataset.id;if(P.star[id])delete P.star[id];else P.star[id]=1;save();
+    if(S.view.name==="vocab"&&S.vstatus==="star"){paintVocab();return}
+    document.querySelectorAll(`[data-act="star"][data-id="${CSS.escape(id)}"]`).forEach(b=>{const on=!!P.star[id];b.classList.toggle("on",on);b.setAttribute("aria-pressed",on);b.textContent=on?"★":"☆"});
+    if(S.view.name==="vocab"){const c=$("#vstat [data-s=star]");if(c)c.textContent="★ "+t("starred")+" · "+allVocab(S.vfilter).filter(isStar).length}},
+  exvi(){LS.set("showExVi",!showExVi());render()},
   wst(el){const id=el.dataset.id;const st=el.dataset.st;setStatus(id,P.vs[id]===st?null:st);paintVocab()},
   pick(el){const s=S.session;answer(s.items[s.idx].shown[+el.dataset.i])},
   nextQ(){const s=S.session;s.idx++;s.ans=null;render();scrollTo(0,0)},
@@ -850,15 +889,17 @@ const ACT={
     (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>toast(t("copied"))).catch(()=>{ta.value=code;ta.select()})},
   importCode(){try{const o=JSON.parse(decodeURIComponent(escape(atob($("#codeIn").value.trim()))));if(typeof o!=="object"||!o.srs)throw 0;Object.assign(P,o);save();toast(t("imported"));render()}catch(e){toast(t("badCode"))}}
 };
-const LOCKED=new Set(["theoryDone","startQuiz","startSpeak","startCards","cram","wst","flip","grade","pick","mic","selfRate","retry","nextS","nextQ"]);
+const LOCKED=new Set(["star","prevCard","theoryDone","startQuiz","startSpeak","startCards","cram","wst","flip","grade","pick","mic","selfRate","retry","nextS","nextQ"]);
 document.addEventListener("click",e=>{const el=e.target.closest("[data-act]");if(!el||el.disabled)return;
   if(TEACH.as&&LOCKED.has(el.dataset.act)){e.preventDefault();toast(t("tLocked"));return}
   const f=ACT[el.dataset.act];if(f){e.preventDefault();f(el,e)}});
-document.addEventListener("toggle",e=>{const d=e.target;if(d.tagName==="DETAILS"&&d.dataset.path)S.open[d.dataset.path]=d.open},true);
+document.addEventListener("toggle",e=>{const d=e.target;if(d.id==="nbDet")S.nbOpen=d.open;if(d.tagName==="DETAILS"&&d.dataset.path)S.open[d.dataset.path]=d.open},true);
 document.addEventListener("keydown",e=>{
   const tag=(e.target.tagName||"").toLowerCase();const typing=tag==="input"||tag==="textarea"||tag==="select";
   if(e.key==="Enter"&&e.target.matches&&e.target.matches(".open")){ACT.open(e.target);return}
-  const s=S.session;if(!s||!s.active)return;
+  const s=S.session;if(!s)return;
+  if(s.kind==="cards"&&!typing&&e.key==="ArrowLeft"&&(s.hist||[]).length&&!TEACH.as){e.preventDefault();ACT.prevCard();return}
+  if(!s.active)return;
   if(s.kind==="cards"&&!typing&&s.queue.length){
     if((e.key===" "||e.key==="Enter")&&!s.flipped){e.preventDefault();ACT.flip()}
     else if(s.flipped&&/^[12]$/.test(e.key))ACT.grade({dataset:{g:String(+e.key-1)}});
@@ -868,7 +909,10 @@ document.addEventListener("keydown",e=>{
     else if(!s.ans&&q.shown&&!typing&&/^[1-9]$/.test(e.key)&&q.shown[+e.key-1]!=null)answer(q.shown[+e.key-1]);
   }
 });
-document.addEventListener("input",e=>{if(e.target.id==="vsearch"){S.vq=e.target.value;S.vlimit=60;clearTimeout(paintVocab.h);paintVocab.h=setTimeout(paintVocab,120)}});
+document.addEventListener("input",e=>{const el=e.target;
+  if(!TEACH.as&&el.dataset&&el.dataset.note!=null){const id=el.dataset.note;if(el.value.trim())P.notes[id]=el.value;else delete P.notes[id];save();return}
+  if(!TEACH.as&&el.id==="notebook"){P.notebook=el.value;save();return}
+  if(e.target.id==="vsearch"){S.vq=e.target.value;S.vlimit=60;clearTimeout(paintVocab.h);paintVocab.h=setTimeout(paintVocab,120)}});
 document.addEventListener("change",e=>{
   const el=e.target;
   if(el.id==="vfilter"){S.vfilter=el.value;S.vletter="";S.vlimit=60;render();return}

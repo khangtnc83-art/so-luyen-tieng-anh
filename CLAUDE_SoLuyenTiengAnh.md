@@ -52,9 +52,12 @@ Mỗi mục trong `CONTENT.sessions`:
 - Ngôn ngữ ví dụ: đời thường, bối cảnh Việt Nam quen thuộc (Đà Nẵng, Hội An, bánh xèo…).
 
 ## Từ vựng
-- `docs/data/vocab3000.js`: `{ n, w, pos, ipa, vi, ex?, fam?, syn? }` — loại từ, gia đình từ, đồng nghĩa (WordNet), câu ví dụ (Tatoeba, CC BY 2.0 FR). Nghĩa giữ theo PDF gốc của giáo viên (có vài nghĩa sai đã biết, ví dụ *actually*, *adapt* — chỉ sửa khi được yêu cầu).
-- Từ vựng theo buổi nằm trong `sessions[].vocab`: `{ w, form, ipa, pos, vi, ex, alt }` (`alt` = từ học thuật tương đương).
+- `docs/data/vocab3000.js`: `{ n, w, pos, ipa, vi, ex?, exVi?, fam?, syn? }` — loại từ, gia đình từ, đồng nghĩa (WordNet), câu ví dụ (Tatoeba, CC BY 2.0 FR), `exVi` = nghĩa tiếng Việt của câu ví dụ (Claude dịch). Nghĩa giữ theo PDF gốc của giáo viên (có vài nghĩa sai đã biết, ví dụ *actually*, *adapt* — chỉ sửa khi được yêu cầu).
+- Từ vựng theo buổi nằm trong `sessions[].vocab`: `{ w, form, ipa, pos, vi, ex, exVi, alt }` (`alt` = từ học thuật tương đương). Bài mới có từ vựng thì **luôn kèm `exVi`**.
 - Trạng thái từ: **Chưa học / Cần ôn / Đã nhớ** (lưu trong `vs`).
+- **Từ hay (★)**: đánh dấu riêng, không liên quan trạng thái (lưu `star`); có bộ lọc "★ Từ hay" và học flashcard riêng các từ này.
+- **Ghi chú**: theo từng từ (`notes`, viết ở thẻ flashcard sau khi lật hoặc khi mở dòng trong bảng) + **Sổ ghi chú** chung trong tab Từ vựng (`notebook`). Đồng bộ lên Sheet; giáo viên chỉ xem.
+- **Flashcard**: nút "‹ Thẻ trước" (phím ←) quay lại thẻ vừa chấm và huỷ đánh giá đó; nút "Hiện/Ẩn nghĩa ví dụ" (nhớ lựa chọn trên máy).
 
 ## Đồng bộ dữ liệu (Google Sheet)
 - `CONTENT.syncUrl` = link `/exec` của Apps Script giáo viên. Không có đăng nhập; người học nhận diện bằng tên (`lid` = tên không dấu, gạch nối). Link riêng: `?hv=Tên`.
