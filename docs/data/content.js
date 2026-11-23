@@ -626,6 +626,719 @@ window.CONTENT = {
         { lv: 3, en: "Are you doing anything tonight? We're having a small party.", vi: "Tối nay bạn có làm gì không? Tụi mình tổ chức tiệc nhỏ." },
         { lv: 3, en: "That'll be one hundred and twenty thousand dong, please.", vi: "Của bạn hết một trăm hai mươi nghìn ạ." }
       ]
+    },
+    {
+      "id": "np06",
+      "date": "2026-11-19",
+      "title": "NP06 - Mạo từ (a / an / the / không mạo từ)",
+      "level": "B1",
+      "grammar": {
+        "t": "NP06 - Mạo từ (a / an / the / không mạo từ)",
+        "c": [
+          {
+            "t": "Tổng quan",
+            "c": [
+              {
+                "t": "Mạo từ là gì?",
+                "c": [
+                  "Từ đứng trước danh từ để cho biết danh từ đó là chung chung hay đã xác định",
+                  {
+                    "t": "Hiểu đơn giản",
+                    "c": [
+                      "Tiếng Việt không bắt buộc, tiếng Anh thì **BẮT BUỘC** phải chọn 1 trong 3 -> a / an, the hoặc không có gì (Ø)"
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "3 lựa chọn",
+                "c": [
+                  {
+                    "t": "A / AN",
+                    "c": [
+                      "Một cái bất kỳ, người nghe chưa biết là cái nào"
+                    ]
+                  },
+                  {
+                    "t": "THE",
+                    "c": [
+                      "Cái cụ thể, người nói và người nghe đều biết là cái nào"
+                    ]
+                  },
+                  {
+                    "t": "Ø (không mạo từ)",
+                    "c": [
+                      "Danh từ số nhiều hoặc không đếm được, nói chung chung"
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "Cách chọn nhanh: hỏi 3 câu",
+                "c": [
+                  "Câu 1: Danh từ đếm được hay không đếm được?",
+                  "Câu 2: Nếu đếm được thì số ít hay số nhiều?",
+                  "Câu 3: Người nghe đã biết chính xác cái nào chưa?",
+                  {
+                    "t": "Kết luận",
+                    "c": [
+                      "Đếm được + số ít + chưa biết -> **a / an**",
+                      "Đã biết cái nào (bất kể loại danh từ) -> **the**",
+                      "Số nhiều / không đếm được + nói chung -> **Ø**"
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "Ví dụ",
+                "c": [
+                  "I have a dog.",
+                  "The dog is very cute.",
+                  "Dogs are very cute."
+                ]
+              }
+            ]
+          },
+          {
+            "t": "1. A / AN (Một)",
+            "c": [
+              {
+                "t": "1.1. Công thức",
+                "c": [
+                  "a / an + danh từ đếm được **SỐ ÍT**"
+                ]
+              },
+              {
+                "t": "1.2. Cách dùng",
+                "c": [
+                  "Nhắc đến một người / vật bất kỳ, lần đầu tiên xuất hiện trong câu chuyện",
+                  "Nói về nghề nghiệp, danh tính, loại",
+                  "Nói về tần suất: once a week, twice a month (mỗi)"
+                ]
+              },
+              {
+                "t": "1.3. A hay AN? Nhìn vào ÂM, không phải CHỮ",
+                "c": [
+                  {
+                    "t": "an + **phát âm** nguyên âm (/ɑː/, /æ/, /e/, /ɪ/, /ɒ/, /ʌ/, /ʊ/...)",
+                    "c": [
+                      "Ví dụ: an apple, an egg, an umbrella, an orange",
+                      "an hour, an honest man (chữ h câm -> âm đầu là nguyên âm)",
+                      "an MBA, an SMS (đọc từng chữ cái: /em/, /es/ -> âm đầu là nguyên âm)"
+                    ]
+                  },
+                  {
+                    "t": "a + **phát âm** phụ âm",
+                    "c": [
+                      "Ví dụ: a book, a dog, a table",
+                      "a university, a user, a European (chữ u, eu đọc là /j/)",
+                      "a one-day trip (chữ o đọc là /w/)"
+                    ]
+                  },
+                  {
+                    "t": "Ghi nhớ",
+                    "c": [
+                      "An -> hour, honest, honour, heir",
+                      "A -> university, unit, uniform, useful, one, European"
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "1.4. Ví dụ",
+                "c": [
+                  "I have a dog.",
+                  "She is an engineer.",
+                  "He waited for an hour.",
+                  "Henry goes to the cinema twice a month."
+                ]
+              },
+              {
+                "t": "1.5. Dấu hiệu nhận biết",
+                "c": [
+                  "Ngay sau là danh từ đếm được số ít, chưa xác định",
+                  "Đi với: What a..., such a..., once a..., a lot of, a few",
+                  "**KHÔNG** đi với danh từ số nhiều và danh từ không đếm được"
+                ]
+              },
+              {
+                "t": "Ghi chú",
+                "c": [
+                  {
+                    "t": "Khi có tính từ chen giữa, a / an do từ NGAY SAU nó quyết định",
+                    "c": [
+                      "a job -> an easy job",
+                      "an old man -> a very old man",
+                      "a car -> an expensive car"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "t": "2. THE (Cái đã xác định)",
+            "c": [
+              {
+                "t": "2.1. Công thức",
+                "c": [
+                  "the + danh từ (số ít, số nhiều, không đếm được)"
+                ]
+              },
+              {
+                "t": "2.2. Cách dùng",
+                "c": [
+                  {
+                    "t": "Đã nhắc đến ở trước (nhắc lần 2)",
+                    "c": [
+                      "I saw a cat. The cat was black."
+                    ]
+                  },
+                  {
+                    "t": "Người nói và người nghe cùng biết là cái nào (nhờ ngữ cảnh)",
+                    "c": [
+                      "Close the door, please.",
+                      "Where is the bathroom?"
+                    ]
+                  },
+                  {
+                    "t": "Duy nhất trên đời hoặc trong phạm vi hiểu biết chung",
+                    "c": [
+                      "the sun, the moon, the earth, the sky, the world, the internet",
+                      "The sun rises in the east."
+                    ]
+                  },
+                  {
+                    "t": "Có cụm bổ nghĩa phía sau để chỉ rõ là cái nào",
+                    "c": [
+                      "The book on the table is mine.",
+                      "The girl who called me is my sister."
+                    ]
+                  },
+                  {
+                    "t": "So sánh nhất, số thứ tự, only / same",
+                    "c": [
+                      "the best, the most beautiful, the tallest",
+                      "the first, the second, the last",
+                      "the only one, the same size"
+                    ]
+                  },
+                  {
+                    "t": "Một số nhóm cố định",
+                    "c": [
+                      "Sông, biển, đại dương, dãy núi, quần đảo: the Mekong, the Pacific, the Alps",
+                      "Quốc gia có tên dạng số nhiều hoặc viết tắt: the Philippines, the Netherlands, the USA, the UK",
+                      "Nhạc cụ: play the piano, play the guitar",
+                      "the + tính từ = nhóm người: the rich, the poor, the elderly"
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "2.3. Phát âm của THE",
+                "c": [
+                  "Trước âm phụ âm -> /ðə/: the book, the city",
+                  "Trước âm nguyên âm -> /ðiː/: the apple, the hour",
+                  "Giống quy tắc a / an: nhìn vào **ÂM**, không phải** CHỮ**"
+                ]
+              },
+              {
+                "t": "2.4. Dấu hiệu nhận biết",
+                "c": [
+                  "Có of / who / which / that / on the table... xác định rõ ở phía sau",
+                  "Có best / first / only / same",
+                  "Danh từ đã được nhắc ở câu trước"
+                ]
+              },
+              {
+                "t": "2.5. Ví dụ",
+                "c": [
+                  "The moon is very bright tonight.",
+                  "The weather is nice today.",
+                  "Can you pass me the salt?"
+                ]
+              },
+              {
+                "t": "Fact",
+                "c": [
+                  {
+                    "t": "Tên riêng + the = cả gia đình / nhóm",
+                    "c": [
+                      "The Smiths are my neighbours. (Nhà Smith là hàng xóm của mình.)"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "t": "3. KHÔNG MẠO TỪ (Ø)",
+            "c": [
+              {
+                "t": "3.1. Công thức",
+                "c": [
+                  "Ø + danh từ (không có a / an / the)"
+                ]
+              },
+              {
+                "t": "3.2. Cách dùng",
+                "c": [
+                  {
+                    "t": "Danh từ số nhiều đếm được, nói chung",
+                    "c": [
+                      "Dogs are loyal."
+                    ]
+                  },
+                  {
+                    "t": "Danh từ không đếm được, nói chung",
+                    "c": [
+                      "Water is essential for life.",
+                      "Ví dụ: information, advice, music, love, rice, money"
+                    ]
+                  },
+                  {
+                    "t": "Tên riêng người, thành phố, hầu hết quốc gia",
+                    "c": [
+                      "Hanoi, Vietnam, Japan, Mr. Brown"
+                    ]
+                  },
+                  {
+                    "t": "Bữa ăn, môn học, môn thể thao, ngôn ngữ",
+                    "c": [
+                      "Ví dụ: have breakfast, have lunch, have dinner",
+                      "Ví dụ: study math, play football, speak English"
+                    ]
+                  },
+                  {
+                    "t": "Phương tiện đi lại với by",
+                    "c": [
+                      "Ví dụ: by bus, by car, by plane, on foot"
+                    ]
+                  },
+                  {
+                    "t": "Nơi chốn dùng đúng mục đích của nó",
+                    "c": [
+                      "Ví dụ: go to school, go to work, go to bed, be at home",
+                      "He goes to school every day."
+                    ]
+                  },
+                  {
+                    "t": "Thứ, tháng, mùa",
+                    "c": [
+                      "Ví dụ: on Monday, in July, in summer"
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "3.3. Dấu hiệu nhận biết",
+                "c": [
+                  "Danh từ số nhiều hoặc không đếm được, và nói chung chung",
+                  "Đã có my / your / this / that / some / any đứng trước thì **KHÔNG** thêm mạo từ"
+                ]
+              },
+              {
+                "t": "3.4. Ví dụ",
+                "c": [
+                  "I like music.",
+                  "Children need love.",
+                  "We usually have breakfast at 7 a.m."
+                ]
+              },
+              {
+                "t": "Fact",
+                "c": [
+                  {
+                    "t": "Cùng một nơi chốn, đổi mục đích thì đổi mạo từ",
+                    "c": [
+                      "He goes to school every day. (đi học -> mục đích học)",
+                      "He goes to the school to meet the teacher. (đến ngôi trường đó để gặp thầy -> chỉ là địa điểm)"
+                    ]
+                  },
+                  {
+                    "t": "Có ngoại lệ",
+                    "c": [
+                      "Anh - Anh: in hospital",
+                      "Anh - Mỹ: in the hospital"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "t": "4. PHÂN BIỆT CHUNG CHUNG VS CỤ THỂ",
+            "c": [
+              {
+                "t": "4.1. Bảng so sánh",
+                "c": [
+                  "Ø: nói chung chung, cả một loại",
+                  "THE: nói về cái cụ thể, người nghe biết là cái nào",
+                  "A / AN: nói về một cái bất kỳ trong loại đó"
+                ]
+              },
+              {
+                "t": "4.2. So sánh qua ví dụ",
+                "c": [
+                  "Dogs are friendly. (Chó nói chung thì thân thiện.)",
+                  "The dogs next door are friendly. (Mấy con chó nhà bên thì thân thiện.)",
+                  "Water is important. (Nước nói chung rất quan trọng.)",
+                  "The water in this glass is cold. (Nước trong ly này lạnh.)",
+                  "I like music. (Mình thích âm nhạc nói chung.)",
+                  "I like the music in this film. (Mình thích nhạc trong bộ phim này.)",
+                  "I need a pen. (Mình cần một cây bút nào đó cũng được.)",
+                  "I need the pen on your desk. (Mình cần đúng cây bút trên bàn bạn.)"
+                ]
+              }
+            ]
+          },
+          {
+            "t": "5. Một mối quan hệ đặc biệt: A / AN → THE",
+            "c": [
+              {
+                "t": "Lần đầu nhắc tới, ta dùng a / an. Từ lần thứ hai (đã biết là cái nào), chuyển sang the.",
+                "c": [
+                  {
+                    "t": "VD1:",
+                    "c": [
+                      "A: I bought a new phone yesterday.",
+                      "B: Really? What colour is the phone?",
+                      "A: The phone is black."
+                    ]
+                  },
+                  {
+                    "t": "VD 2",
+                    "c": [
+                      "I got in a taxi. The driver was very friendly."
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "Giải thích",
+                "c": [
+                  "a new phone -> Người nghe chưa biết, lần đầu giới thiệu.",
+                  "the phone -> Người nghe đã biết đang nói tới cái nào.",
+                  "the driver -> Chưa nhắc trước đó, nhưng đã có taxi thì chắc chắn có tài xế -> người nghe tự hiểu được."
+                ]
+              }
+            ]
+          },
+          {
+            "t": "6. Cụm từ hay dùng",
+            "c": [
+              {
+                "t": "What + a / an + (adj) + N số ít! -> Cảm thán",
+                "c": [
+                  "What a beautiful day! (Hôm nay đẹp trời quá!)",
+                  "Danh từ không đếm được / số nhiều thì bỏ a: What beautiful weather!"
+                ]
+              },
+              {
+                "t": "such + a / an + adj + N -> Nêu lên cảm nghĩ",
+                "c": [
+                  "It was such a good film.",
+                  "It was such a stupid idea that nobody agreed with it."
+                ]
+              },
+              "Ví dụ: half an hour, a lot of, a few, a couple of",
+              {
+                "t": "Thời gian trong ngày",
+                "c": [
+                  "in the morning / in the afternoon / in the evening",
+                  "at night (không có the)"
+                ]
+              },
+              {
+                "t": "Đi tới những nơi quen thuộc hằng ngày",
+                "c": [
+                  "Ví dụ: go to the cinema, go to the bank, go to the doctor"
+                ]
+              },
+              {
+                "t": "Tần suất: once / twice + a + week / month / year",
+                "c": [
+                  "Spring comes once a year. (Mùa xuân tới mỗi năm 1 lần.)"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "quiz": [
+        {
+          "lv": 1,
+          "q": "I have ___ dog. His name is Mực.",
+          "a": "a",
+          "opts": [
+            "an",
+            "the",
+            "Ø (không dùng)"
+          ],
+          "ex": "Lần đầu nhắc đến, danh từ đếm được số ít → a dog."
+        },
+        {
+          "lv": 1,
+          "q": "She is ___ engineer.",
+          "a": "an",
+          "opts": [
+            "a",
+            "the",
+            "Ø (không dùng)"
+          ],
+          "ex": "Nghề nghiệp cần a/an; engineer bắt đầu bằng âm nguyên âm /e/ → an."
+        },
+        {
+          "lv": 1,
+          "q": "We waited for ___ hour at the bus stop.",
+          "a": "an",
+          "opts": [
+            "a",
+            "the",
+            "Ø (không dùng)"
+          ],
+          "ex": "Chữ h trong hour câm, âm đầu là nguyên âm → an hour."
+        },
+        {
+          "lv": 1,
+          "q": "My brother studies at ___ university in Da Nang.",
+          "a": "a",
+          "opts": [
+            "an",
+            "the",
+            "Ø (không dùng)"
+          ],
+          "ex": "university đọc /juː/ → âm đầu là phụ âm → a university."
+        },
+        {
+          "lv": 1,
+          "q": "___ moon is very bright tonight.",
+          "a": "The",
+          "opts": [
+            "A",
+            "An",
+            "Ø (không dùng)"
+          ],
+          "ex": "Mặt trăng là duy nhất → the moon."
+        },
+        {
+          "lv": 1,
+          "q": "Can you pass me ___ salt, please?",
+          "a": "the",
+          "opts": [
+            "a",
+            "an",
+            "Ø (không dùng)"
+          ],
+          "ex": "Lọ muối trên bàn, cả hai cùng biết là cái nào → the salt."
+        },
+        {
+          "lv": 1,
+          "q": "I like ___ music, especially pop.",
+          "a": "Ø (không dùng)",
+          "opts": [
+            "a",
+            "the",
+            "an"
+          ],
+          "ex": "Âm nhạc nói chung, không đếm được → không mạo từ: I like music."
+        },
+        {
+          "lv": 1,
+          "q": "We usually have ___ breakfast at 7 a.m.",
+          "a": "Ø (không dùng)",
+          "opts": [
+            "a",
+            "the",
+            "an"
+          ],
+          "ex": "Bữa ăn nói chung → have breakfast (không mạo từ)."
+        },
+        {
+          "lv": 1,
+          "q": "I go to work by ___ bus.",
+          "a": "Ø (không dùng)",
+          "opts": [
+            "a",
+            "the",
+            "an"
+          ],
+          "ex": "by + phương tiện → không mạo từ: by bus, by car."
+        },
+        {
+          "lv": 1,
+          "q": "My sister can play ___ guitar very well.",
+          "a": "the",
+          "opts": [
+            "a",
+            "an",
+            "Ø (không dùng)"
+          ],
+          "ex": "play + the + nhạc cụ: play the guitar."
+        },
+        {
+          "lv": 2,
+          "q": "I saw a cat in the garden. ___ cat was black.",
+          "a": "The",
+          "opts": [
+            "A",
+            "An",
+            "Ø (không dùng)"
+          ],
+          "ex": "Nhắc lại lần 2, người nghe đã biết là con nào → the cat."
+        },
+        {
+          "lv": 2,
+          "q": "It was such ___ interesting film!",
+          "a": "an",
+          "opts": [
+            "a",
+            "the",
+            "Ø (không dùng)"
+          ],
+          "ex": "such + a/an + tính từ + N; a/an do từ ngay sau quyết định: interesting → an."
+        },
+        {
+          "lv": 2,
+          "q": "What ___ beautiful weather today!",
+          "a": "Ø (không dùng)",
+          "opts": [
+            "a",
+            "the",
+            "an"
+          ],
+          "ex": "weather không đếm được → What beautiful weather! (không có a)."
+        },
+        {
+          "lv": 2,
+          "q": "Fansipan is ___ highest mountain in Vietnam.",
+          "a": "the",
+          "opts": [
+            "a",
+            "an",
+            "Ø (không dùng)"
+          ],
+          "ex": "So sánh nhất → the highest."
+        },
+        {
+          "lv": 2,
+          "q": "He wants to do ___ MBA in Singapore.",
+          "a": "an",
+          "opts": [
+            "a",
+            "the",
+            "Ø (không dùng)"
+          ],
+          "ex": "MBA đọc từng chữ /em-biː-eɪ/, âm đầu là nguyên âm → an MBA."
+        },
+        {
+          "lv": 3,
+          "q": "A: Where's Minh? — B: He's in ___ bed. He isn't feeling well.",
+          "a": "Ø (không dùng)",
+          "opts": [
+            "the",
+            "a",
+            "an"
+          ],
+          "ex": "in bed / go to bed (dùng đúng mục đích: ngủ, nghỉ) → không mạo từ."
+        },
+        {
+          "lv": 3,
+          "q": "A: I bought a new phone yesterday. — B: Nice! How much was ___ phone?",
+          "a": "the",
+          "opts": [
+            "a",
+            "an",
+            "Ø (không dùng)"
+          ],
+          "ex": "Đã nhắc ở câu trước, cả hai biết là cái nào → the phone."
+        },
+        {
+          "lv": 3,
+          "q": "A: What do you do? — B: I'm ___ student at Hue University.",
+          "a": "a",
+          "opts": [
+            "Ø (không dùng)",
+            "the",
+            "an"
+          ],
+          "ex": "Nghề nghiệp, danh tính bắt buộc có a/an: I'm a student (không nói I'm student)."
+        },
+        {
+          "lv": 3,
+          "q": "A: I'm buying a laptop. Can you give me ___ advice?",
+          "a": "some",
+          "opts": [
+            "an",
+            "a",
+            "the"
+          ],
+          "ex": "advice không đếm được → không dùng a/an; nói some advice hoặc a piece of advice."
+        },
+        {
+          "lv": 3,
+          "q": "My grandma is in hospital, so we're going to ___ hospital to visit her.",
+          "a": "the",
+          "opts": [
+            "Ø (không dùng)",
+            "a",
+            "an"
+          ],
+          "ex": "Người thân đến bệnh viện để thăm (chỉ là địa điểm, không phải để chữa bệnh) → the hospital."
+        }
+      ],
+      "speak": [
+        {
+          "lv": 1,
+          "en": "I'm a teacher at a small school in Hoi An.",
+          "vi": "Mình là giáo viên ở một trường nhỏ ở Hội An."
+        },
+        {
+          "lv": 1,
+          "en": "Can you close the door, please?",
+          "vi": "Bạn đóng cửa giúp mình nhé?"
+        },
+        {
+          "lv": 1,
+          "en": "I usually go to bed at eleven.",
+          "vi": "Mình thường đi ngủ lúc 11 giờ."
+        },
+        {
+          "lv": 1,
+          "en": "What a beautiful day!",
+          "vi": "Hôm nay đẹp trời quá!"
+        },
+        {
+          "lv": 3,
+          "en": "I bought a new bike last week, but the brakes are already broken.",
+          "vi": "Tuần trước mình mua một chiếc xe đạp mới mà phanh đã hỏng rồi."
+        },
+        {
+          "lv": 3,
+          "en": "We took a taxi to the airport, and the driver was really friendly.",
+          "vi": "Tụi mình đi taxi ra sân bay, bác tài rất thân thiện."
+        },
+        {
+          "lv": 3,
+          "en": "I don't drink coffee in the evening, or I can't sleep at night.",
+          "vi": "Mình không uống cà phê vào buổi tối, không thì đêm mình không ngủ được."
+        },
+        {
+          "lv": 3,
+          "en": "Could you give me a piece of advice about learning English?",
+          "vi": "Bạn cho mình một lời khuyên về việc học tiếng Anh được không?"
+        },
+        {
+          "lv": 3,
+          "en": "The noodle soup at that restaurant is the best in Da Nang.",
+          "vi": "Món bún ở quán đó ngon nhất Đà Nẵng."
+        },
+        {
+          "lv": 3,
+          "en": "My uncle is in hospital, so we're going to the hospital to visit him tonight.",
+          "vi": "Chú mình đang nằm viện nên tối nay cả nhà vào bệnh viện thăm chú."
+        }
+      ]
     }
   ]
 };

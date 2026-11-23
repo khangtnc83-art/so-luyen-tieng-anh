@@ -51,6 +51,11 @@ Mỗi mục trong `CONTENT.sessions`:
 - **Luyện nói**: **10 câu = 4 cơ bản (lv 1) + 6 khó (lv 3)**, câu giao tiếp tự nhiên, có `vi` (nghĩa tiếng Việt).
 - Ngôn ngữ ví dụ: đời thường, bối cảnh Việt Nam quen thuộc (Đà Nẵng, Hội An, bánh xèo…).
 
+## Giáo viên sửa bài qua link (Claude Docs)
+- Khi giáo viên muốn tự sửa bài: tạo một Claude Doc gồm Hướng dẫn sửa · Phần 1 Lý thuyết (### = nhánh lớn, gạch đầu dòng thụt 4 dấu cách = nhánh con, **[ĐÃ SỬA]** / **[LƯU Ý]** ở đầu dòng = `k: "fix"` / `k: "tip"`) · Phần 2 Bài tập (bảng: # | Mức | Câu hỏi | Đáp án | Lựa chọn sai (cách nhau bằng ;) | Giải thích) · Phần 3 Luyện nói (bảng: # | Mức | Câu tiếng Anh | Nghĩa).
+- Giáo viên nhắn "đã sửa xong" → đọc lại tài liệu, chuyển ngược thành mục `sessions` (Cơ bản/Trung bình/Khó = lv 1/2/3), giữ đúng những gì giáo viên sửa; câu giáo viên thêm mà sai ngữ pháp → hỏi trước khi đổi, rồi sửa luôn trong tài liệu cho khớp.
+- Link bài NP06: https://claude.ai/artifact/AEdBKxo4cxTZUxGSGnTv7n
+
 ## Từ vựng
 - `docs/data/vocab3000.js`: `{ n, w, pos, ipa, vi, ex?, exVi?, fam?, syn? }` — loại từ, gia đình từ, đồng nghĩa (WordNet), câu ví dụ (Tatoeba, CC BY 2.0 FR), `exVi` = nghĩa tiếng Việt của câu ví dụ (Claude dịch). Nghĩa giữ theo PDF gốc của giáo viên (có vài nghĩa sai đã biết, ví dụ *actually*, *adapt* — chỉ sửa khi được yêu cầu).
 - Từ vựng theo buổi nằm trong `sessions[].vocab`: `{ w, form, ipa, pos, vi, ex, exVi, alt }` (`alt` = từ học thuật tương đương). Bài mới có từ vựng thì **luôn kèm `exVi`**.
