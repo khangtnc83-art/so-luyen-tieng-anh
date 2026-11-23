@@ -28,7 +28,7 @@ docs/version.json        số phiên bản hiện tại
 
 ## Lịch & buổi học
 - Học **Thứ 2 và Thứ 5**, bắt đầu `startDate: "2026-11-02"` (`studyDays: [1, 4]`). Bảng tự sinh đủ cả tháng.
-- **Tên file `NPxx` thường = Buổi xx** (NP01 → Buổi 1 = 02/11, NP02 → 05/11, NP03 → 09/11, NP04 → 12/11, NP05 → 16/11). **Ngoại lệ: NP06 = Buổi 7 (23/11)** theo giáo viên; Buổi 6 (19/11) không có bài. Từ NP07 trở đi: **hỏi giáo viên bài thuộc buổi nào** trước khi xếp.
+- **Tên file `NPxx` = Buổi xx** (NP01 → Buổi 1 = 02/11, NP02 → 05/11, NP03 → 09/11, NP04 → 12/11, NP05 → 16/11, NP07 → Buổi 7 = 23/11). Buổi 6 (19/11) hiện chưa có bài (file "NP06 - Mạo từ.mm" thực ra là NP07, giáo viên đã đổi tên 23/11). Nếu tên file và buổi không khớp → hỏi giáo viên.
 - File phụ cùng số (ví dụ `NP03.02`) = **bài thứ 2 trong cùng buổi**: thêm một mục `sessions` riêng có cùng `date` (id kiểu `np03-02`). Buổi chỉ "Hoàn thành" khi xong mọi phần của mọi bài trong buổi.
 - Một buổi **hoàn thành** khi xong cả 3 phần: Lý thuyết + Bài tập + Luyện nói. Ngày học thực tế = lúc xong phần cuối.
 - **Học bù**: chỉ giáo viên nhập (chế độ xem người học → tab Bài học): chọn ngày bù (phải **sau** ngày học) → tick "Đã học bù". Buổi đã bù được tính vào số ngày học.
@@ -37,7 +37,7 @@ docs/version.json        số phiên bản hiện tại
 ## Soạn một bài mới từ file `.mm` (FreeMind/XMind)
 Mỗi mục trong `CONTENT.sessions`:
 ```js
-{ id: "np06", date: "YYYY-MM-DD", title: "NP06 - …", level: "B1",
+{ id: "np08", date: "YYYY-MM-DD", title: "NP08 - …", level: "B1",
   grammar: { t: "tiêu đề", c: [ nhánh … ] },   // mindmap
   quiz:   [ { lv: 1|2|3, q, a, opts: [...], ex } ],
   speak:  [ { lv: 1|3, en, vi } ],
@@ -70,7 +70,7 @@ Mỗi mục trong `CONTENT.sessions`:
 ## Giáo viên sửa bài qua link (Claude Docs)
 - Khi giáo viên muốn tự sửa bài: tạo một Claude Doc gồm Hướng dẫn sửa · Phần 1 Lý thuyết (### = nhánh lớn, gạch đầu dòng thụt 4 dấu cách = nhánh con, **[ĐÃ SỬA]** / **[LƯU Ý]** ở đầu dòng = `k: "fix"` / `k: "tip"`) · Phần 2 Bài tập (bảng: # | Mức | Câu hỏi | Đáp án | Lựa chọn sai (cách nhau bằng ;) | Giải thích) · Phần 3 Luyện nói (bảng: # | Mức | Câu tiếng Anh | Nghĩa).
 - Giáo viên nhắn "đã sửa xong" → đọc lại tài liệu, chuyển ngược thành mục `sessions` (Cơ bản/Trung bình/Khó = lv 1/2/3), giữ đúng những gì giáo viên sửa; câu giáo viên thêm mà sai ngữ pháp → hỏi trước khi đổi, rồi sửa luôn trong tài liệu cho khớp.
-- Link bài NP06 (Buổi 7): https://claude.ai/artifact/AEdBKxo4cxTZUxGSGnTv7n
+- Link bài NP07 – Mạo từ (Buổi 7; tài liệu mang tên cũ "NP06"): https://claude.ai/artifact/AEdBKxo4cxTZUxGSGnTv7n
 
 ## Từ vựng
 - `docs/data/vocab3000.js`: `{ n, w, pos, ipa, vi, ex?, exVi?, fam?, syn? }` — loại từ, gia đình từ, đồng nghĩa (WordNet), câu ví dụ (Tatoeba, CC BY 2.0 FR), `exVi` = nghĩa tiếng Việt của câu ví dụ (Claude dịch). Nghĩa giữ theo PDF gốc của giáo viên (có vài nghĩa sai đã biết, ví dụ *actually*, *adapt* — chỉ sửa khi được yêu cầu).
