@@ -50,7 +50,7 @@ Mỗi mục trong `CONTENT.sessions`:
   - `k: "fix"` = nhãn **ĐÃ SỬA** — dùng khi sửa lỗi trong tài liệu gốc, ghi rõ bản gốc viết gì.
   - `k: "tip"` = nhãn **LƯU Ý** — ghi chú/ví dụ Claude bổ sung.
   - Chính sách: **sửa lỗi + ghi chú** (không im lặng sửa, không giữ lỗi). Có thể thêm nhánh "Hay nhầm khi nói" nếu hữu ích cho giao tiếp.
-- **Bài tập**: mỗi lần làm lấy **20 câu = 10 cơ bản (lv 1) + 5 trung bình (lv 2) + 5 khó (lv 3)**. Ngân hàng câu ≥ 20 (đúng tỉ lệ). `opts` rỗng = câu điền từ; nhiều đáp án đúng viết `"a/b"`. `ex` = giải thích tiếng Việt ngắn. Câu khó ưu tiên tình huống hội thoại dễ nhầm.
+- **Bài tập**: mỗi lần làm lấy **20 câu = 10 cơ bản (lv 1) + 5 trung bình (lv 2) + 5 khó (lv 3)**. Ngân hàng câu ≥ 20 (đúng tỉ lệ). `opts` rỗng = câu điền từ; nhiều đáp án đúng (chỉ câu điền từ) viết `"a/b"`. Câu trắc nghiệm: `a` là nguyên một lựa chọn — câu 2 chỗ trống nối bằng `" / "` (ví dụ `"was cooking / was washing"`), các `opts` cũng viết cùng kiểu. `ex` = giải thích tiếng Việt ngắn. Câu khó ưu tiên tình huống hội thoại dễ nhầm.
 - **Luyện nói**: **10 câu = 4 cơ bản (lv 1) + 6 khó (lv 3)**, câu giao tiếp tự nhiên, có `vi` (nghĩa tiếng Việt).
 - Ngôn ngữ ví dụ: đời thường, bối cảnh Việt Nam quen thuộc (Đà Nẵng, Hội An, bánh xèo…).
 
@@ -61,7 +61,7 @@ Mỗi mục trong `CONTENT.sessions`:
 
 ## Từ vựng
 - `docs/data/vocab3000.js`: `{ n, w, pos, ipa, vi, ex?, exVi?, fam?, syn? }` — loại từ, gia đình từ, đồng nghĩa (WordNet), câu ví dụ (Tatoeba, CC BY 2.0 FR), `exVi` = nghĩa tiếng Việt của câu ví dụ (Claude dịch). Nghĩa giữ theo PDF gốc của giáo viên (có vài nghĩa sai đã biết, ví dụ *actually*, *adapt* — chỉ sửa khi được yêu cầu).
-- Từ vựng theo buổi nằm trong `sessions[].vocab`: `{ w, form, ipa, pos, vi, ex, exVi, alt }` (`alt` = từ học thuật tương đương). Bài mới có từ vựng thì **luôn kèm `exVi`**.
+- Từ vựng theo buổi nằm trong `sessions[].vocab`: `{ w, form, ipa, pos, vi, ex, exVi, alt }` (`alt` = từ học thuật tương đương). Bài mới có từ vựng thì **luôn kèm `exVi`**. Câu ví dụ dùng đúng dạng từ đang học, tránh thành ngữ / cụm lạ (bài học: *"pop quizzes"* ở thẻ *quiz* làm người học khó hiểu); phiên âm phải là của từ chính, không phải dạng số nhiều.
 - Trạng thái từ: **Chưa học / Cần ôn / Đã nhớ** (lưu trong `vs`).
 - **Từ hay (★)**: đánh dấu riêng, không liên quan trạng thái (lưu `star`); có bộ lọc "★ Từ hay" và học flashcard riêng các từ này.
 - **Ghi chú**: theo từng từ (`notes`, viết ở thẻ flashcard sau khi lật hoặc khi mở dòng trong bảng) + **Sổ ghi chú** chung trong tab Từ vựng (`notebook`). Đồng bộ lên Sheet; giáo viên chỉ xem.

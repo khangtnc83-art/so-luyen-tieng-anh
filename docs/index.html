@@ -280,9 +280,9 @@ kbd{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border
 </div>
 <div id="toast" role="status" hidden></div>
 <a id="dictpop" class="dictpop" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span></span></a>
-<script>window.BUILD="20261123-131701";</script>
-<script src="data/content.js?v=20261123-131701"></script>
-<script src="data/vocab3000.js?v=20261123-131701"></script>
+<script>window.BUILD="20261123-133053";</script>
+<script src="data/content.js?v=20261123-133053"></script>
+<script src="data/vocab3000.js?v=20261123-133053"></script>
 <script>
 (function(){
 "use strict";
@@ -774,7 +774,7 @@ function vQuiz(){
   let h=`<div class="study">${studyHead(s.title,s.idx,n)}<div class="card"><span class="chip lvl${q.lv||1}">${esc(t("lv"+(q.lv||1)))}</span><p class="q">${esc(q.q).replace(/_{2,}/g,'<b style="color:var(--accent)">____</b>')}</p></div>`;
   if(q.shown)h+=`<div class="opts">${q.shown.map((o,i)=>{let c="";if(A){if(checkAns(q,o))c="right";else if(o===A.given)c="wrong"}return`<button class="${c}" data-act="pick" data-i="${i}" ${A?"disabled":""}><span class="mono muted">${i+1}</span>&nbsp; ${esc(o)}</button>`}).join("")}</div>`;
   else h+=`<form class="row" data-form="fill"><input type="text" id="fillInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(t("typeAns"))}" ${A?`value="${esc(A.given)}" disabled`:""} style="flex:1 1 200px" aria-label="${esc(t("typeAns"))}"><button class="primary" type="submit" ${A?"hidden":""}>${esc(t("check"))}</button></form>`;
-  if(A)h+=`<div class="fb ${A.ok?"ok":"no"}"><b>${esc(A.ok?t("correct"):t("wrongA"))}</b>${A.ok?"":`<span>${esc(t("answer"))}: <b>${esc(q.a.split("/")[0])}</b></span>`}${q.ex?`<span>${esc(q.ex)}</span>`:""}</div><button class="primary" data-act="nextQ">${esc(t("next"))} <kbd>Enter</kbd></button>`;
+  if(A)h+=`<div class="fb ${A.ok?"ok":"no"}"><b>${esc(A.ok?t("correct"):t("wrongA"))}</b>${A.ok?"":`<span>${esc(t("answer"))}: <b>${esc(mainAns(q))}</b></span>`}${q.ex?`<span>${esc(q.ex)}</span>`:""}</div><button class="primary" data-act="nextQ">${esc(t("next"))} <kbd>Enter</kbd></button>`;
   return h+`</div>`;
 }
 function vSpeak(){
@@ -834,7 +834,7 @@ function pick(pool,mix){
   if(out.length<want)shuffle(pool.filter(x=>!used.has(x))).slice(0,want-out.length).forEach(x=>out.push(x));
   return out.sort((a,b)=>(a.lv||1)-(b.lv||1));
 }
-function startQuiz(id){const s=SESS.find(z=>z.id===id);const items=pick(s.quiz||[],QUIZ_MIX).map(q=>Object.assign({},q,{shown:q.opts&&q.opts.length?shuffle([q.a.split("/")[0].trim()].concat(q.opts)):null}));
+function startQuiz(id){const s=SESS.find(z=>z.id===id);const items=pick(s.quiz||[],QUIZ_MIX).map(q=>Object.assign({},q,{shown:q.opts&&q.opts.length?shuffle([q.a.trim()].concat(q.opts)):null}));
   const lv={};items.forEach(q=>{const l=q.lv||1;lv[l]=lv[l]||{n:0,ok:0};lv[l].n++});
   S.session={kind:"quiz",sid:id,title:s.title,items,idx:0,ans:null,score:0,wrong:[],lv,active:true};S.view={name:"quizRun"};render();scrollTo(0,0)}
 function startSpeak(id){const s=SESS.find(z=>z.id===id);S.session={kind:"speak",sid:id,title:s.title,items:pick(s.speak||[],SPEAK_MIX),idx:0,heard:"",partial:"",result:null,best:[],mic:false,noMic:!REC,active:true};S.view={name:"speakRun"};render();scrollTo(0,0)}
@@ -844,8 +844,13 @@ function startCards(vs,all,every){
   const due=shuffle(vs.filter(v=>all?P.vs[v.id]:isDue(v)).map(v=>v.id)).slice(0,40);const fresh=vs.filter(v=>!P.vs[v.id]).map(v=>v.id).slice(0,20);
   const q=all&&!due.length?shuffle(vs.map(v=>v.id)).slice(0,40):due.concat(fresh);const src=SOURCES.find(z=>z.id===S.vfilter);
   S.session={kind:"cards",pool:vs,title:src?src.title:t("vocab"),byId,queue:q,reviewed:0,lapses:0,flipped:false,empty:!q.length,active:true,hist:[]};S.view={name:"cards"};render();scrollTo(0,0)}
-function checkAns(q,given){const n=x=>String(x).toLowerCase().replace(/[’‘`]/g,"'").trim().replace(/[.!?,;]+$/,"").replace(/\s+/g," ").trim();return q.a.split("/").some(a=>n(a)===n(given))}
-function answer(given){const s=S.session;const q=s.items[s.idx];if(s.ans)return;const ok=checkAns(q,given);s.ans={ok,given};if(ok){s.score++;s.lv[q.lv||1].ok++}else s.wrong.push({q:q.q,a:q.a.split("/")[0],given,ex:q.ex||""});render()}
+// Multiple choice: the whole "a" is the one right option (it may join two blanks with " / ").
+// Fill-in (no opts): "a/b" lists several accepted answers.
+const isMC=q=>!!(q.opts&&q.opts.length);
+const ansList=q=>isMC(q)?[q.a.trim()]:q.a.split("/").map(x=>x.trim());
+const mainAns=q=>ansList(q)[0];
+function checkAns(q,given){const n=x=>String(x).toLowerCase().replace(/[’‘`]/g,"'").trim().replace(/[.!?,;]+$/,"").replace(/\s+/g," ").trim();return ansList(q).some(a=>n(a)===n(given))}
+function answer(given){const s=S.session;const q=s.items[s.idx];if(s.ans)return;const ok=checkAns(q,given);s.ans={ok,given};if(ok){s.score++;s.lv[q.lv||1].ok++}else s.wrong.push({q:q.q,a:mainAns(q),given,ex:q.ex||""});render()}
 function exitSession(){const s=S.session;if(s&&s.kind==="speak")stopRec();if(s&&s.kind==="cards")save();
   const back=s&&s.kind==="cards"?{name:"vocab"}:{name:"session",id:s?s.sid:null,tab:s?(s.kind==="quiz"?"practice":"speaking"):"theory"};S.session=null;S.view=back;render();scrollTo(0,0)}
 
