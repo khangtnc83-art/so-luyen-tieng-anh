@@ -276,8 +276,9 @@ kbd{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border
   <main id="app"></main>
 </div>
 <div id="toast" role="status" hidden></div>
-<script src="data/content.js"></script>
-<script src="data/vocab3000.js"></script>
+<script>window.BUILD="20261123-130006";</script>
+<script src="data/content.js?v=20261123-130006"></script>
+<script src="data/vocab3000.js?v=20261123-130006"></script>
 <script>
 (function(){
 "use strict";
@@ -937,6 +938,21 @@ document.addEventListener("submit",e=>{
 });
 if(TEACH.on&&SYNC){if(location.hash==="#giaovien")S.view={name:"teacher"};if(TEACH.key)loadLearners()}
 render();
+/* ---------- new version check: GitHub Pages lets browsers keep old files ~10 min ---------- */
+async function checkVersion(){
+  try{
+    const r=await fetch("version.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;
+    const v=String((await r.json()).v||"");if(!v||v===window.BUILD)return;
+    let seen=null;try{seen=sessionStorage.getItem("soluyen.reloadFor")}catch(e){}
+    if(seen===v)return;                       // already tried once for this version: avoid a reload loop
+    try{sessionStorage.setItem("soluyen.reloadFor",v)}catch(e){}
+    pushNow();
+    await fetch(location.href.split("#")[0],{cache:"reload"}).catch(()=>{});
+    location.reload();
+  }catch(e){}
+}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&!S.session)checkVersion()});
+checkVersion();
 if(!SYNC&&!TEACH.as&&pruneVocab())save();
 if(!TEACH.on||!TEACH.key)pull();
 })();

@@ -11,8 +11,9 @@ Trang web tĩnh giúp một người học (trình độ khá, mạnh từ vựn
 1. **Hỏi trước khi đẩy lên GitHub.** Sửa + chạy thử xong → báo kết quả → chỉ `git commit` / `git push` khi chủ dự án đồng ý.
 2. **Hỏi khi tài liệu chưa rõ** (cách xếp buổi, file thiếu, nội dung mâu thuẫn) trước khi làm.
 3. Commit kết thúc bằng dòng `Co-Authored-By: Claude …` theo hướng dẫn hệ thống. Danh tính commit dùng email noreply của GitHub (đã cấu hình trong repo).
-4. Sau khi push: đợi build GitHub Pages (`gh api repos/khangtnc83-art/so-luyen-tieng-anh/pages/builds/latest`) rồi kiểm tra trang thật.
-5. **Không bao giờ commit `syncUrl` của máy chủ giả lập** — luôn khôi phục link `/exec` thật trước khi commit.
+4. **Trước mỗi commit có sửa `docs/`: chạy `python3 tools/bump_version.py`** (đổi số phiên bản trong `docs/index.html` + `docs/version.json`). Trang so số này khi mở / quay lại tab và tự tải lại một lần nếu trình duyệt đang giữ bản cũ (GitHub Pages cho trình duyệt giữ file ~10 phút).
+5. Sau khi push: đợi build GitHub Pages (`gh api repos/khangtnc83-art/so-luyen-tieng-anh/pages/builds/latest`) rồi kiểm tra trang thật.
+6. **Không bao giờ commit `syncUrl` của máy chủ giả lập** — luôn khôi phục link `/exec` thật trước khi commit.
 
 ## Cấu trúc
 ```
@@ -21,6 +22,8 @@ docs/data/content.js     lịch học + nội dung các buổi (window.CONTENT)
 docs/data/vocab3000.js   3.396 từ Oxford 3000 (window.VOCAB_LIBRARY)
 google-sheet-script.gs   Apps Script làm kho dữ liệu chung (dán vào Google Sheet của giáo viên)
 tools/mock_sheet.py      máy chủ giả lập Apps Script để chạy thử
+tools/bump_version.py    đổi số phiên bản trước mỗi lần đẩy (trình duyệt tự lấy bản mới)
+docs/version.json        số phiên bản hiện tại
 ```
 
 ## Lịch & buổi học
