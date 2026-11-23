@@ -52,6 +52,8 @@ Mỗi mục trong `CONTENT.sessions`:
   - Chính sách: **sửa lỗi + ghi chú** (không im lặng sửa, không giữ lỗi). Có thể thêm nhánh "Hay nhầm khi nói" nếu hữu ích cho giao tiếp.
 - **Bài tập**: mỗi lần làm lấy **20 câu = 10 cơ bản (lv 1) + 5 trung bình (lv 2) + 5 khó (lv 3)**. Ngân hàng câu ≥ 20 (đúng tỉ lệ). `opts` rỗng = câu điền từ; nhiều đáp án đúng (chỉ câu điền từ) viết `"a/b"`. Câu trắc nghiệm: `a` là nguyên một lựa chọn — câu 2 chỗ trống nối bằng `" / "` (ví dụ `"was cooking / was washing"`), các `opts` cũng viết cùng kiểu. `ex` = giải thích tiếng Việt ngắn. Câu khó ưu tiên tình huống hội thoại dễ nhầm.
 - **Luyện nói**: **10 câu = 4 cơ bản (lv 1) + 6 khó (lv 3)**, câu giao tiếp tự nhiên, có `vi` (nghĩa tiếng Việt).
+  - Chấm điểm: số / giờ / năm được đổi thành chữ ở cả câu mẫu lẫn câu nhận được ("8:00" = "eight" = "eight o'clock", "120,000" = "one hundred and twenty thousand"), nên viết câu mẫu kiểu nào cũng được.
+  - Micro: trang chỉ báo "Mời bạn đọc" khi micro đã thật sự bật (tránh mất đầu câu); nhận 5 phương án nghe và chọn phương án khớp câu mẫu nhất.
 - Ngôn ngữ ví dụ: đời thường, bối cảnh Việt Nam quen thuộc (Đà Nẵng, Hội An, bánh xèo…).
 
 ## Giọng văn cho nội dung Claude tự viết (giáo viên chọn 23/11/2026)

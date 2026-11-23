@@ -184,7 +184,10 @@ textarea{font-family:var(--mono);font-size:.8rem;min-height:90px}
 .words .hit{background:var(--good-soft);color:var(--good)}
 .words .miss{background:var(--bad-soft);color:var(--bad);text-decoration:underline dotted}
 .score{font-family:var(--mono);font-size:2.4rem;font-weight:500;line-height:1}
-.mic.live{background:var(--bad);border-color:var(--bad);color:#fff}
+.mic.live{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.mic.live.ready{background:var(--bad);border-color:var(--bad);color:#fff;animation:micpulse 1.4s ease-in-out infinite}
+@keyframes micpulse{0%,100%{box-shadow:0 0 0 0 rgba(220,80,80,.45)}50%{box-shadow:0 0 0 8px rgba(220,80,80,0)}}
+@media (prefers-reduced-motion:reduce){.mic.live.ready{animation:none}}
 .lvl1{background:var(--good-soft);color:var(--good)}.lvl2{background:var(--warn-soft);color:var(--warn)}.lvl3{background:var(--bad-soft);color:var(--bad)}
 /* vocab */
 .vtool{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
@@ -280,9 +283,9 @@ kbd{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border
 </div>
 <div id="toast" role="status" hidden></div>
 <a id="dictpop" class="dictpop" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span></span></a>
-<script>window.BUILD="20261123-133053";</script>
-<script src="data/content.js?v=20261123-133053"></script>
-<script src="data/vocab3000.js?v=20261123-133053"></script>
+<script>window.BUILD="20261123-140041";</script>
+<script src="data/content.js?v=20261123-140041"></script>
+<script src="data/vocab3000.js?v=20261123-140041"></script>
 <script>
 (function(){
 "use strict";
@@ -323,7 +326,7 @@ vi:{lessons:"Bài học",vocab:"Từ vựng",progress:"Tiến độ",
  flip:"Lật thẻ",again:"Quên",hard:"Khó nhớ",good:"Nhớ",easy:"Dễ",now:"ngay",days:"{0} ngày",exit:"Thoát",cardsDone:"Xong phần ôn thẻ",reviewed:"Đã xem {0} thẻ · {1} lần chọn Cần ôn",nothingDue:"Không có từ nào cần ôn lúc này.",reviewAll:"Ôn lại toàn bộ",
  check:"Kiểm tra",next:"Tiếp",correct:"Chính xác",wrongA:"Chưa đúng",answer:"Đáp án",typeAns:"Gõ câu trả lời…",quizDone:"Kết quả bài tập",reviewWrong:"Câu cần xem lại",
  record:"Bấm để nói",stop:"Dừng",retry:"Nói lại",heard:"Máy nghe được",speakDone:"Kết quả luyện nói",avg:"Điểm trung bình",selfRate:"Trình duyệt này chưa cho dùng micro. Hãy nghe mẫu, đọc to, rồi tự chấm:",rateGood:"Đọc tốt",rateOk:"Tạm được",rateBad:"Chưa được",
- listening:"Đang nghe… đọc câu ở trên rồi bấm Dừng.",micHint:"Bấm nút micro rồi đọc to câu ở trên.",finish:"Hoàn thành",saved:"Đã lưu kết quả",toSession:"Về buổi học",completedT:"Hoàn thành buổi học!",
+ listening:"🎙 Mời bạn đọc! Đọc xong bấm Dừng.",micWait:"Đang bật micro… đợi chữ “Mời bạn đọc” rồi hãy bắt đầu.",micHint:"Bấm nút micro rồi đọc to câu ở trên.",finish:"Hoàn thành",saved:"Đã lưu kết quả",toSession:"Về buổi học",completedT:"Hoàn thành buổi học!",
  allSources:"Tất cả nguồn từ vựng",source:"Nguồn",colWord:"Từ · phiên âm",colPos:"Loại từ",colMeaning:"Nghĩa",family:"Gia đình từ",synonyms:"Đồng nghĩa",example:"Ví dụ",showMore:"Xem thêm",showing:"Đang hiện {0}/{1} từ",
  allSessions:"Tất cả buổi",search:"Tìm từ, nghĩa, gia đình từ, đồng nghĩa…",all:"Tất cả",stNew:"Chưa học",stLearning:"Cần ôn",stKnown:"Đã nhớ",learnCards:"Học flashcard",dueN:"{0} từ cần ôn",noVocab:"Chưa có từ vựng. Giáo viên sẽ thêm theo từng buổi.",noMatch:"Không có từ nào khớp.",nWords:"{0} từ",
  schedThis:"Buổi theo lịch",studied:"Ngày đã học",makeups:"Học bù",missed:"Chưa học",soFar:"tính đến hôm nay",ofMonth:"cả tháng {0}",
@@ -350,7 +353,7 @@ en:{lessons:"Lessons",vocab:"Vocabulary",progress:"Progress",
  flip:"Flip",again:"Again",hard:"Hard",good:"Good",easy:"Easy",now:"now",days:"{0} d",exit:"Exit",cardsDone:"Review finished",reviewed:"Saw {0} cards · {1} marked to review",nothingDue:"Nothing due right now.",reviewAll:"Review all",
  check:"Check",next:"Next",correct:"Correct",wrongA:"Not quite",answer:"Answer",typeAns:"Type your answer…",quizDone:"Exercise result",reviewWrong:"Review these",
  record:"Tap to speak",stop:"Stop",retry:"Try again",heard:"Heard",speakDone:"Speaking result",avg:"Average",selfRate:"This browser can't use the microphone. Listen, read aloud, then rate yourself:",rateGood:"Good",rateOk:"Okay",rateBad:"Not yet",
- listening:"Listening… read the sentence, then tap Stop.",micHint:"Tap the mic and read the sentence aloud.",finish:"Finish",saved:"Result saved",toSession:"Back to session",completedT:"Session complete!",
+ listening:"🎙 Go ahead and read! Tap Stop when done.",micWait:"Turning the mic on… wait for “Go ahead” before you start.",micHint:"Tap the mic and read the sentence aloud.",finish:"Finish",saved:"Result saved",toSession:"Back to session",completedT:"Session complete!",
  allSources:"All vocabulary sources",source:"Source",colWord:"Word · IPA",colPos:"Part of speech",colMeaning:"Meaning",family:"Word family",synonyms:"Synonyms",example:"Example",showMore:"Show more",showing:"Showing {0}/{1} words",
  allSessions:"All sessions",search:"Search word, meaning, family, synonym…",all:"All",stNew:"Not studied",stLearning:"To review",stKnown:"Remembered",learnCards:"Study flashcards",dueN:"{0} to review",noVocab:"No vocabulary yet. Your teacher adds it per session.",noMatch:"No matching words.",nWords:"{0} words",
  schedThis:"Scheduled",studied:"Days studied",makeups:"Make-ups",missed:"Not done",soFar:"up to today",ofMonth:"{0} this month",
@@ -532,7 +535,26 @@ function pickVoice(){try{const vs=speechSynthesis.getVoices();voice=vs.find(v=>/
 try{pickVoice();speechSynthesis.onvoiceschanged=pickVoice}catch(e){}
 function speak(text,rate){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";if(voice)u.voice=voice;u.rate=rate||0.95;speechSynthesis.speak(u)}catch(e){}}
 const CONTR={"i'm":"i am","you're":"you are","we're":"we are","they're":"they are","he's":"he is","she's":"she is","it's":"it is","that's":"that is","there's":"there is","what's":"what is","i've":"i have","you've":"you have","we've":"we have","they've":"they have","i'll":"i will","you'll":"you will","we'll":"we will","i'd":"i would","don't":"do not","doesn't":"does not","didn't":"did not","can't":"cannot","won't":"will not","isn't":"is not","aren't":"are not","wasn't":"was not","haven't":"have not","hasn't":"has not","couldn't":"could not","shouldn't":"should not","let's":"let us"};
-function words(s){return String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[^a-z0-9' ]+/g," ").split(/\s+/).filter(Boolean).flatMap(w=>(CONTR[w]||w).split(" ")).map(w=>w.replace(/^'+|'+$/g,"").replace(/'s$/,"s").replace(/s'$/,"s")).filter(Boolean)}
+/* numbers and times are compared as spoken words: "8:00" = "eight" = "eight o'clock", "120,000" = "one hundred and twenty thousand" */
+const ONES=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"],TENS=["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"];
+function numWords(n){n=Math.floor(n);if(n<20)return ONES[n];if(n<100)return TENS[Math.floor(n/10)]+(n%10?" "+ONES[n%10]:"");
+  if(n<1000)return ONES[Math.floor(n/100)]+" hundred"+(n%100?" "+numWords(n%100):"");
+  for(const[v,w]of[[1e9,"billion"],[1e6,"million"],[1e3,"thousand"]])if(n>=v)return numWords(n/v)+" "+w+(n%v?" "+numWords(n%v):"");return String(n)}
+const ORD={one:"first",two:"second",three:"third",five:"fifth",eight:"eighth",nine:"ninth",twelve:"twelfth"};
+function ordWords(n){const w=numWords(n).split(" ");const l=w.pop();w.push(ORD[l]||(/y$/.test(l)?l.slice(0,-1)+"ieth":l+"th"));return w.join(" ")}
+function yearWords(n){if(n>=2000&&n<2010)return numWords(n);if(n>=1100&&n<2100&&n%100)return numWords(Math.floor(n/100))+" "+(n%100<10?"oh "+ONES[n%100]:numWords(n%100));return numWords(n)}
+function spokenNums(t){
+  return t.replace(/(\d),(?=\d{3}\b)/g,"$1")
+   .replace(/\b(\d{1,2})[:.](\d{2})\s*(a\.?\s?m\.?|p\.?\s?m\.?)?(?=\W|$)/gi,(m,h,mi,ap)=>{mi=+mi;return " "+numWords(+h)+(mi?" "+(mi<10?"oh "+ONES[mi]:numWords(mi)):"")+(ap?" "+(/^a/i.test(ap)?"am":"pm"):"")+" "})
+   .replace(/\b(\d+)\s*(a\.?\s?m\.?|p\.?\s?m\.?)(?=\W|$)/gi,(m,h,ap)=>" "+numWords(+h)+" "+(/^a/i.test(ap)?"am":"pm")+" ")
+   .replace(/\b(\d+)(st|nd|rd|th)\b/gi,(m,n)=>" "+ordWords(+n)+" ")
+   .replace(/\b(\d+)\.(\d+)\b/g,(m,a,b)=>" "+numWords(+a)+" point "+b.split("").map(d=>ONES[d]).join(" ")+" ")
+   .replace(/\b(1[1-9]\d\d|20\d\d)\b/g,(m,y)=>" "+yearWords(+y)+" ")
+   .replace(/\b\d+\b/g,m=>" "+numWords(+m)+" ")
+   .replace(/%/g," percent ")
+   .replace(/\b(a|p)\.\s?m\.?(?=\W|$)/gi,(m,x)=>" "+x.toLowerCase()+"m ");
+}
+function words(s){return spokenNums(String(s)).toLowerCase().replace(/\bo'?clock\b/g," ").replace(/\bhundred and\b/g,"hundred").replace(/[’‘`]/g,"'").replace(/[^a-z0-9' ]+/g," ").split(/\s+/).filter(Boolean).flatMap(w=>(CONTR[w]||w).split(" ")).map(w=>w.replace(/^'+|'+$/g,"").replace(/'s$/,"s").replace(/s'$/,"s")).filter(Boolean)}
 function compare(target,heard){
   const a=words(target),b=words(heard),n=a.length,m=b.length;
   const L=Array.from({length:n+1},()=>new Array(m+1).fill(0));
@@ -547,15 +569,19 @@ let rec=null;
 function startRec(){
   const s=S.session;if(!REC){s.noMic=true;render();return}
   try{
-    rec=new REC();rec.lang="en-US";rec.interimResults=true;rec.continuous=true;rec.maxAlternatives=1;
-    s.heard="";s.partial="";s.result=null;
-    rec.onresult=e=>{let fin="",part="";for(let i=0;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)fin+=r[0].transcript+" ";else part+=r[0].transcript}s.heard=fin.trim();s.partial=part;paintHeard()};
+    rec=new REC();rec.lang="en-US";rec.interimResults=true;rec.continuous=true;rec.maxAlternatives=5;
+    s.heard="";s.partial="";s.result=null;s.ready=false;
+    const target=new Set(words(s.items[s.idx].en));
+    const best=r=>{let b=r[0].transcript,bs=-1;for(let k=0;k<r.length;k++){const t2=r[k].transcript;const sc=words(t2).filter(w=>target.has(w)).length;if(sc>bs){bs=sc;b=t2}}return b};
+    rec.onaudiostart=()=>{s.ready=true;micLabel()};
+    rec.onresult=e=>{if(!s.ready){s.ready=true;micLabel()}let fin="",part="";for(let i=0;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)fin+=best(r)+" ";else part+=r[0].transcript}s.heard=fin.trim();s.partial=part;paintHeard()};
     rec.onerror=e=>{if(e.error==="not-allowed"||e.error==="service-not-allowed"||e.error==="audio-capture")s.noMic=true;s.mic=false;rec=null;render()};
     rec.onend=()=>{const was=s.mic;s.mic=false;rec=null;const txt=(s.heard+" "+(s.partial||"")).trim();if(txt&&s.result==null){s.heard=txt;scoreSpeak()}else if(was)render()};
     rec.start();s.mic=true;render();
   }catch(e){s.noMic=true;render()}
 }
 function stopRec(){if(rec){try{rec.stop()}catch(e){}}}
+function micLabel(){const s=S.session,el=$("#micLabel"),b=$(".mic.live");if(!s||!el)return;el.textContent=s.ready?t("listening"):t("micWait");if(b)b.classList.toggle("ready",!!s.ready)}
 function paintHeard(){const el=$("#heardLive"),s=S.session;if(el&&s)el.textContent=(s.heard+" "+(s.partial||"")).trim()||"…"}
 function scoreSpeak(){const s=S.session;const p=s.items[s.idx];const c=compare(p.en,s.heard);s.result=c;s.best[s.idx]=Math.max(s.best[s.idx]??0,c.score);render()}
 
@@ -787,7 +813,7 @@ function vSpeak(){
   let h=`<div class="study">${studyHead(s.title,s.idx,n)}<div class="card"><span class="chip lvl${p.lv||1}">${esc(t("lv"+(p.lv||1)))}</span><p class="q" style="font-size:1.35rem">${esc(p.en)}</p>${p.vi?`<span class="muted">${esc(p.vi)}</span>`:""}
    <div class="row" style="justify-content:center"><button class="small" data-act="say" data-t="${esc(p.en)}">▶ ${esc(t("listen"))}</button><button class="small" data-act="say" data-t="${esc(p.en)}" data-r="0.7">▶ ${esc(t("slow"))}</button></div></div>`;
   if(s.noMic)h+=`<div class="note stack"><span>${esc(t("selfRate"))}</span><div class="row"><button data-act="selfRate" data-s="100">${esc(t("rateGood"))}</button><button data-act="selfRate" data-s="60">${esc(t("rateOk"))}</button><button data-act="selfRate" data-s="30">${esc(t("rateBad"))}</button></div></div>`;
-  else if(s.result==null)h+=`<button class="primary mic ${s.mic?"live":""}" data-act="mic">${s.mic?"■ "+esc(t("stop")):"● "+esc(t("record"))}</button><div class="note"><span class="label">${esc(s.mic?t("listening"):t("micHint"))}</span><p id="heardLive" class="muted" style="margin-top:6px">…</p></div>`;
+  else if(s.result==null)h+=`<button class="primary mic ${s.mic?"live":""} ${s.mic&&s.ready?"ready":""}" data-act="mic">${s.mic?"■ "+esc(t("stop")):"● "+esc(t("record"))}</button><div class="note"><span class="label" id="micLabel">${esc(s.mic?(s.ready?t("listening"):t("micWait")):t("micHint"))}</span><p id="heardLive" class="muted" style="margin-top:6px">…</p></div>`;
   else{const r=s.result;
     h+=`<div class="note stack"><div class="row"><span class="score">${r.score}</span><span class="chip ${sc(r.score)}">/100</span></div><div class="words">${r.tw.map((w,i)=>`<span class="${r.hit[i]?"hit":"miss"}">${esc(w)}</span>`).join(" ")}</div><span class="muted">${esc(t("heard"))}: “${esc(s.heard)}”</span></div>
      <div class="row"><button data-act="retry">${esc(t("retry"))}</button><button class="primary" data-act="nextS">${esc(s.idx+1>=n?t("finish"):t("next"))}</button></div>`}
